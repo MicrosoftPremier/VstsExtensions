@@ -8,6 +8,11 @@ build, you still get test results as well as the compile output and symbols.
 
 ![Task Placement](../assets/AddTask.png "Proper placement of the Build Quality Checks task")
 
+**Note:** The task needs to access Team Foundation Server/Visual Studio Team Services to read build information. Thus, you must allow
+access to the build's OAuth token:
+
+![OAuth Token Access](../assets/OAuthToken.png "Allowing access to the build's OAuth token")
+
 ## Warnings Policy
 Many software projects, especially older ones, that have grown over time end up with hundreds or thousands of build warnings.
 Getting rid of these warnings through refactoring or cleaning up the code can be challenging, since new warnings get lost in

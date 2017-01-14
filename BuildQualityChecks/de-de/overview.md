@@ -9,6 +9,11 @@ durch eine der Regeln abgebrochen wird.
 
 ![Task-Einbindung](../assets/AddTask.png "Empfohlene Einbindung des Build Quality Checks Tasks")
 
+**Hinweis:** Der Task muss auf Team Foundation Server/Visual Studio Team Services zugreifen, um Build-Informationen zu lesen. Sie
+müssen daher den Zugriff auf das OAuth-Token des Builds zulassen:
+
+![OAuth-Token-Zugriff](../assets/OAuthToken.png "Zugriff auf das OAuth-Token des Builds zulassen")
+
 ## Warnungen-Regel
 Viele Software-Projekte, vor allem ältere, die über eine längere Zeit gewachsen sind, häufen hunderte oder tausende Build-
 Warnungen an. Diese Warnungen durch Refactoring oder aufräumen des Codes loszuwerden, ist oft schwierig, da neue Warnungen
