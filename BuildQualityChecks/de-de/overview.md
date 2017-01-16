@@ -35,14 +35,14 @@ Parameter nicht sichtbar.
 - **Abbruchkriterium:** Setzen Sie diese Option auf `Fester Schwellwert`, um den Build abzubrechen, wenn eine bestimmte Zahl an
 Warnungen überschritten wird. Dies ist dann hilfreich, wenn Sie eine geringe Zahl an Warnungen zulassen aber gleichzeitig
 sicherstellen möchten, dass die Warnungen nicht Überhand nehmen. Um die Zahl der Warnungen über einen längeren Zeitraum
-kontinuierlich zu reduzieren, wählen Sie die Option `Vorheriger Build`. Dadurch wird der Build abgebrochen, wenn die Zahl der
-Warnungen seit dem letzten Build gestiegen ist.
+kontinuierlich zu reduzieren, wählen Sie die Option `Vorheriger Wert`. Dadurch wird der Build abgebrochen, wenn die Zahl der
+Warnungen seit dem vorherigen Build gestiegen ist.
 
 - **Schwellwert:** Geben sie die maximale Anzahl an Warnungen an, die nicht überschritten werden darf. Dieser Parameter ist
 nur sichtbar, wenn als *Abbruchkriterium* die Option `Fester Schwellwert` gewählt wurde.
 
 - **Weniger Warnungen erzwingen:** Aktivieren Sie diese Option, wenn der aktuelle Build immer weniger Warnungen als der vorherige
-Build haben soll. Diese Option ist nur sichtbar, wenn als *Abbruchkriterium* die Option `Vorheriger Build` gewählt wurde.
+Build haben soll. Diese Option ist nur sichtbar, wenn als *Abbruchkriterium* die Option `Vorheriger Wert` gewählt wurde.
 
 - **Task-Filter:** Da das Build-System verschiedenste Tasks ausführen und jeder dieser Tasks Warnungen erzeugen kann, muss die
 *Warnungen-Regel* wissen, welche Tasks berücksichtigt und welche ignoriert werden sollen. *Task-Filter* enthält eine Liste
@@ -67,16 +67,26 @@ von einem Build zum nächsten verschlechtert.
 - **Aktiv:** Über diese Option lässt sich die Regel ein- und ausschalten. Wenn die Regel ausgeschaltet ist, sind die weiteren
 Parameter nicht sichtbar.
 
-- **Abbruchkriterium:** Setzen Sie diese Option auf `Fester Schwellwert`, um den Build abzubrechen, wenn ein bestimmter Code-
-Coverage-Wert unterschritten wird. Dies ist dann hilfreich, wenn Sie einen gewissen Spielraum bei der Code Coverage zulassen
-wollen, gleichzeitig aber sicherstellen möchten, dass ein Minimum an Code Coverage nie unterschritten wird. Wenn Sie die Option
-`Vorheriger Build` wählen, wird der Build abgebrochen, wenn der Code-Coverage-Wert unter den des letzten Builds fällt.
+- **Abbruchkriterium:** Setzen Sie diese Option auf `Fester Schwellwert`, um den Build abzubrechen, wenn ein bestimmter Code-Coverage-Wert
+unterschritten wird. Dies ist dann hilfreich, wenn Sie einen gewissen Spielraum bei der Code Coverage zulassen wollen, gleichzeitig aber
+sicherstellen möchten, dass ein Minimum an Code Coverage nie unterschritten wird. Wenn Sie die Option `Vorheriger Wert` wählen, wird der
+Build abgebrochen, wenn der Code-Coverage-Wert unter den des letzten Builds fällt.
 
 - **Schwellwert:** Geben sie den minimalen Code-Coverage-Wert in Prozent an. Dieser Parameter ist nur sichtbar, wenn als
 *Abbruchkriterium* die Option `Fester Schwellwert` gewählt wurde.
 
 - **Verbesserung erzwingen:** Aktivieren Sie diese Option, wenn der aktuelle Build immer eine höhere Code Coverage als der vorherige
-Build haben soll. Diese Option ist nur sichtbar, wenn als *Abbruchkriterium* die Option `Vorheriger Build` gewählt wurde.
+Build haben soll. Diese Option ist nur sichtbar, wenn als *Abbruchkriterium* die Option `Vorheriger Wert` gewählt wurde.
+
+- **Obergrenze:** Legen Sie eine Obergrenze für die Code-Coverage-Verbesserung fest. Grundsätzlich ist es nicht empfehlenswert zu
+versuchen, eine Code Coverage von 100% zu erreichen, da es dazu notwendig wäre, auch sämtlichen Trivial-Code (z.B. Getter/Setter) zu
+testen. Setzen Sie diesen Parameter auf einen sinnvollen Wert (z.B. 70%-80%). Der Build wird dann fehlschlagen, solange der Code-Coverage-Wert
+unterhalb dieses Wertes liegt. Sobald der Wert erreicht oder überschritten wird, wird der Build nicht mehr gebrochen. Dieser Parameters
+ist nur sichtbar, wenn die Option *Verbesserung erzwingen* aktiviert ist.
+
+- **Delta Type:** Setzen Sie diese Option auf `Prozentwert`, wenn der prozentuale Code-Coverage-Wert beim Vergleich zwischen dem aktuellen
+und dem vorherigen Build genutzt werden soll. Wenn Sie die Option `Absoluter Wert` wählen, wird die absolute Zahl der durchlaufenen Code-Blöcke
+zum Vergleich herangezogen.
 
 - **Modul-Filter:** Standardmäßig bewertet die Regel die aggregierte Code Coverage aller Module, für die während des Testlaufs eine
 Code Coverage berechnet wurde. *Modul-Filter* enthält eine Liste von regulären Ausdrücken (einer pro Zeile). Die Regel berücksichtigt
