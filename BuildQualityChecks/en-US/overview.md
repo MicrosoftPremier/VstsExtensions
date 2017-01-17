@@ -30,9 +30,9 @@ if the number of warnings exceeds a specific value or increases between builds.
 visible.
 
 - **Fail Build On:** Set this option to `Fixed Threshold` to fail the build if the number of warnings exceeds a specific value.
-This is useful if you want to allow a low number of warnings but keep them from getting out of hand. To bring down the number
-of warnings over time, set this option to `Previous Value`. This will fail the build if the number of warnings has increased
-since the previous build.
+This is useful if you want to allow a low number of warnings but keep them from getting out of hand, or if you want to follow a
+"no warnings policy" (i.e., **Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
+`Previous Value`. This will fail the build if the number of warnings has increased since the previous build.
 
 - **Warning Threshold:** Specify the number of warnings that must not be exceeded. This parameter is only visible if *Fail Build On*
 is set to `Fixed Threshold`.
@@ -78,7 +78,7 @@ will fail as long as the code coverage stays below this value and will pass, as 
 the option *Force Coverage Improvement* is checked.
 
 - **Delta Type:** Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
-on the percentage value of code coverage. If you set this otion to `Absolute Value`, the absolute value of covered blocks will be used during
+on the percentage value of code coverage. If you set this otion to `Absolute Value`, the absolute number of covered blocks will be used during
 comparison.
 
 - **Module Filters:** By default, the policy checks the aggregated code coverage of all modules that have been analyzed during the test runs.
