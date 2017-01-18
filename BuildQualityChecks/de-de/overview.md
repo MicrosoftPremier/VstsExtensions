@@ -1,5 +1,5 @@
 # Build Quality Checks
-Der *Build Quality Checks* Task ermöglicht Ihnen, Qualitätsprüfungen in den Buil-Prozess einzufügen.
+Der *Build Quality Checks* Task ermöglicht Ihnen, Qualitätsprüfungen in den Build-Prozess einzufügen.
 
 ### Hinzufügen des Tasks zu einer Build-Definition
 Der *Build Quality Checks* Task muss nach den Tasks eingefügt werden, die von ihm überwacht werden sollen. In einer Visual Studio
@@ -9,19 +9,16 @@ durch eine der Regeln abgebrochen wird.
 
 ![Task-Einbindung](../assets/AddTask.png "Empfohlene Einbindung des Build Quality Checks Tasks")
 
-**Hinweis:** Der Task muss auf Team Foundation Server/Visual Studio Team Services zugreifen, um Build-Informationen zu lesen. Sie
-müssen daher den Zugriff auf das OAuth-Token des Builds zulassen:
-
-![OAuth-Token-Zugriff](../assets/OAuthToken.png "Zugriff auf das OAuth-Token des Builds zulassen")
+**Update:** Ab Version 1.2.0 ist es nicht mehr notwendig, den Zugriff auf das OAuth-Token des Builds zu aktivieren.
 
 ## Warnungen-Regel
 Viele Software-Projekte, vor allem ältere, die über eine längere Zeit gewachsen sind, häufen hunderte oder tausende Build-
 Warnungen an. Diese Warnungen durch Refactoring oder aufräumen des Codes loszuwerden, ist oft schwierig, da neue Warnungen
 in den bestehenden untergehen. In diesem Fall ist es auch nicht hilfreich, Warnungen grundsätzlich wie Fehler zu behandeln
-(*treat warnings as errors*), denn dies zwingt Teams entweder dazu, die Warnings sofort zu eliminieren oder über einen langen
+(*treat warnings as errors*), denn dies zwingt Teams entweder dazu, die Warnungen sofort zu eliminieren oder über einen langen
 Zeitraum mit fehlschlagenden Builds zu leben. 
 
-Die *Build Warnings Policy* hilft, den Überblick über Warnungen zu behalten und sie über die Zeit zu reduzieren. Dies wird
+Die *Warnungen-Regel* hilft, den Überblick über Warnungen zu behalten und sie über die Zeit zu reduzieren. Dies wird
 erreicht, indem der Build gebrochen wird, wenn die Zahl der Warnungen einen bestimmten Wert übersteigt oder sich von einem
 Build zum nächsten erhöht.
 

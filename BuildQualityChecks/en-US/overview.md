@@ -1,5 +1,7 @@
 # Build Quality Checks
-The *Build Quality Checks* task allows you to add quality gates to your build proces.
+The *Build Quality Checks* task allows you to add quality gates to your build process.
+
+**Update:** Starting with version 1.2.0 there is no need to enable OAuth token access for this task.
 
 ### Adding the Task to a Build Definition
 The *Build Quality Checks* task needs to be placed after the tasks it should inspect. In a Visual Studio build definition, e.g., an
@@ -8,18 +10,13 @@ build, you still get test results as well as the compile output and symbols.
 
 ![Task Placement](../assets/AddTask.png "Proper placement of the Build Quality Checks task")
 
-**Note:** The task needs to access Team Foundation Server/Visual Studio Team Services to read build information. Thus, you must allow
-access to the build's OAuth token:
-
-![OAuth Token Access](../assets/OAuthToken.png "Allowing access to the build's OAuth token")
-
 ## Warnings Policy
 Many software projects, especially older ones, that have grown over time end up with hundreds or thousands of build warnings.
 Getting rid of these warnings through refactoring or cleaning up the code can be challenging, since new warnings get lost in
-the existing ones. Choosing to treat warnings as errors if often not a feasible solution as this will force teams to bring the
+the existing ones. Choosing to treat warnings as errors is often not a feasible solution as this will force teams to bring the
 warnings to zero or live with ever failing builds for a long time.
 
-The *Warnings Policy* helps you keep track of your warnings and reduce them over time. This is done by failing the build,
+The *Warnings Policy* helps you keep track of your warnings and reduce them over time. This is done by failing the build
 if the number of warnings exceeds a specific value or increases between builds.
 
 ### Parameters of the Build Warnings Policy
@@ -31,7 +28,7 @@ visible.
 
 - **Fail Build On:** Set this option to `Fixed Threshold` to fail the build if the number of warnings exceeds a specific value.
 This is useful if you want to allow a low number of warnings but keep them from getting out of hand, or if you want to follow a
-"no warnings policy" (i.e., **Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
+"no warnings policy" (i.e., *Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
 `Previous Value`. This will fail the build if the number of warnings has increased since the previous build.
 
 - **Warning Threshold:** Specify the number of warnings that must not be exceeded. This parameter is only visible if *Fail Build On*
