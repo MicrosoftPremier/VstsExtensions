@@ -9,7 +9,11 @@ durch eine der Regeln abgebrochen wird.
 
 ![Task-Einbindung](../assets/AddTask.png "Empfohlene Einbindung des Build Quality Checks Tasks")
 
-**Update:** Ab Version 1.2.0 ist es nicht mehr notwendig, den Zugriff auf das OAuth-Token des Builds zu aktivieren.
+### Change Notes
+Sie finden die Change Notes für diesen Task [hier](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/changeNotes.md).
+
+### Support
+Falls Sie Hilfe zu dieser Erweiterung benötigen oder Probleme auftreten, kontaktieren Sie uns bitte unter <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
 
 ## Warnungen-Regel
 Viele Software-Projekte, vor allem ältere, die über eine längere Zeit gewachsen sind, häufen hunderte oder tausende Build-
