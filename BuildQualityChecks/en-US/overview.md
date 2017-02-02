@@ -11,6 +11,11 @@ build, you still get test results as well as the compile output and symbols.
 ### Change Notes
 You can find the changes notes for this task [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/changeNotes.md).
 
+### Known Issues
+- The *Build Quality Checks* task does currently not support multi configuration builds. We are actively working on this issue.
+- The result section on the build summary page displays a wrong icon (trash can instead of red X) for failed policies on Team Foundation
+  Server 2015. We will not fix this issue, as it does not occur on Team Foundation Server 2017 or Visual Studio Team Services.
+
 ### Support
 If you need help with the extension or run into issues, please contact us at <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
 
@@ -28,26 +33,28 @@ if the number of warnings exceeds a specific value or increases between builds.
 ![Warnings Policy](../assets/WarningsPolicy.png "Parameters of the Warnings Policy")
 
 - **Enabled:** Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
-visible.
+  visible.
 
 - **Fail Build On:** Set this option to `Fixed Threshold` to fail the build if the number of warnings exceeds a specific value.
-This is useful if you want to allow a low number of warnings but keep them from getting out of hand, or if you want to follow a
-"no warnings policy" (i.e., *Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
-`Previous Value`. This will fail the build if the number of warnings has increased since the previous build.
+  This is useful if you want to allow a low number of warnings but keep them from getting out of hand, or if you want to follow a
+  "no warnings policy" (i.e., *Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
+  `Previous Value`. This will fail the build if the number of warnings has increased since the previous build.
 
 - **Warning Threshold:** Specify the number of warnings that must not be exceeded. This parameter is only visible if *Fail Build On*
-is set to `Fixed Threshold`.
+  is set to `Fixed Threshold`.
 
 - **Force Fewer Warnings:** Check this option if you want the current build to always have fewer warnings than the previous one. This
-option is only visible if *Fail Build On* is set to `Previous Value`.
+  option is only visible if *Fail Build On* is set to `Previous Value`.
 
 - **Task Filters:** Since the build system can run all kinds of tasks during the build process and any of these tasks can create
-warnings, the *Warnings Policy* needs to know, which tasks it should look at and which to ignore. *Task Filters* takes a list of
-regular expressions (one per line). The policy will only look at build tasks that match one of the task filters. The matching is done by
-looking at the timeline name of each task, which is displayed below the task name in the build definition. The default value
-`/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` matches most of the standard build tasks in Team Foundation Server/Visual
-Studio Team Services. **Note:** Regular expressions must use the JavaScript RegExp syntax. Click
-[here](http://www.regular-expressions.info/javascript.html) for more information.
+  warnings, the *Warnings Policy* needs to know, which tasks it should look at and which to ignore. *Task Filters* takes a list of
+  regular expressions (one per line). The policy will only look at build tasks that match one of the task filters. The matching is done by
+  looking at the timeline name of each task, which is displayed below the task name in the build definition. The default value
+  `/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` matches most of the standard build tasks in Team Foundation Server/Visual
+  Studio Team Services.
+
+  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html)
+  for more information.
 
 ## Code Coverage Policy
 Most teams that do unit testing as part of their development calculate code coverage during test execution. While code coverage should
@@ -61,31 +68,52 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 ![Code Coverage Policy](../assets/CodeCoveragePolicy.png "Parameters of the Code Coverage Policy")
 
 - **Enabled:** Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
-visible.
+  visible.
 
 - **Fail Build On:** Set this option to `Fixed Threshold` to fail the build if the code coverage value falls below a specific value.
-This is useful if you want to allow some variance in code coverage but always keep a minimum coverage. If you set this option to
-`Previous Value`, the build will fail, whenever the code coverage falls below that of the previous build.
+  This is useful if you want to allow some variance in code coverage but always keep a minimum coverage. If you set this option to
+  `Previous Value`, the build will fail, whenever the code coverage falls below that of the previous build.
+
+- **Coverage Type:** Select the type of code coverage you want to evaluate. Most code coverage tools calculate coverage based on
+  several different elements of your code. For example, the *Visual Studio Test* task evaluates how many lines of code as well as how
+  many code blocks have been covered by tests. Other tools like *Cobertura* use different coverage types like branch coverage, which is
+  similar to block coverage. We recommend choosing `Block Coverage` together with the *Visual Studio Test* task or `Branch Coverage`
+  for code coverage tools that support calculating branch coverage, as those coverage values are more exact than others. If block and
+  branch coverage is not available, use `Line Coverage`. For third party code coverage tools like *JaCoCo*, which support additional
+  coverage types, select `Custom Coverage` and specify the coverage type name (see below).
+
+- **Coverage Type Name:** Specify the name of the custom coverage type you want to evaluate. If you are unsure about the exact
+  coverage type name, look at the code coverage section of the build summary page. The coverage type name must match one of the coverage
+  types displayed in this section. This parameter is only visible if *Coverage Type* is set to `Custom Coverage`.
 
 - **Code Coverage Threshold:** Specify the minimum code coverage value in percentage terms. This parameter is only visible if
-*Fail Build On* is set to `Fixed Threshold`.
+  *Fail Build On* is set to `Fixed Threshold`.
 
 - **Force Coverage Improvement:** Check this option if you want the current build to always have higher code coverage than the previous one.
-This option is only visible if *Fail Build On* is set to `Previous Value`.
+  This option is only visible if *Fail Build On* is set to `Previous Value`.
 
 - **Upper Threshold:** Specify the upper threshold for code coverage improvements. It is generally not recommended to strive for 100% code coverage,
-as this would force you to test even trivial code (e.g., getters/setters). Set this parameter to a reasonable high value (e.g., 70%-80%). The build
-will fail as long as the code coverage stays below this value and will pass, as soon as it is reached or exceeded. This parameter is only visible if
-the option *Force Coverage Improvement* is checked.
+  as this would force you to test even trivial code (e.g., getters/setters). Set this parameter to a reasonable high value (e.g., 70%-80%). The build
+  will fail as long as the code coverage stays below this value and will pass, as soon as it is reached or exceeded. This parameter is only visible if
+  the option *Force Coverage Improvement* is checked.
 
 - **Delta Type:** Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
-on the percentage value of code coverage. If you set this otion to `Absolute Value`, the absolute number of covered blocks will be used during
-comparison.
+  on the percentage value of code coverage. If you set this option to `Absolute Value`, the absolute number of covered blocks will be used during
+  comparison.
 
-- **Module Filters:** By default, the policy checks the aggregated code coverage of all modules that have been analyzed during the test runs.
-*Module Filters* takes a list of regular expressions (one per line) that allow you to limit the policy only to specific modules. The default value
-`/^(?!.*test)/i` excludes all modules that have the term *test* in their name, which matches the recommended naming of test assemblies in .NET.
-**Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html) for more
-information.
+- **Module Filters (_deprecated_):** By default, the policy checks the aggregated code coverage of all modules that have been analyzed during the test runs.
+  *Module Filters* takes a list of regular expressions (one per line) that allow you to limit the policy only to specific modules. If you want to
+  exclude all modules that have the term *test* in their name, which matches the recommended naming of test assemblies in .NET, you may use the value
+  `/^(?!.*test)/i`.
+
+  **Note:** This parameter only works for code coverage collected with the *Visual Studio Test* task.
+
+  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html) for more information.
+
+  If you use *Module Filters*, the code coverage section on the build summary page might show values that differ from those shown by the
+  code coverage policy. This can be very confusing. Therefore, the parameter is now deprecated and will be removed it in the next major
+  version of the extension. The recommended way to limit the calculation of code coverage to specific parts of your code is using run
+  settings for the *Visual Studio Test* task (see [Customizing Code Coverage Analysis](https://msdn.microsoft.com/en-us/library/jj159530.aspx))
+  or similar settings for other test and code coverage tools.
 
 [Checklist board icon](https://www.vexels.com/vectors/png-svg/129767/checklist-board-icon) | Icon designed by Vexels.com

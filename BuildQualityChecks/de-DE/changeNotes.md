@@ -1,5 +1,13 @@
 # Build Quality Checks - Change Notes
 
+#### 1.4.0
+- Die Code-Coverage-Regel unterstützt nun verschiedene Code-Coverage-Arten (Lines, Blocks, Branches).
+- Eine Race Condition im Zusammenspiel mit Task-Gruppen wurde behoben.
+- Die Modul-Filter der Code-Coverage-Regel sind nun deprecated. Die Filter waren eher verwirrend als hilfreich und werden mit
+  der nächsten Major-Version vollständig entfernt. Bitte nutzen Sie run settings (oder entsprechende Einstellungen Ihres Test-
+  und Code-Coverage-Tools) zum Filtern der Code Coverage.
+- Der Default-Wert für Modul-Filter wurde entfernt.
+
 #### 1.3.0
 - Eine Race Condition aufgrund des asynchronen Uploads von Build-Informationen wurde behoben.
 - Die Code-Coverage-Regel funktioniert nun korrekt bei Builds mit mehreren Tasks zur Code-Coverage-Berechnung (z.B. mehrere VSTest-Tasks).
