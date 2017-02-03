@@ -1,5 +1,8 @@
 # Build Quality Checks - Change Notes
 
+#### 1.4.1
+- Small change in code coverage data inspection.
+
 #### 1.4.0
 - Code coverage policy now supports multiple code coverage types (e.g., blocks, lines, branches).
 - Fixed race conditions when used with task groups.

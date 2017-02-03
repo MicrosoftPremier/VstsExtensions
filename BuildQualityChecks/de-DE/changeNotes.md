@@ -1,5 +1,8 @@
 # Build Quality Checks - Change Notes
 
+#### 1.4.1
+- Leichte Veränderung der Berechnung der Code Coverage.
+
 #### 1.4.0
 - Die Code-Coverage-Regel unterstützt nun verschiedene Code-Coverage-Arten (Lines, Blocks, Branches).
 - Eine Race Condition im Zusammenspiel mit Task-Gruppen wurde behoben.
