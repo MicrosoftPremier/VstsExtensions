@@ -1,5 +1,8 @@
 # Build Quality Checks - Change Notes
 
+#### 1.4.2
+- Added additional checks for module filters.
+
 #### 1.4.1
 - Small change in code coverage data inspection.
 

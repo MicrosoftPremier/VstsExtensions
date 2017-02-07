@@ -1,5 +1,8 @@
 # Build Quality Checks - Change Notes
 
+#### 1.4.2
+- Zusätzliche Modul-Filter-Prüfungen hinzugefügt.
+
 #### 1.4.1
 - Leichte Veränderung der Berechnung der Code Coverage.
 
