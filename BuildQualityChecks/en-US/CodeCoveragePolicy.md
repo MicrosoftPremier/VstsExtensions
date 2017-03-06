@@ -9,10 +9,10 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
 ### Limitations and Special Cases
 - **Using Test Impact Analysis (TIA)**  
-  We recently announced [Test Impact Analysis][TIA] that helps accelerating continuous testing. While you can technically use
-  the *Code Coverage Policy* together with TIA, we do not recommend it. TIA will automatically detect the tests that need to be run
-  based on code changes and only executes those relevant tests. Thus, code coverage values might vary greatly between builds,
-  rendering the policy essentially useless.
+  We recently announced [Test Impact Analysis](https://blogs.msdn.microsoft.com/visualstudioalm/2017/03/02/accelerated-continuous-testing-with-test-impact-analysis-part-1/)
+  that helps accelerating continuous testing. While you can technically use the *Code Coverage Policy* together with TIA, we do not recommend
+  it. TIA will automatically detect the tests that need to be run based on code changes and only executes those relevant tests. Thus, code
+  coverage values might vary greatly between builds, rendering the policy essentially useless.
 
 - **Code Coverage and Multi-Configuration Builds**  
   Multi-configuration builds trigger multiple build jobs (based on the *Multipliers* option) from a single build. This is mostly used for
@@ -29,8 +29,6 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
     When you run multiple 3rd party test runners with code coverage enabled (e.g., Maven with JaCoCo), every test run will overwrite
     previously published code coverage results. Therefore, running multi-config builds with 3rd party test runners will most likely lead
     to unexpected code coverage summary data as well as unexpected policy results.
-
-[TIA]: https://blogs.msdn.microsoft.com/visualstudioalm/2017/03/02/accelerated-continuous-testing-with-test-impact-analysis-part-1/
 
 ### Parameters of the Code Coverage Policy
 
@@ -77,16 +75,13 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
   **Note:** This parameter only works for code coverage collected with the *Visual Studio Test* task.
 
-  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here][JSRegExp] for more information.
+  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html) for more information.
 
   If you use *Module Filters*, the code coverage section on the build summary page might show values that differ from those shown by the
   code coverage policy. This can be very confusing. Therefore, the parameter is now deprecated and will be removed it in the next major
   version of the extension. The recommended way to limit the calculation of code coverage to specific parts of your code is using run
-  settings for the *Visual Studio Test* task (see [Customizing Code Coverage Analysis][RunSettings]) or similar settings for other test and
-  code coverage tools.
-
-[JSRegExp]: http://www.regular-expressions.info/javascript.html
-[RunSettings]: https://msdn.microsoft.com/en-us/library/jj159530.aspx
+  settings for the *Visual Studio Test* task (see [Customizing Code Coverage Analysis](https://msdn.microsoft.com/en-us/library/jj159530.aspx))
+  or similar settings for other test and code coverage tools.
 
 - **Configuration:** Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
   configuration (e.g., debug), which is defined by the build variable `$(BuildConfiguration)`. Thus, the default value should be suitable for most

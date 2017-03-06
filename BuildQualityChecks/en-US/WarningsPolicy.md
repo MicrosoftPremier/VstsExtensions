@@ -39,6 +39,5 @@ if the number of warnings exceeds a specific value or increases between builds.
   `/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` matches most of the standard build tasks in Team Foundation Server/Visual
   Studio Team Services.
 
-  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here][JSRegExp] for more information.
-
-[JSRegExp]: http://www.regular-expressions.info/javascript.html
+  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html)
+  for more information.

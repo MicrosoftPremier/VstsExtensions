@@ -42,7 +42,5 @@ Build zum nächsten erhöht.
   Standardwert `/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` berücksichtig bereits die meisten der Standard-Build-Tasks
   in Team Foundation Server/Visual Studio Team Services.
 
-  **Hinweis:** Reguläre Ausdrücke müssen in der JavaScript RegExp-Syntax angegeben werden. Klicken Sie [hier][JSRegExp], um mehr über
-  reguläre Ausdrücke zu erfahren.
-  
-  [JSRegExp]: http://www.regular-expressions.info/javascript.html
+  **Hinweis:** Reguläre Ausdrücke müssen in der JavaScript RegExp-Syntax angegeben werden. Klicken Sie [hier](http://www.regular-expressions.info/javascript.html),
+  um mehr über reguläre Ausdrücke zu erfahren.

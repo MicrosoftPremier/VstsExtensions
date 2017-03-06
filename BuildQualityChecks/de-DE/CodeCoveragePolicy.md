@@ -10,10 +10,11 @@ von einem Build zum nächsten verschlechtert.
 
 ### Limitierungen und Spezialfälle
 - **Verwenden der Test-Impact-Analyse (TIA)**  
-  Wir haben vor kurzem die [Test-Impact-Analyse][TIA] vorgestellt, mit der sich kontinuierliches Testen beschleunigen lässt. Obwohl
-  es technisch möglich ist, die *Code-Coverage-Regel* in Verbindung mit TIA einzusetzen, raten wir davon ab. TIA erkennt automatisch
-  anhand von Code-Änderungen, welche Tests relevant sind und führt nur diese aus. Aus diesem Grund können die Code-Coverage-Werte
-  von einem Build zum anderen sehr stark schwanken, so dass die Regel nicht sinnvoll angewendet werden kann.
+  Wir haben vor kurzem die [Test-Impact-Analyse](https://blogs.msdn.microsoft.com/visualstudioalm/2017/03/02/accelerated-continuous-testing-with-test-impact-analysis-part-1/)
+  vorgestellt, mit der sich kontinuierliches Testen beschleunigen lässt. Obwohl es technisch möglich ist, die *Code-Coverage-Regel*
+  in Verbindung mit TIA einzusetzen, raten wir davon ab. TIA erkennt automatisch anhand von Code-Änderungen, welche Tests relevant sind
+  und führt nur diese aus. Aus diesem Grund können die Code-Coverage-Werte von einem Build zum anderen sehr stark schwanken, so dass die
+  Regel nicht sinnvoll angewendet werden kann.
 
 - **Code Coverage und Multi-Konfigurations-Builds**  
   Multi-Konfigurations-Builds starten mehrere Build-Jobs (basierend auf der *Multipliers*-Option) aus einem Build heraus. Dies
@@ -30,8 +31,6 @@ von einem Build zum nächsten verschlechtert.
     Wenn Sie mehrere Testwerkzeuge von Drittherstellern mit aktivierter Code Coverage verwenden (z.B. Maven mit JaCoCo), überschreibt
     jeder Testlauf die zuvor im Build hinterlegten Code-Coverage-Werte. Multi-Konfigurations-Builds mit Testwerkzeugen von Drittherstellern
     führen daher sehr wahrscheinlich zu unerwarteten Code-Coverage-Werten und ebenso unerwarteten Ergebnissen der Regel.
-
-[TIA]: https://blogs.msdn.microsoft.com/visualstudioalm/2017/03/02/accelerated-continuous-testing-with-test-impact-analysis-part-1/
 
 ### Parameter der Code-Coverage-Regel
 
@@ -81,17 +80,15 @@ von einem Build zum nächsten verschlechtert.
   
   **Hinweis:** Dieser Parameter funktioniert nur bei Code Coverage, die mit dem *Visual Studio Test* Task ermittelt wurde.
 
-  **Hinweis:** Reguläre Ausdrücke müssen in der JavaScript RegExp-Syntax angegeben werden. Klicken Sie [hier][JSRegExp], um mehr über reguläre
-  Ausdrücke zu erfahren.
+  **Hinweis:** Reguläre Ausdrücke müssen in der JavaScript RegExp-Syntax angegeben werden. Klicken Sie [hier](http://www.regular-expressions.info/javascript.html),
+  um mehr über reguläre Ausdrücke zu erfahren.
 
   Wenn Sie *Modul-Filter* verwenden, weichen die Code-Coverage-Werte, die im Code-Coverage-Bereich der Build-Zusammenfassung angezeigt
   werden, ggf. von denen ab, die die Code-Coverage-Regel anzeigt. Dies kann sehr verwirrend sein. Aus diesem Grund wurde der Parameter
   als deprecated markiert und wird mit der nächsten Major-Version vollständig entfernt. Der empfohlene Weg, die Berechnung der Code Coverage
   auf Teile Ihres Codes zu beschränken, ist der Einsatz von Run Settings für den *Visual Studio Test* Task (siehe
-  [Anpassen der Codeabdeckungsanalyse][RunSettings]) oder vergleichbaren Einstellungen für andere Test- und Code-Coverage-Werkzeuge.
-
-[JSRegExp]: http://www.regular-expressions.info/javascript.html
-[RunSettings]: https://msdn.microsoft.com/de-de/library/jj159530.aspx
+  [Anpassen der Codeabdeckungsanalyse](https://msdn.microsoft.com/de-de/library/jj159530.aspx)) oder vergleichbaren Einstellungen für andere
+  Test- und Code-Coverage-Werkzeuge.
 
 - **Konfiguration:** Geben Sie die Konfiguration an, für die die Code Coverage geprüft werden soll. In den meisten Fällen kompiliert und testet
   ein Build nur eine Konfiguration (z.B. Debug), die über die Variable `$(BuildConfiguration)` definiert wird. Daher passt der Default-Wert für
