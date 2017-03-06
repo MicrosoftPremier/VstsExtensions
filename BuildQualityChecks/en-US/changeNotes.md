@@ -1,4 +1,9 @@
+[Back to Overview](./overview.md)
+
 # Build Quality Checks - Change Notes
+
+#### 1.5.0
+- Added support for multi-configuration builds.
 
 #### 1.4.2
 - Added additional checks for module filters.
