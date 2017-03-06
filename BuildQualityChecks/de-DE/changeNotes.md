@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 1.5.1
+- Anpassung der Dokumentation, damit diese im VSTS Marketplace korrekt angezeigt wird.
+
 #### 1.5.0
 - Unterstützung für Multi-Konfigurations-Builds hinzugefügt.
 

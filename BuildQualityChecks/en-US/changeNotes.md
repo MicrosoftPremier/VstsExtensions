@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 1.5.1
+- Fixed documentation to work with VSTS marketplace.
+
 #### 1.5.0
 - Added support for multi-configuration builds.
 
