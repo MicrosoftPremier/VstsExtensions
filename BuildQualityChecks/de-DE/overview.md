@@ -34,8 +34,52 @@ Der *Build Quality Checks* Task unterstützt derzeit zwei Regeln (klicken Sie di
 - **[Code-Coverage-Regel](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/CodeCoveragePolicy.md)** -
   Erlaubt es, einen Build auf Basis der Code Coverage der im Build enthaltenen Tests abzubrechen.
 
+### Task-Parameter
+
+#### Baseline
+Wenn Sie als *Abbruchkriterium* einer Regel die Option `Vorheriger Wert` wählen, wird der Regel-Wert (z.B. Anzahl der Warnungen)
+standardmäßig mit dem entsprechenden Wert des letzten Builds der aktuellen Build-Definition verglichen. Falls die Build-Definition
+ein Git-Repository in Visual Studio Team Services oder Team Foundation Server als Quelle nutzt, wird immer der letzte Build zum Vergleich
+herangezogen, der denselben Branch wie der aktuelle Build betrifft. Dieses Verhalten kann durch die folgenden Parameter angepasst werden:
+
+![Baseline-Parameter](../assets/Baseline.png "Festlegung von Baseline-Build-Definition und -Branch")
+
+- **Build-Definition:** Wählen Sie die Build-Definition, über die nach einem Basis-Build gesucht werden soll. Wenn Sie keinen Wert
+  angeben, wird automatisch der letzte Build der aktuellen Build-Definition zum Vergleich von Regel-Werten herangezogen. Sollte die
+  Drop-down-Liste leer sein, klicken Sie bitte auf das Refresh-Icon, um die Liste der verfügbaren Build-Definitionen neu zu laden.
+  Lesen Sie [TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/PullRequests.md#tfvc-topic-branches)
+  für Beispiele, wann die Wahl einer anderen Build-Definition sinnvoll sein kann.
+
+  **Hinweis:** Um die Regel-Werte immer gegen einen Build der aktuellen Build-Definition zu vergleichen, der einen anderen als den
+  aktuellen Branch betrifft, müssen Sie hier die aktuelle Build-Definition sowie die passenden Werte für *Repository* und *Branch (Git)*
+  auswählen.
+
+- **Repository:** Wählen Sie das Repository aus, in dem nach möglichen Basis-Branches gesucht werden soll. Die Liste wird gefüllt, nachdem
+  Sie die *Build-Definition* gewählt haben. Sie enthält immer nur das Repository, das mit der gewählten Build-Definition verknüpft ist.
+  Sollte die Drop-down-Liste leer sein, nachdem Sie die *Build-Definition* ausgewählt haben, klicken Sie bitte auf das Refresh-Icon, um die
+  Repository-Information neu zu laden.
+
+  **Hinweis:** Wenn Sie die *Build-Definition* verändern, nachdem Sie das Repository ausgewählt haben, wird manchmal eine GUID im Feld
+  *Repository* angezeigt. Es handelt sich hierbei um eine Refresh-Einschränkung der Build-UI. Bitte wählen Sie in diesem Fall das Repository
+  erneut aus, um den Wert zu korrigieren.
+
+- **Branch (Git):** Wählen Sie den Branch aus, der für die Suche nach einem Basis-Build verwendet wird. Wenn Sie keinne Wert angeben, wird
+  automatisch der letzte Build gesucht, der denselben Branch wie der aktuelle Build betrifft. Sollte die Drop-down-Liste leer sein, nachdem
+  Sie das *Repository* ausgewählt haben, klicken Sie bitte das Refresh-Icon, um die verfügbaren Branches neu zu laden. Branches werden mit
+  ihrem Git-Ref-Namen angezeigt, z.B. ref/heads/master oder refs/heads/meinTopicBranch. Lesen Sie
+  [Pull Request Policy Builds](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/PullRequests.md#pull-request-policy-builds)
+  für Beispiele, wann die Wahl eines anderen Branches sinnvoll sein kann.
+
+  **Hinweis:** Wenn Sie die *Build-Definition* und das *Repository* verändern, nachdem Sie einen Branch ausgewählt haben, müssen Sie den Branch
+  erneut auswählen. Anderenfalls könnte ein falscher Wert in der Task-Konfiguration gespeichert werden. Dies ist eine Refresh-Einschränkung der
+  Build-UI.
+
+  **Hinweis:** Wann immer Sie einen anderen Branch wählen, stellen Sie sicher, dass die [Retention Policy](https://www.visualstudio.com/de-de/docs/build/concepts/policies/retention)
+  so konfiguriert ist, dass mindestens ein erfolgreicher Build für diesen Branch aufbewahrt wird!
+
 ### Typische Anwendungsbeispiele
-*In Kürze verfügbar*
+
+- [Pull Requests und TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/PullRequests.md)
 
 ### Regel-Ergebnisse
 Der *Build Quality Checks* Task erzeugt seine eigene Zusammenfassung auf der Build-Ergebnisseite. Diese Zusammenfassung listet

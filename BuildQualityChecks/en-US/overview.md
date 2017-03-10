@@ -31,8 +31,48 @@ The *Build Quality Checks* task currently supports two policies (click the link 
 - **[Code Coverage Policy](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)** -
   Allows you to fail builds based on the code coverage value of your tests.
 
+### Task Parameters
+
+#### Baseline
+If you choose `Previous Value` for the *Fail Build On* option for one of the policies, the policy value (e.g., number of warnings)
+is, by default, compared to the corresponding value from the last build that ran for the current build definition. If the build
+definition targets a Git repository hosted in Visual Studio Team Services or Team Foundation Server, the policy will look for the
+last build that ran against the same branch as the current build. This behavior can be customized with the following parameters:
+
+![Baseline Parameters](../assets/Baseline.png "Choosing baseline build definition and branch")
+
+- **Build Definition:** Select the build definition that should be used to search for the baseline build. If you do not set a value,
+  the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
+  click the refresh icon to reload the list of available build definitions. See
+  [TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-topic-branches)
+  for examples for when using a different build definition might be useful.
+
+  **Note:** To always compare policy values to builds from the current build definition that target a specific branch, you need to
+  choose the current build definition here and then select the appropriate values for *Repository* and *Branch (Git)*.
+
+- **Repository:** Select the repository that is used to search for baseline branches. The drop-down list is populated after you chose
+  the *Build Definition* and will always contain the repository that the selected build definition is connected to. If the drop-down
+  list is empty after selecting the *Build Definition*, please click the refresh icon to reload the repository information.
+
+  **Note:** When you change the *Build Definition* after selecting a repository, you might see a GUID value in the repository parameter.
+  This is a refresh limitation of the build UI. Please select the repository again to correct this.
+
+- **Branch (Git):** Select the branch that should be used to search for the baseline build. If you do note set a value, the last build
+  targeting the currently built branch will be used when comparing policy values. If the drop-down list is empty after selecting the
+  *Repository*, please click the refresh icon to reload the list of available branches. Branches are shown with their Git ref name, e.g.
+  refs/heads/master or refs/heads/myTopicBranch. See
+  [Pull Request Policy Builds](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#pull-request-policy-builds)
+  for examples for when using a different branch might be useful.
+
+  **Note:** When you change the *Build Definition* and *Repository* after selecting a branch, you need to select the branch again.
+  Oterwise, a wrong branch name may be saved to the task configuration. This is a refresh limitation of the build UI.
+
+  **Note:** Whenever you choose a different baseline branch, make sure that the [retention policy](https://www.visualstudio.com/en-us/docs/build/concepts/policies/retention)
+  is configured to keep at least one successful build for your baseline branch! 
+
 ### Common Usage Scenarios
-*Coming soon*
+
+- [Pull Requests and TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md)
 
 ### Policy Results
 The *Build Quality Checks* task creates its own summary section in the build summary view. This section displays all success,

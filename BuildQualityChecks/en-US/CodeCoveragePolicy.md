@@ -68,21 +68,6 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   on the percentage value of code coverage. If you set this option to `Absolute Value`, the absolute number of covered blocks will be used during
   comparison.
 
-- **Module Filters (_deprecated_):** By default, the policy checks the aggregated code coverage of all modules that have been analyzed during the test runs.
-  *Module Filters* takes a list of regular expressions (one per line) that allow you to limit the policy only to specific modules. If you want to
-  exclude all modules that have the term *test* in their name, which matches the recommended naming of test assemblies in .NET, you may use the value
-  `/^(?!.*test)/i`.
-
-  **Note:** This parameter only works for code coverage collected with the *Visual Studio Test* task.
-
-  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html) for more information.
-
-  If you use *Module Filters*, the code coverage section on the build summary page might show values that differ from those shown by the
-  code coverage policy. This can be very confusing. Therefore, the parameter is now deprecated and will be removed it in the next major
-  version of the extension. The recommended way to limit the calculation of code coverage to specific parts of your code is using run
-  settings for the *Visual Studio Test* task (see [Customizing Code Coverage Analysis](https://msdn.microsoft.com/en-us/library/jj159530.aspx))
-  or similar settings for other test and code coverage tools.
-
 - **Configuration:** Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
   configuration (e.g., debug), which is defined by the build variable `$(BuildConfiguration)`. Thus, the default value should be suitable for most
   situations, esp. for multi-configuration builds that use *BuildConfiguration* as a multiplier. If you compile and test multiple configurations

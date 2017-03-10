@@ -2,6 +2,14 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.0.0
+- Man kann nun eine Basis-Build-Definition und einen Basis-Branch für den Vergleich der Regel-Werte auswählen. Lesen Sie
+  [Baseline Task-Parameter](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/overview.md#baseline)
+  für mehr Informationen.
+- Regeln werden nun standardmäßig erfolgreich abgeschlossen, wenn der vorherige Build nicht gefunden werden kann.
+- Die Modul-Filter wurden aus der Code-Coverage-Regel entfernt. Bitte nutzen Sie run settings (oder entsprechende Einstellungen
+  Ihres Test- und Code-Coverage-Tools) zum Filtern der Code Coverage.
+
 #### 1.5.1
 - Anpassung der Dokumentation, damit diese im VSTS Marketplace korrekt angezeigt wird.
 

@@ -2,6 +2,14 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.0.0
+- You can now choose a baseline build definition and branch for the comparison of policy values. See
+  [Baseline Task Parameters](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#baseline)
+  for more information.
+- Policies will now pass by default, if the previous build is not available.
+- Module filters have been removed from the code coverage policy. Please use run settings (or similar settings specific to your test
+  and code coverage tools) to filter code coverage.
+
 #### 1.5.1
 - Fixed documentation to work with VSTS marketplace.
 
