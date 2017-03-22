@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.0.1
+- Es wurde ein sehr seltener Fehler behoben, der dazu führen konnte, dass die Regeln falsche Ergebnisse anzeigen, wenn die
+  Build-Schritte der Definition geändert wurden, während ein Build dieser Definition gerade lief.
+
 #### 2.0.0
 - Man kann nun eine Basis-Build-Definition und einen Basis-Branch für den Vergleich der Regel-Werte auswählen. Lesen Sie
   [Baseline Task-Parameter](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/de-DE/overview.md#baseline)

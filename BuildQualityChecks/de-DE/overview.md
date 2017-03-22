@@ -19,9 +19,9 @@ Sie finden die Change Notes für diesen Task [hier](https://github.com/almtcger/
 Falls Sie Hilfe zu dieser Erweiterung benötigen oder Probleme auftreten, kontaktieren Sie uns bitte unter <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
 
 ### Hinzufügen des Tasks zu einer Build-Definition
-Der *Build Quality Checks* Task muss nach den Tasks eingefügt werden, die von ihm überwacht werden sollen. In einer Visual Studio
-Build-Definition bietet es sich z.B. an, den Task hinter den Build-, Test- und Symbol-Indexing/Publishing-Tasks einzufügen.
-Dadurch wird sichergestellt, dass die Testergebnisse und die Kompilate/Symbole auch dann zur Verfügung stehen, wenn der Build
+Der *Build Quality Checks* Task (in der Task-Kategorie *Build*) muss nach den Tasks eingefügt werden, die von ihm überwacht werden
+sollen. In einer Visual Studio Build-Definition bietet es sich z.B. an, den Task hinter den Build-, Test- und Symbol-Indexing/Publishing-Tasks
+einzufügen. Dadurch wird sichergestellt, dass die Testergebnisse und die Kompilate/Symbole auch dann zur Verfügung stehen, wenn der Build
 durch eine der Regeln abgebrochen wird. 
 
 ![Task-Einbindung](../assets/AddTask.png "Empfohlene Einbindung des Build Quality Checks Tasks")

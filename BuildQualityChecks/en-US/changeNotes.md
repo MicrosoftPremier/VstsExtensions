@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.0.1
+- Fixed a rare issue that could have caused the policies to report false results if the build steps of the definition was
+  changed while a build of that definition was running.
+  
 #### 2.0.0
 - You can now choose a baseline build definition and branch for the comparison of policy values. See
   [Baseline Task Parameters](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#baseline)
