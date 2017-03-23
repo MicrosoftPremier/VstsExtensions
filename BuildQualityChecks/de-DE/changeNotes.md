@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.0.2
+- Die Unterstützung für Team Foundation Server 2015 wurde wiederhergestellt (defekt seit v1.5.0). Beachten Sie [bekannte Probleme](./overview.md#bekannte-probleme)
+  bzgl. Einschränkungen in Verbindung mit Team Foundation Server 2015!
+
 #### 2.0.1
 - Es wurde ein sehr seltener Fehler behoben, der dazu führen konnte, dass die Regeln falsche Ergebnisse anzeigen, wenn die
   Build-Schritte der Definition geändert wurden, während ein Build dieser Definition gerade lief.
@@ -15,7 +19,7 @@
   Ihres Test- und Code-Coverage-Tools) zum Filtern der Code Coverage.
 
 #### 1.5.1
-- Anpassung der Dokumentation, damit diese im VSTS Marketplace korrekt angezeigt wird.
+- Anpassung der Dokumentation, damit diese im Visual Studio Marketplace korrekt angezeigt wird.
 
 #### 1.5.0
 - Unterstützung für Multi-Konfigurations-Builds hinzugefügt.

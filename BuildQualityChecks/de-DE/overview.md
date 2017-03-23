@@ -14,6 +14,9 @@ Sie finden die Change Notes für diesen Task [hier](https://github.com/almtcger/
 - Der Ergebnisbereich auf der Build-Zusammenfassungsseite zeigt ein falsches Icon (Mülltonne statt rotes X) für fehlgeschlagenen Regeln bei
   Team Foundation Server 2015 an. Wir werden dieses Problem nicht mehr beheben, da es weder bei Team Foundation Server 2017 noch bei Visual
   Studio Team Services auftritt.
+- Aufgrund eines fehlenden Features in Team Foundation Server 2015 (RTM und alle Updates) unterstützt der Task keine Multi-Konfigurations-Builds
+  auf diesen Server-Versionen. Wird der Task dennoch in einem Multi-Konfigurations-Build verwendet, erzeugt er lediglich eine Warnung, überprüft aber
+  keine Regeln.
 
 ### Support
 Falls Sie Hilfe zu dieser Erweiterung benötigen oder Probleme auftreten, kontaktieren Sie uns bitte unter <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.

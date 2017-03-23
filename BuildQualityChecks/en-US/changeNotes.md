@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.0.2
+- Added back support for Team Foundation Server 2015 (was broken since v1.5.0). See [known issues](./overview.md#known-issues)
+  for limitations on Team Foundation Server 2015!
+
 #### 2.0.1
 - Fixed a rare issue that could have caused the policies to report false results if the build steps of the definition was
   changed while a build of that definition was running.
@@ -15,7 +19,7 @@
   and code coverage tools) to filter code coverage.
 
 #### 1.5.1
-- Fixed documentation to work with VSTS marketplace.
+- Fixed documentation to work with Visual Studio Marketplace.
 
 #### 1.5.0
 - Added support for multi-configuration builds.
