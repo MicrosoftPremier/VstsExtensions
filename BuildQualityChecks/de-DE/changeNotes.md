@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.1.0
+- Es wurde eine Reace Condition behoben, die manchmal dazu führte, dass für den aktuellen Build keine Code-Coverage-Werte
+  ermittelt werden konnten.
+
 #### 2.0.2
 - Die Unterstützung für Team Foundation Server 2015 wurde wiederhergestellt (defekt seit v1.5.0). Beachten Sie [bekannte Probleme](./overview.md#bekannte-probleme)
   bzgl. Einschränkungen in Verbindung mit Team Foundation Server 2015!

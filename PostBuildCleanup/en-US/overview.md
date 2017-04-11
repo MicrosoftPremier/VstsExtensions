@@ -25,8 +25,11 @@ The task behavior is directly linked to the clean options you select in your bui
 **Clean** option is unchecked, the task does nothing. Otherwise, the task behavior depends on the selected value for
 **Clean options** and mimics the pre-build cleanup behavior:
 
-- **Sources:** If this option is selected, the task does not delete any files from the agent in order to allow incremental
-  gets of source files.
+- **Sources:** If this option is selected, the task tries to clean the sources as described [here](https://www.visualstudio.com/en-us/docs/build/define/repository),
+  which supports incremental gets of source files.
+
+  **Note:** The task cannot scorch TFVC workspaces due to an authentication limitation. If you use TFVC, the task will always
+  delete all contents of the $(Build.SourcesDirectory), thus, preventing incremental source gets!
 
 - **Sources and output directory:** If this option is selected, the task deletes all contents of the $(Build.BinariesDirectory).
 
@@ -37,6 +40,20 @@ The task behavior is directly linked to the clean options you select in your bui
 
 - **All build directories:** If this option is selected, the task deletes all contents within the $(Agent.BuildDirectory) and
   recreates the internal folder structure (i.e., the subfolders a, s, and b).
+
+### Support for Team Foundation Server 2015
+Team Foundation Server 2015 does not support the **Clean options** parameter. To configure the cleanup behavior, set the build
+variable **Build.Clean** as described [here](https://www.visualstudio.com/en-us/docs/build/define/repository#build_clean_variable).
+The values of **Build.Clean** are matched to the **Clean options** parameter as follows:
+
+- *Not set* = *Sources*
+- *binary* = *Sources and output directory*
+- *source* = *Sources directory*
+- *all* = *All build directories*
+
+Because the build agent that comes with Team Foundation Server 2015 does contain a Git command line client, you must install
+Git on the build machine, in order to support source cleanup. If Git is not installed, the task will fall back to delete
+all contents of the $(Build.SourcesDirectory).
 
 Icon made by [Freepik](http://www.freepik.com "Freepik") from [www.flaticon.com](http://www.flaticon.com "Flaticon") is
 licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/ "Creative Commons BY 3.0")

@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.1.0
+- Fixed a race condition that sometimes resulted in zero code coverage for the current build.
+
 #### 2.0.2
 - Added back support for Team Foundation Server 2015 (was broken since v1.5.0). See [known issues](./overview.md#known-issues)
   for limitations on Team Foundation Server 2015!
