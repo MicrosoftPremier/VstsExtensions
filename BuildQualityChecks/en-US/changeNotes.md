@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.1.1
+- Fixed extension manifest to work with latest Visual Studio Marketplace behavior.
+
 #### 2.1.0
 - Fixed a race condition that sometimes resulted in zero code coverage for the current build.
 

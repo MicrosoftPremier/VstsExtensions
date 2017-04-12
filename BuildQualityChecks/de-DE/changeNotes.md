@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.1.1
+- Das Extension Manifest wurde an die letzten Änderungen des Visual Studio Marketplace angepasst.
+
 #### 2.1.0
 - Es wurde eine Reace Condition behoben, die manchmal dazu führte, dass für den aktuellen Build keine Code-Coverage-Werte
   ermittelt werden konnten.

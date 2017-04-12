@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 2.0.1
+- Fixed extension manifest to work with latest Visual Studio Marketplace behavior.
+
 #### 2.0.0
 - Added partial support for Team Foundation Server 2015 (see [Support for Team Foundation Server 2015](./overview.md#support-for-team-foundation-server-2015)
   for more information).
