@@ -2,6 +2,15 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.2.0
+- Added an option to prevent comparing policy values to partially succeeded builds.
+- Added variables to configure waiting behavior for code coverage data.
+- Updated screenshots to new build editor.
+- Removed German documentation.
+
+#### 2.1.2
+- Added internal configuration options (for support purposes).
+
 #### 2.1.1
 - Fixed extension manifest to work with latest Visual Studio Marketplace behavior.
 

@@ -43,6 +43,9 @@ last build that ran against the same branch as the current build. This behavior 
 
 ![Baseline Parameters](../assets/Baseline.png "Choosing baseline build definition and branch")
 
+- **Include Partially Succeeded Builds:** Uncheck this option, if policy values should only be compared to successful baseline builds.
+  In most cases, including partially succeeded builds is the best option, so you can use the default setting.
+
 - **Build Definition:** Select the build definition that should be used to search for the baseline build. If you do not set a value,
   the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
   click the refresh icon to reload the list of available build definitions. See
