@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.3.0
+- Added a warning if there are no code coverage data sets matching the specified build configuration and platform.
+
 #### 2.2.0
 - Added an option to prevent comparing policy values to partially succeeded builds.
 - Added variables to configure waiting behavior for code coverage data.
