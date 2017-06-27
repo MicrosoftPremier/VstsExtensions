@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.3.1
+- Fixed duplicate logging of warning.
+
 #### 2.3.0
 - Added a warning if there are no code coverage data sets matching the specified build configuration and platform.
 
