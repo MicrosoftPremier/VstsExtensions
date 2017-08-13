@@ -2,6 +2,11 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.4.0
+- Added support for run titles to distinguish between multiple task runs in the same build.
+- Added support for warning filters.
+- Added links to documetation to every task parameter.
+
 #### 2.3.1
 - Fixed duplicate logging of warning.
 

@@ -75,6 +75,11 @@ last build that ran against the same branch as the current build. This behavior 
   **Note:** Whenever you choose a different baseline branch, make sure that the [retention policy](https://www.visualstudio.com/en-us/docs/build/concepts/policies/retention)
   is configured to keep at least one successful build for your baseline branch! 
 
+#### Reporting Options
+If you are using multiple *Build Quality Checks* tasks within the same build, you may use the **Run Title** parameter to specify a title that
+is associated with a specific instance of the task. This will help distinguishing between the task results in the summary section. The run
+title is added to the subsection header in the summary in the format <Build Job Name> - <Run Title>.
+
 ### Common Usage Scenarios
 
 - [Pull Requests and TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md)
