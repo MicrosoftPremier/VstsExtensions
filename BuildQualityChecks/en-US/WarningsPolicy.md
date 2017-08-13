@@ -47,7 +47,7 @@ if the number of warnings exceeds a specific value or increases between builds.
   the number of warnings to its log file. To do so, specify a warning filter that contains exactly **one** matching group that captures
   the number of warnings. The captured number will be added to the total warning count as well was the filtered warning count.
 
-  **Example (based on _StyleCop Runner_ task:**
+  **Example (based on _StyleCop Runner_ task):**
   - Log output: `StyleCop found [28448] violations warnings across [82] projects`
   - Filter value: `/\[(\d+)\]\s+violations/i`
 
