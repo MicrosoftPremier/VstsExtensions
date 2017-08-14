@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.4.1
+- Added details about the NodeJS certificate issue to the docs.
+
 #### 2.4.0
 - Added support for run titles to distinguish between multiple task runs in the same build.
 - Added support for warning filters.
