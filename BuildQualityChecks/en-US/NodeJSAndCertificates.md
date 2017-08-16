@@ -1,7 +1,7 @@
 [Back to Overview](./overview.md)
 
 # Issue "Unable to Verify the First Certificate"
-Version 2.4.x of the *Build Quality Checks* extension does not work on a Team Foundation Server configured with a self-signed or corporate
+Version 2.4.x of the *Build Quality Checks* extension does not by default work on a Team Foundation Server configured with a self-signed or corporate
 SSL certificate. When the build task executes, you will see the error message **unable to verify the first certificate** in the task log.
 This issue is caused by the way NodeJS validates server certificates on https connections. For some background please read the following
 sections or just skip to the [Workaround](#workaround) section for information about how to fix the issue.
@@ -21,10 +21,19 @@ While this change increased security, it creates a problem for servers that use 
 the self-signed nor the corporate root CA certificate is present in Node's list of trusted root certificates.
 
 ### Workaround
-For now the only workaround is to set the variable *NODE_TLS_REJECT_UNAUTHORIZED* to zero on each build machine. If you want to make sure that
-this change does not affect node processes other than the ones started by our build agent, please set the variable in the context of the build
-service account. We know that this solution is far from perfect, but it effectively uses the same mechanism as the older Node API and there is no
-way for custom extensions using the vsts-node-api to work around the issue.
+In version 2.4.2 we have added the option *Disable NodeJS certificate check* to the *Advanced* parameter section of the task. In essence the option
+sets the variable *NODE_TLS_REJECT_UNAUTHORIZED* to zero for the NodeJS process used by our task. While this solution is far from perfect, it effectively
+uses the same mechanism that the older versions of the Visual Studio Team Services Node API used. For now there is no better way for our task to fix
+the issue.
+
+### What is the Risk of the Workaround?
+The risk of this workaround is fairly small. First of all, certificate checks are only disabled within the *Build Quality Checks* task if you enable
+the workaround. We guarantee that we only communicate with your Team Foundation Server. However, if you want to inspect our code, just download our
+extension from the Visual Studio Marketplace or contact us for a copy of the TypeScript code. If your build machines are not connected to the internet,
+the risk is futher mitigated. Lastly, NodeJS has no truely secure way of handling these situations. Every NodeJS script may disable the certificate
+check and you cannot fully prevent this. Neither the custom code solution mentioned above nor the new environment variable in NodeJS (see below) run
+any security checks on the injected certificates. Unless NodeJS implements mechanisms to work with secured certificate stores on the various operating
+systems, you need to be aware of this issue and inspect all NodeJS processes running in sensitive environment for security issues.
 
 ### Long-Term Solution
 Starting with version 7.3.0 NodeJS introduced a new environment variable called *NODE_EXTRA_CA_CERTS* (see [here](https://nodejs.org/dist/latest-v8.x/docs/api/cli.html#cli_node_extra_ca_certs_file)),

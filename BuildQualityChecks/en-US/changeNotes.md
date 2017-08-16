@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.4.2
+- Added support for disabling NodeJS certificate check for the task. See [advanced settings](./overview.md#advanced) for more
+  information.
+
 #### 2.4.1
 - Added details about the NodeJS certificate issue to the docs.
 

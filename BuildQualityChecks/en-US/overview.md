@@ -6,7 +6,7 @@ You can find the changes notes for this task [here](https://github.com/almtcger/
 
 ### Known Issues
 - Using v2.4.x of the extension on a Team Foundation Server with a self-signed or corporate SSL certificate leads to the error *unable to verify the first certificate*.
-  This issues is related to NodeJS' handling of certificates. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details and a workaround.
+  This issues is related to NodeJS' handling of certificates. Please see the [advanced settings](#advanced) below for more information.
 - If you run your build agent behind a proxy server, the task will fail and you will see `connect ETIMEDOUT` somewhere in the
   task log, even if you configured the agent correctly as described [here](https://github.com/Microsoft/vsts-agent/blob/master/docs/start/proxyconfig.md).
   To fix this issue, create two environment variables called `HTTP_PROXY` and `HTTPS_PROXY` (either in system scope or the user scope of
@@ -81,6 +81,10 @@ last build that ran against the same branch as the current build. This behavior 
 If you are using multiple *Build Quality Checks* tasks within the same build, you may use the **Run Title** parameter to specify a title that
 is associated with a specific instance of the task. This will help distinguishing between the task results in the summary section. The run
 title is added to the subsection header in the summary in the format <Build Job Name> - <Run Title>.
+
+#### Advanced
+- **Disable NodeJS certificate check:** Check this option, if your Team Foundation Server is using a self-signed or corporate SSL certificate. The option
+  disables the certificate chain validation of NodeJS. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
 
 ### Common Usage Scenarios
 
