@@ -45,7 +45,7 @@ last build that ran against the same branch as the current build. This behavior 
 
 ![Baseline Parameters](../assets/Baseline.png "Choosing baseline build definition and branch")
 
-- **Include Partially Succeeded Builds:** Uncheck this option, if policy values should only be compared to successful baseline builds.
+- **Include Partially Succeeded Builds:** Uncheck this option if policy values should only be compared to successful baseline builds.
   In most cases, including partially succeeded builds is the best option, so you can use the default setting.
 
 - **Build Definition:** Select the build definition that should be used to search for the baseline build. If you do not set a value,
@@ -80,10 +80,10 @@ last build that ran against the same branch as the current build. This behavior 
 #### Reporting Options
 If you are using multiple *Build Quality Checks* tasks within the same build, you may use the **Run Title** parameter to specify a title that
 is associated with a specific instance of the task. This will help distinguishing between the task results in the summary section. The run
-title is added to the subsection header in the summary in the format <Build Job Name> - <Run Title>.
+title is added to the subsection header in the summary in the format \<Build Job Name\> - \<Run Title\>.
 
 #### Advanced
-- **Disable NodeJS certificate check:** Check this option, if your Team Foundation Server is using a self-signed or corporate SSL certificate. The option
+- **Disable NodeJS certificate check:** Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate. The option
   disables the certificate chain validation of NodeJS. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
 
 ### Common Usage Scenarios

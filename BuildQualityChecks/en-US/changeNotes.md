@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.5.0
+- Added support for warning statistics.
+
 #### 2.4.2
 - Added support for disabling NodeJS certificate check for the task. See [advanced settings](./overview.md#advanced) for more
   information.
@@ -47,7 +50,7 @@
 - You can now choose a baseline build definition and branch for the comparison of policy values. See
   [Baseline Task Parameters](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#baseline)
   for more information.
-- Policies will now pass by default, if the previous build is not available.
+- Policies will now pass by default if the previous build is not available.
 - Module filters have been removed from the code coverage policy. Please use run settings (or similar settings specific to your test
   and code coverage tools) to filter code coverage.
 

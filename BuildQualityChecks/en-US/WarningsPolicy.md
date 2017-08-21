@@ -12,7 +12,8 @@ if the number of warnings exceeds a specific value or increases between builds.
 ### Limitations and Special Cases
 - **Warnings must be build issues**  
   The *Warnings Policy* only counts warnings that have been logged as build issues. If a task writes warning messages to
-  its output but does not log them as build issues in the build system, the policy is not able to see them. 
+  its output but does not log them as build issues in the build system, the policy does not automatically pick those warnings up.
+  You may use *Warning Filters* (see below) to add those warnings to the policy. 
 
 ### Parameters of the Build Warnings Policy
 
@@ -51,9 +52,18 @@ if the number of warnings exceeds a specific value or increases between builds.
   - Log output: `StyleCop found [28448] violations warnings across [82] projects`
   - Filter value: `/\[(\d+)\]\s+violations/i`
 
-  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html)
-  for more information.
+  **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
+- **Show Warning Statistics:** Enable this options to generate statistical information about warning changes. When enabled the policy not
+  only shows the total number of warnings but also the changes in number of warnings per code file. To keep statistics short, only files
+  with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters*, the filters will be applied
+  first and only matching warnings will appear in the warning statistics.
+  
+  ![Warning Statistics](../assets/WarningStatisticsResult.png "Policy Result with Warning Statistics")
+  
+  **Note:** Statistics currently only work for MSBuild builds (i.e., the *Visual Studio Build* and *MSBuild* tasks). If you need support
+  for additional tasks, please let us know and preferably send us a sample log of the corresponding build task to <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
+  
 - **Task Filters:** Since the build system can run all kinds of tasks during the build process and any of these tasks can create
   warnings, the *Warnings Policy* needs to know, which tasks it should look at and which to ignore. *Task Filters* takes a list of
   regular expressions (one per line). The policy will only look at build tasks that match one of the task filters. The matching is done by
@@ -62,5 +72,4 @@ if the number of warnings exceeds a specific value or increases between builds.
   `/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` matches most of the standard build tasks in Team Foundation Server/Visual
   Studio Team Services.
 
-  **Note:** Regular expressions must use the JavaScript RegExp syntax. Click [here](http://www.regular-expressions.info/javascript.html)
-  for more information.
+  **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
