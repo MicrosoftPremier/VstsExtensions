@@ -5,7 +5,7 @@ The *Build Quality Checks* task allows you to add quality gates to your build pr
 You can find the changes notes for this task [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/changeNotes.md).
 
 ### Known Issues
-- Using v2.4.x of the extension on a Team Foundation Server with a self-signed or corporate SSL certificate leads to the error *unable to verify the first certificate*.
+- Using v2.4.x and higher of the extension on a Team Foundation Server with a self-signed or corporate SSL certificate leads to the error *unable to verify the first certificate*.
   This issues is related to NodeJS' handling of certificates. Please see the [advanced settings](#advanced) below for more information.
 - If you run your build agent behind a proxy server, the task will fail and you will see `connect ETIMEDOUT` somewhere in the
   task log, even if you configured the agent correctly as described [here](https://github.com/Microsoft/vsts-agent/blob/master/docs/start/proxyconfig.md).
