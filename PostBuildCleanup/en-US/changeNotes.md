@@ -2,6 +2,12 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 2.0.3
+- Updated docs to new build UI.
+
+#### 2.0.2
+- Added internal configuration options (for support purposes).
+
 #### 2.0.1
 - Fixed extension manifest to work with latest Visual Studio Marketplace behavior.
 

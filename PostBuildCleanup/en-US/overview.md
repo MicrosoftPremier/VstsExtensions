@@ -21,9 +21,13 @@ The *Post Build Cleanup* task (in task category *Utility*) must always be the la
 ![Task Placement](../assets/AddTask.png "Proper placement of the Post Build Cleanup task")
 
 ### Behavior of the Task
-The task behavior is directly linked to the clean options you select in your build definition's repository settings. If the
-**Clean** option is unchecked, the task does nothing. Otherwise, the task behavior depends on the selected value for
-**Clean options** and mimics the pre-build cleanup behavior:
+The task behavior is directly linked to the clean options you select in your build definition's **Repository** settings. In the new build UI
+the clean option has been moved to the **Get sources** task in the **Tasks** list.
+
+![Old Clean Options](../assets/CleanOptionsOld.png "Old repository clean options") ![New Clean Options](../assets/CleanOptionsNew.png "New repository clean options")
+
+If the **Clean** option is unchecked, the task does nothing. Otherwise, the task behavior depends on the selected value for **Clean options**
+and mimics the pre-build cleanup behavior:
 
 - **Sources:** If this option is selected, the task tries to clean the sources as described [here](https://www.visualstudio.com/en-us/docs/build/define/repository),
   which supports incremental gets of source files.
