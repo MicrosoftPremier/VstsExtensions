@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.5.1
+- Fixed a bug that caused the warnings policy to wait for log information of unfinished tasks when warning statistics are enabled and
+  task filters are empty.
+  
 #### 2.5.0
 - Added support for warning statistics.
 
