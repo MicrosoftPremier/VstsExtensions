@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.6.1
+- Fixed typos in messages.
+
 #### 2.6.0
 - The default values for the code coverage policy parameters _Configuration_ and _Platform_ have been changed to be empty to match the default
   parameters of the _Visual Studio Test_ task.
