@@ -69,11 +69,17 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   comparison.
 
 - **Configuration:** Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
-  configuration (e.g., debug), which is defined by the build variable `$(BuildConfiguration)`. Thus, the default value should be suitable for most
-  situations, esp. for multi-configuration builds that use *BuildConfiguration* as a multiplier. If you compile and test multiple configurations
-  in a single build job, either specify a specific configuration here, or specify no value to check the aggregated code coverage of all configurations.
+  configuration (e.g., debug). Thus, the empty default value should be suitable for most situations. If you compile and test multiple configurations in
+  a single build job or have a multi-configuration build, either specify a specific configuration, use the variable `$(BuildConfiguration)` (esp. for
+  multi-config builds), or specify no value to check the aggregated code coverage of all configurations.
+
+  **Note:** If you configure this parameter, make sure its value matches the value of the _Build configuration_ parameter in the _Visual Studio Test_
+  task's _Reporting options_ section! Otherwise the policy will not pick up the generated code coverage values.
 
 - **Platform:** Specify the platform for which code coverage should be checked. Usually, one build compiles and tests just a single
-  platform (e.g., any cpu), which is defined by the build variable `$(BuildPlatform)`. Thus, the default value should be suitable for most
-  situations, esp. for multi-configuration builds that use *BuildPlatform* as a multiplier. If you compile and test multiple platforms
-  in a single build job, either specify a specific platform here, or specify no value to check the aggregated code coverage of all platforms.
+  platform (e.g., any cpu). Thus, the empty default value should be suitable for most situations. If you compile and test multiple platforms in a
+  single build job or have a multi-configuration build, either specify a specific platform, use the variable `$(BuildPlatform)` (esp. for multi-config
+  builds), or specify no value to check the aggregated code coverage of all platforms.
+
+  **Note:** If you configure this parameter, make sure its value matches the value of the _Build platform_ parameter in the _Visual Studio Test_
+  task's _Reporting options_ section! Otherwise the policy will not pick up the generated code coverage values.
