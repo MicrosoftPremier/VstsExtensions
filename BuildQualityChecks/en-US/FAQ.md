@@ -8,11 +8,11 @@
 
 ## Warnings Policy
 **Q: Why does the policy report zero warnings although I see warnings in the build log?**  
-**A:** The policy only picks up warnings that are reported as build issue (see [limitations](./WarningsPolicy.md#limitations-and-special-cases)) and cannot see warnings that are
+**A:** The policy only picks up warnings that are reported as build issues (see [limitations](./WarningsPolicy.md#limitations-and-special-cases)) and cannot see warnings that are
 only written to a build task's logfile. You might be able to use [warning filters](./WarningsPolicy.md#warnFilters) to make the policy pick up those warnings as well.
 
 **Q: Why does the policy report fewer warnings than the build summary?**  
-**A:** The build summary shows all warnings that have been reoprted as build issue, while the policy only counts warnings from specific build tasks. Make sure that the
+**A:** The build summary shows all warnings that have been reoprted as build issues, while the policy only counts warnings from specific build tasks. Make sure that the
 [task filters](./WarningsPolicy.md#taskFilters) match all relevant tasks in your build definition.
 
 ## Code Coverage Policy
