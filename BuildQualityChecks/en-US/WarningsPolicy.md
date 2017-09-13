@@ -1,4 +1,4 @@
-[Back to Overview](./overview.md)
+[Back to Overview](./overview.md) | [Limitations](#limitations-and-special-cases) | [Parameters](#parameters-of-the-build-warnings-policy)
 
 # Warnings Policy
 Many software projects, especially older ones, that have grown over time end up with hundreds or thousands of build warnings.
@@ -19,21 +19,21 @@ if the number of warnings exceeds a specific value or increases between builds.
 
 ![Warnings Policy](../assets/WarningsPolicy.png "Parameters of the Warnings Policy")
 
-- **Enabled:** Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
+- <a name="enabled">**Enabled:**</a> Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
   visible.
 
-- **Fail Build On:** Set this option to `Fixed Threshold` to fail the build if the number of warnings exceeds a specific value.
+- <a name="failOption">**Fail Build On:**</a> Set this option to `Fixed Threshold` to fail the build if the number of warnings exceeds a specific value.
   This is useful if you want to allow a low number of warnings but keep them from getting out of hand, or if you want to follow a
   "no warnings policy" (i.e., *Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
   `Previous Value`. This will fail the build if the number of warnings has increased since the previous build.
 
-- **Warning Threshold:** Specify the number of warnings that must not be exceeded. This parameter is only visible if *Fail Build On*
+- <a name="threshold">**Warning Threshold:**</a> Specify the number of warnings that must not be exceeded. This parameter is only visible if *Fail Build On*
   is set to `Fixed Threshold`.
 
-- **Force Fewer Warnings:** Check this option if you want the current build to always have fewer warnings than the previous one. This
+- <a name="forceFewer">**Force Fewer Warnings:**</a> Check this option if you want the current build to always have fewer warnings than the previous one. This
   option is only visible if *Fail Build On* is set to `Previous Value`.
 
-- **Warning Filters:** In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code
+- <a name="warnFilters">**Warning Filters:**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code
   analysis warnings). *Warning Filters* allow you to do just that. Specify a list of regular expressions (one per line) that only match
   the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number
   of warnings as well as the number of filtered warnings. Keep in mind that *Warning Filters* analyze the log file of build tasks and does
@@ -54,7 +54,7 @@ if the number of warnings exceeds a specific value or increases between builds.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
-- **Show Warning Statistics:** Enable this options to generate statistical information about warning changes. When enabled the policy not
+- <a name="statistics">**Show Warning Statistics:**</a> Enable this options to generate statistical information about warning changes. When enabled the policy not
   only shows the total number of warnings but also the changes in number of warnings per code file. To keep statistics short, only files
   with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters*, the filters will be applied
   first and only matching warnings will appear in the warning statistics.
@@ -65,7 +65,7 @@ if the number of warnings exceeds a specific value or increases between builds.
   Server 2017 or later and Visual Studio Team Services. If you need support for additional tasks, please let us know and preferably send us a sample
   log of the corresponding build task to <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
   
-- **Task Filters:** Since the build system can run all kinds of tasks during the build process and any of these tasks can create
+- <a name="taskFilters">**Task Filters:**</a> Since the build system can run all kinds of tasks during the build process and any of these tasks can create
   warnings, the *Warnings Policy* needs to know, which tasks it should look at and which to ignore. *Task Filters* takes a list of
   regular expressions (one per line). The policy will only look at build tasks that match one of the task filters. The matching is done by
   looking at the timeline name of each task, i.e., the name displayed in the list on the left hand side of the build summary view. If you

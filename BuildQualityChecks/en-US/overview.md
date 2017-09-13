@@ -1,3 +1,5 @@
+[Known Issues](#known-issues) | [Support](#support) | [Policies](#policies) | [Task Parameters](#task-parameters) | [Common Usage Scenarios](#common-usage-scenarios) | [Policy Results](#policy-results) | [FAQ](#faq)
+
 # Build Quality Checks
 The *Build Quality Checks* task allows you to add quality gates to your build process.
 
@@ -45,10 +47,10 @@ last build that ran against the same branch as the current build. This behavior 
 
 ![Baseline Parameters](../assets/Baseline.png "Choosing baseline build definition and branch")
 
-- **Include Partially Succeeded Builds:** Uncheck this option if policy values should only be compared to successful baseline builds.
+- <a name="partial">**Include Partially Succeeded Builds:**</a> Uncheck this option if policy values should only be compared to successful baseline builds.
   In most cases, including partially succeeded builds is the best option, so you can use the default setting.
 
-- **Build Definition:** Select the build definition that should be used to search for the baseline build. If you do not set a value,
+- <a name="baseDef">**Build Definition:**</a> Select the build definition that should be used to search for the baseline build. If you do not set a value,
   the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
   click the refresh icon to reload the list of available build definitions. See
   [TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-topic-branches)
@@ -57,14 +59,14 @@ last build that ran against the same branch as the current build. This behavior 
   **Note:** To always compare policy values to builds from the current build definition that target a specific branch, you need to
   choose the current build definition here and then select the appropriate values for *Repository* and *Branch (Git)*.
 
-- **Repository:** Select the repository that is used to search for baseline branches. The drop-down list is populated after you chose
+- <a name="baseRepo">**Repository:**</a> Select the repository that is used to search for baseline branches. The drop-down list is populated after you chose
   the *Build Definition* and will always contain the repository that the selected build definition is connected to. If the drop-down
   list is empty after selecting the *Build Definition*, please click the refresh icon to reload the repository information.
 
   **Note:** When you change the *Build Definition* after selecting a repository, you might see a GUID value in the repository parameter.
   This is a refresh limitation of the build UI. Please select the repository again to correct this.
 
-- **Branch (Git):** Select the branch that should be used to search for the baseline build. If you do note set a value, the last build
+- <a name="baseBranch">**Branch (Git):**</a> Select the branch that should be used to search for the baseline build. If you do note set a value, the last build
   targeting the currently built branch will be used when comparing policy values. If the drop-down list is empty after selecting the
   *Repository*, please click the refresh icon to reload the list of available branches. Branches are shown with their Git ref name, e.g.
   refs/heads/master or refs/heads/myTopicBranch. See
@@ -83,7 +85,7 @@ is associated with a specific instance of the task. This will help distinguishin
 title is added to the subsection header in the summary in the format \<Build Job Name\> - \<Run Title\>.
 
 #### Advanced
-- **Disable NodeJS certificate check:** Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate. The option
+- <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate. The option
   disables the certificate chain validation of NodeJS. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
 
 ### Common Usage Scenarios
@@ -99,5 +101,9 @@ job is created so you can see exactly which configuration might have quality iss
 
 **Note:** Please see the [Limitations and Special Cases](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)
 section of the *Code Coverage Policy* for possible issues with multi-configuration builds and code coverage.
+
+### FAQ
+We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md) document.
+If you feel we need to add a specific question to the list, feel free to send it to our [support](#support) address.
 
 [Checklist board icon](https://www.vexels.com/vectors/png-svg/129767/checklist-board-icon) | Icon designed by Vexels.com

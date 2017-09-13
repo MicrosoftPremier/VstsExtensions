@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.6.2
+- Added navigation and FAQ sections to extension documentation.
+
 #### 2.6.1
 - Fixed typos in messages.
 

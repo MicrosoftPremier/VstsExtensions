@@ -1,4 +1,4 @@
-[Back to Overview](./overview.md)
+[Back to Overview](./overview.md) | [Limitations](#limitations-and-special-cases) | [Parameters](#parameters-of-the-code-coverage-policy)
 
 # Code Coverage Policy
 Most teams that do unit testing as part of their development calculate code coverage during test execution. While code coverage should
@@ -25,23 +25,23 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
     the tests with different configurations (i.e., debug/release) and/or platforms (i.e., any cpu/x86/x64). Running multiple build jobs with
     the same configuration/platform in a single build will lead to undefined policy results depending on the speed and configuration of your
     build.
-  - **3rd Party Test Runners**  
-    When you run multiple 3rd party test runners with code coverage enabled (e.g., Maven with JaCoCo), every test run will overwrite
-    previously published code coverage results. Therefore, running multi-config builds with 3rd party test runners will most likely lead
+  - **3<sup>rd</sup> Party Test Runners**  
+    When you run multiple 3<sup>rd</sup> party test runners with code coverage enabled (e.g., Maven with JaCoCo), every test run will overwrite
+    previously published code coverage results. Therefore, running multi-config builds with 3<sup>rd</sup> party test runners will most likely lead
     to unexpected code coverage summary data as well as unexpected policy results.
 
 ### Parameters of the Code Coverage Policy
 
 ![Code Coverage Policy](../assets/CodeCoveragePolicy.png "Parameters of the Code Coverage Policy")
 
-- **Enabled:** Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
+- <a name="enabled">**Enabled:**</a> Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
   visible.
 
-- **Fail Build On:** Set this option to `Fixed Threshold` to fail the build if the code coverage value falls below a specific value.
+- <a name="failOption">**Fail Build On:**</a> Set this option to `Fixed Threshold` to fail the build if the code coverage value falls below a specific value.
   This is useful if you want to allow some variance in code coverage but always keep a minimum coverage. If you set this option to
   `Previous Value`, the build will fail, whenever the code coverage falls below that of the previous build.
 
-- **Coverage Type:** Select the type of code coverage you want to evaluate. Most code coverage tools calculate coverage based on
+- <a name="coverType">**Coverage Type:**</a> Select the type of code coverage you want to evaluate. Most code coverage tools calculate coverage based on
   several different elements of your code. For example, the *Visual Studio Test* task evaluates how many lines of code as well as how
   many code blocks have been covered by tests. Other tools like *Cobertura* use different coverage types like branch coverage, which is
   similar to block coverage. We recommend choosing `Block Coverage` together with the *Visual Studio Test* task or `Branch Coverage`
@@ -49,26 +49,26 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   branch coverage is not available, use `Line Coverage`. For third party code coverage tools like *JaCoCo*, which support additional
   coverage types, select `Custom Coverage` and specify the coverage type name (see below).
 
-- **Coverage Type Name:** Specify the name of the custom coverage type you want to evaluate. If you are unsure about the exact
+- <a name="coverTypeName">**Coverage Type Name:**</a> Specify the name of the custom coverage type you want to evaluate. If you are unsure about the exact
   coverage type name, look at the code coverage section of the build summary page. The coverage type name must match one of the coverage
   types displayed in this section. This parameter is only visible if *Coverage Type* is set to `Custom Coverage`.
 
-- **Code Coverage Threshold:** Specify the minimum code coverage value in percentage terms. This parameter is only visible if
+- <a name="threshold">**Code Coverage Threshold:**</a> Specify the minimum code coverage value in percentage terms. This parameter is only visible if
   *Fail Build On* is set to `Fixed Threshold`.
 
-- **Force Coverage Improvement:** Check this option if you want the current build to always have higher code coverage than the previous one.
+- <a name="forceImprove">**Force Coverage Improvement:**</a> Check this option if you want the current build to always have higher code coverage than the previous one.
   This option is only visible if *Fail Build On* is set to `Previous Value`.
 
-- **Upper Threshold:** Specify the upper threshold for code coverage improvements. It is generally not recommended to strive for 100% code coverage,
+- <a name="upperThreshold">**Upper Threshold:**</a> Specify the upper threshold for code coverage improvements. It is generally not recommended to strive for 100% code coverage,
   as this would force you to test even trivial code (e.g., getters/setters). Set this parameter to a reasonable high value (e.g., 70%-80%). The build
   will fail as long as the code coverage stays below this value and will pass, as soon as it is reached or exceeded. This parameter is only visible if
   the option *Force Coverage Improvement* is checked.
 
-- **Delta Type:** Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
+- <a name="deltaType">**Delta Type:**</a> Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
   on the percentage value of code coverage. If you set this option to `Absolute Value`, the absolute number of covered blocks will be used during
   comparison.
 
-- **Configuration:** Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
+- <a name="config">**Configuration:**</a> Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
   configuration (e.g., debug). Thus, the empty default value should be suitable for most situations. If you compile and test multiple configurations in
   a single build job or have a multi-configuration build, either specify a specific configuration, use the variable `$(BuildConfiguration)` (esp. for
   multi-config builds), or specify no value to check the aggregated code coverage of all configurations.
@@ -76,7 +76,7 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   **Note:** If you configure this parameter, make sure its value matches the value of the _Build configuration_ parameter in the _Visual Studio Test_
   task's _Reporting options_ section! Otherwise the policy will not pick up the generated code coverage values.
 
-- **Platform:** Specify the platform for which code coverage should be checked. Usually, one build compiles and tests just a single
+- <a name="platform">**Platform:**</a> Specify the platform for which code coverage should be checked. Usually, one build compiles and tests just a single
   platform (e.g., any cpu). Thus, the empty default value should be suitable for most situations. If you compile and test multiple platforms in a
   single build job or have a multi-configuration build, either specify a specific platform, use the variable `$(BuildPlatform)` (esp. for multi-config
   builds), or specify no value to check the aggregated code coverage of all platforms.
