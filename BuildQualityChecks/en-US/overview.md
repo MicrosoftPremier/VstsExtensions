@@ -52,7 +52,8 @@ last build that ran against the same branch as the current build. This behavior 
 
 - <a name="baseDef">**Build Definition:**</a> Select the build definition that should be used to search for the baseline build. If you do not set a value,
   the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
-  click the refresh icon to reload the list of available build definitions. See
+  click the refresh icon to reload the list of available build definitions. The drop-down list shows a maximum of 1000 build definitions. If your definition
+  is not visible, please enter the build definition ID manually. See
   [TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-topic-branches)
   for examples for when using a different build definition might be useful.
 

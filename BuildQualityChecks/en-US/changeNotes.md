@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.6.3
+- Fixed an issue with NodeJS module loading that prevented the task from running on Linux/Unix.
+
 #### 2.6.2
 - Added navigation and FAQ sections to extension documentation.
 
