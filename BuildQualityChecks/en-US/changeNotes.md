@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.7.0
+- Added an option to search for specific baseline build definitions.
+
 #### 2.6.3
 - Fixed an issue with NodeJS module loading that prevented the task from running on Linux/Unix.
 

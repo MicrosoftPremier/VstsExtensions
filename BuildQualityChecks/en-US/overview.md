@@ -50,6 +50,11 @@ last build that ran against the same branch as the current build. This behavior 
 - <a name="partial">**Include Partially Succeeded Builds:**</a> Uncheck this option if policy values should only be compared to successful baseline builds.
   In most cases, including partially succeeded builds is the best option, so you can use the default setting.
 
+- <a name="baseDefFilter">**Definition Filter**</a> If you have lots of build definitions, it can get hard to find the right one in the *Build Definition*
+  drop-down list. You can use the *Definition Filter* to limit the number of definitions shown in the list. Either enter a specific definition name or
+  use the asterisk (\*) wildcard to search for definitions starting with (e.g., Def\*), ending with (e.g., \*def), or containing (e.g., \*def\*) a specific
+  value. If you want to list all build definitions in your project, use the default value "\*".
+
 - <a name="baseDef">**Build Definition:**</a> Select the build definition that should be used to search for the baseline build. If you do not set a value,
   the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
   click the refresh icon to reload the list of available build definitions. The drop-down list shows a maximum of 1000 build definitions. If your definition
