@@ -33,6 +33,13 @@ if the number of warnings exceeds a specific value or increases between builds.
 - <a name="forceFewer">**Force Fewer Warnings:**</a> Check this option if you want the current build to always have fewer warnings than the previous one. This
   option is only visible if *Fail Build On* is set to `Previous Value`.
 
+- <a name="allowWarningVariance">**Allow Variance:**</a> Check this option to allow a temporary increase of warnings. Enabling this option will allow the policy to pass
+  even though the number of warnings has increased. The allowed increase is configured using the *Variance* parameter. This option is only available if the parameter
+  *Fail Build On* is set to `Previous Value` and the parameter *Force Fewer Warnings* is not enabled.
+
+- <a name="warningVariance">**Variance:**</a> Specify by how many the current warning count may exceed the previous value before the policy fails. Please be aware that
+  the number of warnings may slowly but steadily increase from build to build if you allow a warning variance. Thus, you should keep this value as low as possible.
+
 - <a name="warnFilters">**Warning Filters:**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code
   analysis warnings). *Warning Filters* allow you to do just that. Specify a list of regular expressions (one per line) that only match
   the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number

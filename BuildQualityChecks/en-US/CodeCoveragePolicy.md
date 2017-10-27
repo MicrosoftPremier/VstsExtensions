@@ -64,6 +64,13 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   will fail as long as the code coverage stays below this value and will pass, as soon as it is reached or exceeded. This parameter is only visible if
   the option *Force Coverage Improvement* is checked.
 
+- <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary decrease of code coverage. Enabling this option will allow the policy to pass
+  even though the code coverage value has decreased. The allowed decrease is configured using the *Variance* parameter. This option is only available if the parameter
+  *Fail Build On* is set to `Previous Value` and the parameter *Force Coverage Improvement* is not enabled.
+
+- <a name="coverageVariance">**Variance:**</a> Specify by how much the current code coverage may fall below the previous value before the policy fails. Please be aware that
+  the code coverage may slowly but steadily decrease from build to build if you allow a code coverage variance. Thus, you should keep this value as low as possible.
+
 - <a name="deltaType">**Delta Type:**</a> Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
   on the percentage value of code coverage. If you set this option to `Absolute Value`, the absolute number of covered blocks will be used during
   comparison.

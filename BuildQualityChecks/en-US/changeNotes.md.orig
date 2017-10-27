@@ -2,9 +2,12 @@
 
 # Build Quality Checks - Change Notes
 
+<<<<<<< HEAD
+=======
 #### 2.8.0
 - Added configurable variance for warnings and code coverage policy.
 
+>>>>>>> Update docs to v2.8.0
 #### 2.7.0
 - Added an option to search for specific baseline build definitions.
 
