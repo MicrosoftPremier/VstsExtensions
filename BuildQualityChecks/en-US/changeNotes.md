@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.8.1
+- Fixed the error "Unexpected token ..." on older build agent versions.
+
 #### 2.8.0
 - Added configurable variance for warnings and code coverage policy.
 
