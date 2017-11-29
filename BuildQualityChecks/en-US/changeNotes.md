@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.8.2
+- Fixed the error "Cannot read property 'records' of undefined" thrown by the warnings policy when warning statistics are enabled
+  and no baseline build exists.
+
 #### 2.8.1
 - Fixed the error "Unexpected token ..." on older build agent versions.
 
