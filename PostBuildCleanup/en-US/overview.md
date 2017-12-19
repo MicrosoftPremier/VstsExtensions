@@ -1,3 +1,5 @@
+[Support](#support) | [Task Parameters](#task-parameters) | [Task Behavior](#behavior-of-the-task) | [TFS 2015 Support](#support-for-team-foundation-server-2015)
+
 # Post Build Cleanup
 Did you ever run out of disk space on your build machine, because there were so many sources and binaries from previous build
 runs? Then this extension is for you!
@@ -19,6 +21,12 @@ If you need help with the extension or run into issues, please contact us at <a 
 The *Post Build Cleanup* task (in task category *Utility*) must always be the last (enabled) task in your build definition!
 
 ![Task Placement](../assets/AddTask.png "Proper placement of the Post Build Cleanup task")
+
+### Task Parameters
+
+#### Advanced
+- <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate and your
+  build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/NodeJSAndCertificates.md) for details.
 
 ### Behavior of the Task
 The task behavior is directly linked to the clean options you select in your build definition's **Repository** settings. In the new build UI

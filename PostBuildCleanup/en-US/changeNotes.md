@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 2.1.0
+- Added support for disabling NodeJS certificate check for the task. See [advanced settings](./overview.md#advanced) for more information.
+
 #### 2.0.3
 - Updated docs to new build UI.
 

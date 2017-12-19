@@ -1,7 +1,7 @@
 [Back to Overview](./overview.md)
 
 # Issue "Unable to Verify the First Certificate"
-Version 2.4.x of the *Build Quality Checks* extension does not by default work on a Team Foundation Server configured with a self-signed or corporate
+Version 2.0.x of the *Post Build Cleanup* extension does not by default work on a Team Foundation Server configured with a self-signed or corporate
 SSL certificate. When the build task executes, you will see the error message **unable to verify the first certificate** in the task log.
 This issue is caused by the way NodeJS validates server certificates on https connections. For some background please read the following
 sections or just skip to the [Workaround](#workaround) section for information about how to fix the issue.
@@ -21,13 +21,13 @@ While this change increased security, it creates a problem for servers that use 
 the self-signed nor the corporate root CA certificate is present in Node's list of trusted root certificates.
 
 ### Workaround
-In version 2.4.2 we have added the option *Disable NodeJS certificate check* to the *Advanced* parameter section of the task. In essence the option
+In version 2.1.0 we have added the option *Disable NodeJS certificate check* to the *Advanced* parameter section of the task. In essence the option
 sets the variable *NODE_TLS_REJECT_UNAUTHORIZED* to zero for the NodeJS process used by our task. While this solution is far from perfect, it effectively
 uses the same mechanism that the older versions of the Visual Studio Team Services Node API used. For now there is no better way for our task to fix
 the issue.
 
 ### What is the Risk of the Workaround?
-The risk of this workaround is fairly small. First of all, certificate checks are only disabled within the *Build Quality Checks* task if you enable
+The risk of this workaround is fairly small. First of all, certificate checks are only disabled within the *Post Build Cleanup* task if you enable
 the workaround. We guarantee that we only communicate with your Team Foundation Server. However, if you want to inspect our code, just download our
 extension from the Visual Studio Marketplace or contact us for a copy of the TypeScript code. If your build machines are not connected to the internet,
 the risk is futher mitigated. Lastly, NodeJS has no truely secure way of handling these situations. Every NodeJS script may disable the certificate
@@ -41,7 +41,7 @@ which adds support for additional root certificates. There is no need to write c
 are using a pre-7.3.0 version of NodeJS and the agent team cannot simply swap in a different version of NodeJS. In the future the team will provide an updated
 agent version, which supports NodeJS 7.x or 8.x, but there is no specific timeframe for this change yet.
 
-**Update (v2.9.0):** Even though the aforementioned variable *NODE_EXTRA_CA_CERTS* is not documented until NodeJS 7.3.0 it was actually
+**Update (v2.1.0):** Even though the aforementioned variable *NODE_EXTRA_CA_CERTS* is not documented until NodeJS 7.3.0 it was actually
 first implemented in version 6.10.0. Thus, we highly recommend using this variable instead of disabling the NodeJS certificate check in the
-task. We have added a new warning to the *Build Quality Checks* task that appears if you have disabled certificate checks on an agent that
+task. We have added a new warning to the *Post Build Cleanup* task that appears if you have disabled certificate checks on an agent that
 supports the new variable. __*We would like to specially thank Jonathan B. for reporting that the variable worked!*__

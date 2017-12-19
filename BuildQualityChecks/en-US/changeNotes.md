@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.9.0
+- Add warning if NodeJS certificate check has been disabled on an agent that supports configuration of custom CA certificates.
+
 #### 2.8.2
 - Fixed the error "Cannot read property 'records' of undefined" thrown by the warnings policy when warning statistics are enabled
   and no baseline build exists.
