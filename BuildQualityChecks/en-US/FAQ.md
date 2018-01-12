@@ -6,6 +6,14 @@
 **Q: Can I have multiple *Build Quality Checks* in one build?**  
 **A:** Yes. To better distinguish between the results of each instance use [run titles](./overview.md#reporting-options).
 
+**Q: Why is the task not working when used in a build phase?**
+**A:** The current version of the *vsts-node-api* does not support build phases. Since the *Build Quality Checks* task uses that library to read information about the build
+definition, it only recognizes the first build phase. Thus, the task only works correctly when placed in the first build phase. We will fix this issue as soon as possible.
+
+**Q: Why is the task failing when used in a YAML build definition?**
+**A:** Similar to the previous question ths issue is related to missing support for YAML definitions in the current version of the *vsts-node-api*. Until we have a fix for the
+issue, please keep using "standard" build definitions if you need the *Build Quality Checks* task.
+
 ## Warnings Policy
 **Q: Why does the policy report zero warnings although I see warnings in the build log?**  
 **A:** The policy only picks up warnings that are reported as build issues (see [limitations](./WarningsPolicy.md#limitations-and-special-cases)) and cannot see warnings that are

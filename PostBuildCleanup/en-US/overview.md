@@ -1,4 +1,4 @@
-[Support](#support) | [Task Parameters](#task-parameters) | [Task Behavior](#behavior-of-the-task) | [TFS 2015 Support](#support-for-team-foundation-server-2015)
+[Known Issues](#known-issues) | [Support](#support) | [Task Parameters](#task-parameters) | [Task Behavior](#behavior-of-the-task) | [TFS 2015 Support](#support-for-team-foundation-server-2015) | [FAQ](#faq)
 
 # Post Build Cleanup
 Did you ever run out of disk space on your build machine, because there were so many sources and binaries from previous build
@@ -13,6 +13,9 @@ disk space.
 
 ### Change Notes
 You can find the changes notes for this task [here](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/changeNotes.md).
+
+### Known Issues
+- All current versions of the task do not work with build phases or YAML build definitions. Please see the [FAQ](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/FAQ.md) for more information.
 
 ### Support
 If you need help with the extension or run into issues, please contact us at <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
@@ -66,6 +69,10 @@ The values of **Build.Clean** are matched to the **Clean options** parameter as 
 Because the build agent that comes with Team Foundation Server 2015 does contain a Git command line client, you must install
 Git on the build machine, in order to support source cleanup. If Git is not installed, the task will fall back to delete
 all contents of the $(Build.SourcesDirectory).
+
+### FAQ
+We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/FAQ.md) document.
+If you feel we need to add a specific question to the list, feel free to send it to our [support](#support) address.
 
 Icon made by [Freepik](http://www.freepik.com "Freepik") from [www.flaticon.com](http://www.flaticon.com "Flaticon") is
 licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/ "Creative Commons BY 3.0")
