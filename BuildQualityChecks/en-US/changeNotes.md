@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.9.2
+- Fixed a rare bug that caused the code coverage policy to assume zero coverage even though coverage data was available.
+
 #### 2.9.0
 - Add warning if NodeJS certificate check has been disabled on an agent that supports configuration of custom CA certificates.
 
