@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.9.3
+- Fixed a bug that caused code coverage policy to read wrong data when multiple test adapters were used.
+
 #### 2.9.2
 - Fixed a rare bug that caused the code coverage policy to assume zero coverage even though coverage data was available.
 
