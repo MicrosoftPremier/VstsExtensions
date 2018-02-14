@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 2.9.4
+- We're re-releasing v2.9.2 with a newer version because it contained a breaking change. Version 2.9.3 will be re-released as v3.0.0.
+
 #### 2.9.3
 - Fixed a bug that caused code coverage policy to read wrong data when multiple test adapters were used.
 
