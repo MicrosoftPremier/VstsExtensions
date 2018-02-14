@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 3.0.0
+- We're re-releaseing v2.9.3 as v3.0.0 due to a breaking change we missed during testing.
+
 #### 2.9.4
 - We're re-releasing v2.9.2 with a newer version because it contained a breaking change. Version 2.9.3 will be re-released as v3.0.0.
 
