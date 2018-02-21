@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 3.0.1
+- Fixed a bug that could cause the error "Cannot read property 'label' of undefined" when using multiple test adapters.
+
 #### 3.0.0
 - We're re-releaseing v2.9.3 as v3.0.0 due to a breaking change we missed during testing.
 
