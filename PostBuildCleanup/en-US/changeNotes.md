@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 2.1.2
+- Fixed an issue with NodeJS module loading that prevented the task from running on Linux/Unix.
+
 #### 2.1.0
 - Added support for disabling NodeJS certificate check for the task. See [advanced settings](./overview.md#advanced) for more information.
 
