@@ -5,9 +5,9 @@
 #### 4.0.0
 - Added support for build phases.
 - Added support for YAML builds.
-- Removed the incorrect default value for build platform
-- Moved official documentation to https://github.com/MicrosoftPremier (thanks for the feedback, Jens J.!)
-- Removed support for Team Foundation Server 2015 due to incompatibility with the latest vsts-node-api
+- Removed the incorrect default value for build platform.
+- Moved official documentation to https://github.com/MicrosoftPremier (thanks for the feedback, Jens J.).
+- Removed support for Team Foundation Server 2015 due to incompatibility with the latest vsts-node-api.
 
 --------------------------------------------------------------------------------
 **Note:** Version 3.x is the last version compatible with Team Foundation Server 2015!
