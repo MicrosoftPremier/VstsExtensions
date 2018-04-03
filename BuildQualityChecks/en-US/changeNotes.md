@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 4.0.1
+- Fix summary section for multi-config builds (missing job information)
+
 #### 4.0.0
 - Added support for build phases.
 - Added support for YAML builds.
