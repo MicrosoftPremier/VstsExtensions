@@ -17,11 +17,11 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 - **Code Coverage and Multi-Configuration Builds**  
   Multi-configuration builds trigger multiple build jobs (based on the *Multipliers* option) from a single build. This is mostly used for
   building combinations of different configurations (e.g., debug, release) and platforms (e.g., x86, x64) in parallel, although it may be
-  used with any combintaion of build variables. If you use code coverage with multi-config builds, please mind the behavior of the build
+  used with any combination of build variables. If you use code coverage with multi-config builds, please mind the behavior of the build
   system as described here:
 
   - **Visual Studio Test**  
-    When you run mutliple VSTest tasks with code coverage enabled, coverage values will be aggregated into a single value, unless you run
+    When you run multiple VSTest tasks with code coverage enabled, coverage values will be aggregated into a single value, unless you run
     the tests with different configurations (i.e., debug/release) and/or platforms (i.e., any cpu/x86/x64). Running multiple build jobs with
     the same configuration/platform in a single build will lead to undefined policy results depending on the speed and configuration of your
     build.

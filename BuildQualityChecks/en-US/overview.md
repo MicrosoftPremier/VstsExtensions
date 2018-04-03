@@ -4,21 +4,16 @@
 The *Build Quality Checks* task allows you to add quality gates to your build process.
 
 ### Change Notes
-You can find the changes notes for this task [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/changeNotes.md).
+You can find the changes notes for this task [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/changeNotes.md).
 
 ### Known Issues
-- All current versions of the task do not work with build phases or YAML build definitions. Please see the [FAQ](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md) for more information.
-- Using v2.4.x and higher of the extension on a Team Foundation Server with a self-signed or corporate SSL certificate leads to the error *unable to verify the first certificate*.
-  This issues is related to NodeJS' handling of certificates. Please see the [advanced settings](#advanced) below for more information.
+- We are phasing out Team Foundation Server 2015. If you're still using Team Foundation Server 2015, please stay on version 3.x of the
+  extension. For newer versions of Team Foundation Server or Visual Studio Team Services please use version 4.x and higher.
 - If you run your build agent behind a proxy server, the task will fail and you will see `connect ETIMEDOUT` somewhere in the
   task log, even if you configured the agent correctly as described [here](https://github.com/Microsoft/vsts-agent/blob/master/docs/start/proxyconfig.md).
   To fix this issue, create two environment variables called `HTTP_PROXY` and `HTTPS_PROXY` (either in system scope or the user scope of
   your agent service account) and set their value to your proxy server address including the port (e.g., http://myproxy:8080).  
   **Note:** Build tasks currently do not support proxy authentication.
-- The result section on the build summary page displays a wrong icon (trash can instead of red X) for failed policies on Team Foundation
-  Server 2015. We will not fix this issue, as it does not occur on Team Foundation Server 2017 or Visual Studio Team Services.
-- Due to a missing feature in Team Foundation Server 2015 (RTM and all updates), the task does not support multi-config builds on those
-  server versions. If you use the task in a multi-config build, it simply issues a warning and does not check any policies.
 
 ### Support
 If you need help with the extension or run into issues, please contact us at <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
@@ -33,9 +28,9 @@ the policy breaks the build, you still get test results as well as the compile o
 ### Policies
 The *Build Quality Checks* task currently supports two policies (click the link for details):
 
-- **[Warnings Policy](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md)** - Allows
+- **[Warnings Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md)** - Allows
   you to fail builds based on the number of build warnings.
-- **[Code Coverage Policy](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)** -
+- **[Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)** -
   Allows you to fail builds based on the code coverage value of your tests.
 
 ### Task Parameters
@@ -60,7 +55,7 @@ last build that ran against the same branch as the current build. This behavior 
   the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
   click the refresh icon to reload the list of available build definitions. The drop-down list shows a maximum of 1000 build definitions. If your definition
   is not visible, please enter the build definition ID manually. See
-  [TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-topic-branches)
+  [TFVC Topic Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-topic-branches)
   for examples for when using a different build definition might be useful.
 
   **Note:** To always compare policy values to builds from the current build definition that target a specific branch, you need to
@@ -77,11 +72,11 @@ last build that ran against the same branch as the current build. This behavior 
   targeting the currently built branch will be used when comparing policy values. If the drop-down list is empty after selecting the
   *Repository*, please click the refresh icon to reload the list of available branches. Branches are shown with their Git ref name, e.g.
   refs/heads/master or refs/heads/myTopicBranch. See
-  [Pull Request Policy Builds](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#pull-request-policy-builds)
+  [Pull Request Policy Builds](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#pull-request-policy-builds)
   for examples for when using a different branch might be useful.
 
   **Note:** When you change the *Build Definition* and *Repository* after selecting a branch, you need to select the branch again.
-  Oterwise, a wrong branch name may be saved to the task configuration. This is a refresh limitation of the build UI.
+  Otherwise, a wrong branch name may be saved to the task configuration. This is a refresh limitation of the build UI.
 
   **Note:** Whenever you choose a different baseline branch, make sure that the [retention policy](https://www.visualstudio.com/en-us/docs/build/concepts/policies/retention)
   is configured to keep at least one successful build for your baseline branch! 
@@ -93,11 +88,11 @@ title is added to the subsection header in the summary in the format \<Build Job
 
 #### Advanced
 - <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate and your
-  build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
+  build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
 
 ### Common Usage Scenarios
 
-- [Pull Requests and TFVC Topic Branches](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md)
+- [Pull Requests and TFVC Topic Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md)
 
 ### Policy Results
 The *Build Quality Checks* task creates its own summary section in the build summary view. This section displays all success,
@@ -106,11 +101,11 @@ job is created so you can see exactly which configuration might have quality iss
 
 ![Policy Result](../assets/PolicyResult.png "Build Quality Checks Summary Section")
 
-**Note:** Please see the [Limitations and Special Cases](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)
+**Note:** Please see the [Limitations and Special Cases](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)
 section of the *Code Coverage Policy* for possible issues with multi-configuration builds and code coverage.
 
 ### FAQ
-We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md) document.
+We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md) document.
 If you feel we need to add a specific question to the list, feel free to send it to our [support](#support) address.
 
 [Checklist board icon](https://www.vexels.com/vectors/png-svg/129767/checklist-board-icon) | Icon designed by Vexels.com

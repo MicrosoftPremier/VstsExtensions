@@ -2,11 +2,21 @@
 
 # Build Quality Checks - Change Notes
 
+#### 4.0.0
+- Added support for build phases.
+- Added support for YAML builds.
+- Removed the incorrect default value for build platform
+- Moved official documentation to https://github.com/MicrosoftPremier (thanks for the feedback, Jens J.!)
+- Removed support for Team Foundation Server 2015 due to incompatibility with the latest vsts-node-api
+
+--------------------------------------------------------------------------------
+**Note:** Version 3.x is the last version compatible with Team Foundation Server 2015!
+
 #### 3.0.1
 - Fixed a bug that could cause the error "Cannot read property 'label' of undefined" when using multiple test adapters.
 
 #### 3.0.0
-- We're re-releaseing v2.9.3 as v3.0.0 due to a breaking change we missed during testing.
+- We're re-releasing v2.9.3 as v3.0.0 due to a breaking change we missed during testing.
 
 #### 2.9.4
 - We're re-releasing v2.9.2 with a newer version because it contained a breaking change. Version 2.9.3 will be re-released as v3.0.0.
@@ -63,7 +73,7 @@
 #### 2.4.0
 - Added support for run titles to distinguish between multiple task runs in the same build.
 - Added support for warning filters.
-- Added links to documetation to every task parameter.
+- Added links to documentation to every task parameter.
 
 #### 2.3.1
 - Fixed duplicate logging of warning.
@@ -96,7 +106,7 @@
   
 #### 2.0.0
 - You can now choose a baseline build definition and branch for the comparison of policy values. See
-  [Baseline Task Parameters](https://github.com/almtcger/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#baseline)
+  [Baseline Task Parameters](./overview.md#baseline)
   for more information.
 - Policies will now pass by default if the previous build is not available.
 - Module filters have been removed from the code coverage policy. Please use run settings (or similar settings specific to your test

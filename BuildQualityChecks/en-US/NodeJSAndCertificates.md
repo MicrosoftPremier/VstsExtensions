@@ -7,7 +7,7 @@ This issue is caused by the way NodeJS validates server certificates on https co
 sections or just skip to the [Workaround](#workaround) section for information about how to fix the issue.
 
 ### NodeJS and Certificate Validation
-NodeJS comes with a pre-compiled, hardcoded set of trusted root certificates and does not look at a Windows machine’s certificate store or
+NodeJS comes with a pre-compiled, hard-coded set of trusted root certificates and does not look at a Windows machine’s certificate store or
 the equivalent certificate folders/stores on other operating systems. Thus, NodeJS cannot validate a server certificate if it has not been
 issued by one of the included root certificate authorities (CA), even if you install the self-signed certificate or the corporate root CA
 certificate on the machine. Up to NodeJS 7.3.0 there is no easy way to extend those root certificates other than writing custom code to
@@ -30,7 +30,7 @@ the issue.
 The risk of this workaround is fairly small. First of all, certificate checks are only disabled within the *Build Quality Checks* task if you enable
 the workaround. We guarantee that we only communicate with your Team Foundation Server. However, if you want to inspect our code, just download our
 extension from the Visual Studio Marketplace or contact us for a copy of the TypeScript code. If your build machines are not connected to the internet,
-the risk is futher mitigated. Lastly, NodeJS has no truely secure way of handling these situations. Every NodeJS script may disable the certificate
+the risk is further mitigated. Lastly, NodeJS has no truly secure way of handling these situations. Every NodeJS script may disable the certificate
 check and you cannot fully prevent this. Neither the custom code solution mentioned above nor the new environment variable in NodeJS (see below) run
 any security checks on the injected certificates. Unless NodeJS implements mechanisms to work with secured certificate stores on the various operating
 systems, you need to be aware of this issue and inspect all NodeJS processes running in sensitive environment for security issues.
