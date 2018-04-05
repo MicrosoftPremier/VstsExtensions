@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.1
+- Fix typo in code.
+
 #### 3.0.0
 - Added support for build phases.
 - Added support for YAML builds.
