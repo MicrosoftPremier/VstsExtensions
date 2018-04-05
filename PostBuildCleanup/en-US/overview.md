@@ -12,7 +12,7 @@ The *Post Build Cleanup* task deletes unwanted files from your build agent, **af
 disk space.
 
 ### Change Notes
-You can find the changes notes for this task [here](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/changeNotes.md).
+You can find the changes notes for this task [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/PostBuildCleanup/en-US/changeNotes.md).
 
 ### Known Issues
 - We are phasing out Team Foundation Server 2015. If you're still using Team Foundation Server 2015, please stay on version 2.x of the
@@ -30,7 +30,7 @@ The *Post Build Cleanup* task (in task category *Utility*) must always be the la
 
 #### Advanced
 - <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate and your
-  build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/NodeJSAndCertificates.md) for details.
+  build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/PostBuildCleanup/en-US/NodeJSAndCertificates.md) for details.
 
 ### Behavior of the Task
 The task behavior is directly linked to the clean options you select in your build definition's **Repository** settings. In the new build UI
@@ -72,7 +72,7 @@ Git on the build machine, in order to support source cleanup. If Git is not inst
 all contents of the $(Build.SourcesDirectory).
 
 ### FAQ
-We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/almtcger/VstsExtensions/blob/master/PostBuildCleanup/en-US/FAQ.md) document.
+We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/PostBuildCleanup/en-US/FAQ.md) document.
 If you feel we need to add a specific question to the list, feel free to send it to our [support](#support) address.
 
 Icon made by [Freepik](http://www.freepik.com "Freepik") from [www.flaticon.com](http://www.flaticon.com "Flaticon") is

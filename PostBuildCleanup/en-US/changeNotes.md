@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.2
+- Fix links to documentation.
+
 #### 3.0.1
 - Fix typo in code.
 
