@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 4.0.2
+- Fix extension target definition. Due to new vsts-node-api the lowest compatible version of Team Foundation Server is 2017 update 3. For earlier versions of Team Foundation Server, please keep using version 3.0.1.
+
 #### 4.0.1
 - Fix summary section for multi-config builds (missing job information)
 

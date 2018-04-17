@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.3
+- Fix extension target definition. Due to new vsts-node-api the lowest compatible version of Team Foundation Server is 2017 update 3. For earlier versions of Team Foundation Server, please keep using version 2.1.2.
+
 #### 3.0.2
 - Fix links to documentation.
 
