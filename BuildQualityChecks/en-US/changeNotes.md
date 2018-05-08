@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 4.0.3
+- Fix vsts-node-api initialization bug in code coverage policy that sometimes leads to the error "Cannot read property 'getCodeCoverageSummary' of undefined".
+
 #### 4.0.2
 - Fix extension target definition. Due to new vsts-node-api the lowest compatible version of Team Foundation Server is 2017 update 3. For earlier versions of Team Foundation Server, please keep using version 3.0.1.
 
