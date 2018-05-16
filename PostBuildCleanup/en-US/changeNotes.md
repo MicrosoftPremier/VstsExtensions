@@ -2,14 +2,17 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.4
+- Fixed an issue with the task when used with other tasks that have post-job scripts (e.g., npm Authenticate).
+
 #### 3.0.3
-- Fix extension target definition. Due to new vsts-node-api the lowest compatible version of Team Foundation Server is 2017 update 3. For earlier versions of Team Foundation Server, please keep using version 2.1.2.
+- Fixed extension target definition. Due to new vsts-node-api the lowest compatible version of Team Foundation Server is 2017 update 3. For earlier versions of Team Foundation Server, please keep using version 2.1.2.
 
 #### 3.0.2
-- Fix links to documentation.
+- Fixed links to documentation.
 
 #### 3.0.1
-- Fix typo in code.
+- Fixed typo in code.
 
 #### 3.0.0
 - Added support for build phases.
