@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 4.0.4
+- Fix typo in the code that might lead to code coverage policy waiting indefinitely when there is no code coverage data in a build.
+
 #### 4.0.3
 - Fix vsts-node-api initialization bug in code coverage policy that sometimes leads to the error "Cannot read property 'getCodeCoverageSummary' of undefined".
 
