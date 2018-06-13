@@ -2,8 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
-#### 4.0.4
-- Fix typo in the code that might lead to code coverage policy waiting indefinitely when there is no code coverage data in a build.
+#### 5.0.0
+- Update vsts-node-api and vsts-task-lib to latest versions.
+- Increase precision of comparison of code coverage percentage values. If no variance is supplied, percentage values will use six decimals instead of the previous two. When used with variance, the precision will be taken from the variance value.
 
 #### 4.0.3
 - Fix vsts-node-api initialization bug in code coverage policy that sometimes leads to the error "Cannot read property 'getCodeCoverageSummary' of undefined".

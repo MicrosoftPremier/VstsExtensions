@@ -8,7 +8,7 @@ You can find the changes notes for this task [here](https://github.com/Microsoft
 
 ### Known Issues
 - We are phasing out Team Foundation Server 2015. If you're still using Team Foundation Server 2015, please stay on version 3.x of the
-  extension. For newer versions of Team Foundation Server or Visual Studio Team Services please use version 4.x and higher.
+  extension which can be downloaded [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/archive/MSPremier.BuildQualityChecks-3.0.1.vsix). For newer versions of Team Foundation Server or Visual Studio Team Services please use version 4.x and higher.
 - If you run your build agent behind a proxy server, the task will fail and you will see `connect ETIMEDOUT` somewhere in the
   task log, even if you configured the agent correctly as described [here](https://github.com/Microsoft/vsts-agent/blob/master/docs/start/proxyconfig.md).
   To fix this issue, create two environment variables called `HTTP_PROXY` and `HTTPS_PROXY` (either in system scope or the user scope of
