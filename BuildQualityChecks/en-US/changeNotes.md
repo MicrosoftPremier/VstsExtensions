@@ -4,7 +4,7 @@
 
 #### 5.0.0
 - Update vsts-node-api and vsts-task-lib to latest versions.
-- Increase precision of comparison of code coverage percentage values. If no variance is supplied, percentage values will use six decimals instead of the previous two. When used with variance, the precision will be taken from the variance value.
+- Increase precision of comparison of code coverage percentage values. If no variance is supplied, percentage values will use four decimals instead of the previous two. This picks up a change of one element (e.g., block) in a million elements. When used with variance, the precision will be taken from the variance value.
 
 #### 4.0.3
 - Fix vsts-node-api initialization bug in code coverage policy that sometimes leads to the error "Cannot read property 'getCodeCoverageSummary' of undefined".
