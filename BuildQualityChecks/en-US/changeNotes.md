@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.0.2
+- Fix a bug that would sometimes compare the current build agatinst the wrong build phases/jobs from the previous build.
+- Fix links to pictures in the Visual Studio Marketplace.
+ 
 #### 5.0.0
 - Update vsts-node-api and vsts-task-lib to latest versions. This also fixes a localization issue that lead to warnings about missing resource files.
 - Increase precision of comparison of code coverage percentage values. If no variance is supplied, percentage values will use four decimals instead of the previous two. This picks up a change of one element (e.g., block) in a million elements. When used with variance, the precision will be taken from the variance value.
