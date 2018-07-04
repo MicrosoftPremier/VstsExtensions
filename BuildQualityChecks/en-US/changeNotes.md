@@ -3,7 +3,7 @@
 # Build Quality Checks - Change Notes
 
 #### 5.0.2
-- Fix a bug that would sometimes compare the current build agatinst the wrong build phases/jobs from the previous build.
+- Fix a bug that would sometimes compare the current build against the wrong build phases/jobs from the previous build.
 - Fix links to pictures in the Visual Studio Marketplace.
  
 #### 5.0.0
