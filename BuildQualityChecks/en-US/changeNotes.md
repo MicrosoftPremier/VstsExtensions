@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.0.4
+- Fix a bug that failed the code coverage policy if the 'Force Coverage Improvement' option was set and the percentage coverage value increased while the absolute coverage value decreased (e.g., baseline was 180 of 200 blocks covered = 90%, current build has 143 of 150 blocks covered = 95%).
+
 #### 5.0.2
 - Fix a bug that would sometimes compare the current build against the wrong build phases/jobs from the previous build.
 - Fix links to pictures in the Visual Studio Marketplace.
