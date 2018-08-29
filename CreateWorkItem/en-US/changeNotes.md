@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.0.3
+- Fix invalid handling of empty patch operations.
+
 #### 1.0.2
 - Fix input checking - Assigned To should be optional as documented.
 
