@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.0.5
+- Disable generic log analysis if no warning filters are configured. Previous behavior resulted in the task not counting warnings from non-MSBuild-based build tasks if warning statistics were enabled.
+
 #### 5.0.4
 - Fix a bug that failed the code coverage policy if the 'Force Coverage Improvement' option was set and the percentage coverage value increased while the absolute coverage value decreased (e.g., baseline was 180 of 200 blocks covered = 90%, current build has 143 of 150 blocks covered = 95%).
 
