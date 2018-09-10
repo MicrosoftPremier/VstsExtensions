@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.6
+- Update docs to reflect the new *Azure DevOps Services* brand.
+
 #### 3.0.5
 - Fixed an issue with log messages not showing up correctly (error: Resource file haven\'t set, can\'t find loc string for key: WaitForTaskCompletion).
 - Fixed an issue with post-job script running on a timeout because it was waiting for itself to finish.
