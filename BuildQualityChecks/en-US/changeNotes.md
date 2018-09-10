@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.0.6
+- Update docs to reflect the new *Azure DevOps Services* brand.
+
 #### 5.0.5
 - Disable generic log analysis if no warning filters are configured. Previous behavior resulted in the task not counting warnings from non-MSBuild-based build tasks if warning statistics were enabled.
 

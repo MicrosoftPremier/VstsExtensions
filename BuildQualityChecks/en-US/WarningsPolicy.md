@@ -69,7 +69,7 @@ if the number of warnings exceeds a specific value or increases between builds.
   ![Warning Statistics](../assets/WarningStatisticsResult.png "Policy Result with Warning Statistics")
   
   **Note:** Statistics currently only work for MSBuild builds (i.e., the *Visual Studio Build* and *MSBuild* tasks) and only on Team Foundation
-  Server 2017 or later and Visual Studio Team Services. If you need support for additional tasks, please let us know and preferably send us a sample
+  Server 2017 or later and Azure DevOps Services. If you need support for additional tasks, please let us know and preferably send us a sample
   log of the corresponding build task to <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
   
 - <a name="taskFilters">**Task Filters:**</a> Since the build system can run all kinds of tasks during the build process and any of these tasks can create

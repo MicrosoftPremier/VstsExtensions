@@ -14,7 +14,7 @@ certificate on the machine. Up to NodeJS 7.3.0 there is no easy way to extend th
 include some arbitrary certificate file.
 
 ### What is the Root Cause of the Issue?
-Version 2.4.x uses the latest version of the Visual Studio Team Services Node API (vsts-node-api v6.2.7-preview). In previous versions our Node API team
+Version 2.4.x uses the latest version of the Azure DevOps Services Node API (vsts-node-api v6.2.7-preview). In previous versions our Node API team
 internally set the environment variable *NODE_TLS_REJECT_UNAUTHORIZED* to zero. This effectively allowed NodeJS to connect to https endpoints,
 even when the certificate chain was broken. As this was a potential security issue, the team removed the variable in the newer versions of the API.
 While this change increased security, it creates a problem for servers that use either self-signed or corporate SSL certificates, because neither
@@ -23,7 +23,7 @@ the self-signed nor the corporate root CA certificate is present in Node's list 
 ### Workaround
 In version 2.4.2 we have added the option *Disable NodeJS certificate check* to the *Advanced* parameter section of the task. In essence the option
 sets the variable *NODE_TLS_REJECT_UNAUTHORIZED* to zero for the NodeJS process used by our task. While this solution is far from perfect, it effectively
-uses the same mechanism that the older versions of the Visual Studio Team Services Node API used. For now there is no better way for our task to fix
+uses the same mechanism that the older versions of the Azure DevOps Services Node API used. For now there is no better way for our task to fix
 the issue.
 
 ### What is the Risk of the Workaround?
