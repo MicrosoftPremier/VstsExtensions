@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.0.4
+- Update docs to reflect the new *Azure DevOps Services* brand.
+
 #### 1.0.3
 - Fix invalid handling of empty patch operations.
 
