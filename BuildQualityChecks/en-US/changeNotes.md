@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.1.0
+- Group warnings by build task in the task output and summary section (thanks to Mike W. for the suggestion).
+- Add support for StyleCop log analysis.
+
 #### 5.0.6
 - Update docs to reflect the new *Azure DevOps Services* brand.
 
