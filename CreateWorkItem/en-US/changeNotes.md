@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.0.5
+- Fix null references when linking or preventing duplicates.
+
 #### 1.0.4
 - Update docs to reflect the new *Azure DevOps Services* brand.
 
