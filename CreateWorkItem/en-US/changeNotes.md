@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.0.7
+- Fix error in additional fields editor due to new "magic fields" in work items.
+
 #### 1.0.5
 - Fix null references when linking or preventing duplicates.
 
