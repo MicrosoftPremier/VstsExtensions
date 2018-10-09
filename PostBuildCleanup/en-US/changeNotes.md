@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.7
+- Fix post-job script to only run if the Post Build Cleanup task itself actually ran and cleanup is activated.
+
 #### 3.0.6
 - Update docs to reflect the new *Azure DevOps Services* brand.
 
