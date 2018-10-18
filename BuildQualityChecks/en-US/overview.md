@@ -1,4 +1,4 @@
-[Known Issues](#known-issues) | [Support](#support) | [Policies](#policies) | [Task Parameters](#task-parameters) | [Common Usage Scenarios](#common-usage-scenarios) | [Policy Results](#policy-results) | [FAQ](#faq)
+[Known Issues](#known-issues) | [Support](#support) | [Policies](#policies) | [Task Parameters](#task-parameters) | [Task Variables](#task-variables) | [Common Usage Scenarios](#common-usage-scenarios) | [Policy Results](#policy-results) | [FAQ](#faq)
 
 # Build Quality Checks
 The *Build Quality Checks* task allows you to add quality gates to your build process.
@@ -87,8 +87,17 @@ is associated with a specific instance of the task. This will help distinguishin
 title is added to the subsection header in the summary in the format \<Build Job Name\> - \<Run Title\>.
 
 #### Advanced
-- <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate and your
-  build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
+- <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate
+  and your build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
+
+### Task Variables
+In addition to parameters visible in the task UI there are a few variables you can set to affect the tasks behavior:
+
+- **BQC.ForceNewBaseline:** You can set this variable (usually when queueing a new build) to _true_ to force the policies to ignore an existing baseline build. This
+  essentially creates a new baseline for future builds. This is especially helpful if there was a larger refactoring or redesign that resulted in a big change in code coverage and you need to establish a new base value. The default value is _false_.
+
+- **BQC.LogRawData:** You can set this variable to _true_ to enable logging of raw JSON data read by the task. In most cases you should not use this option as it does
+  increase the log size of the task and may show sensitive data in the log file. However, this data is very helpful in support scenarios. Note that this variable only takes effect if the variable _System.Debug_ is also set to _true_. The default value is _false_.
 
 ### Common Usage Scenarios
 

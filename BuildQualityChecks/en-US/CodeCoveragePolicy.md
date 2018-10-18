@@ -90,3 +90,9 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
   **Note:** If you configure this parameter, make sure its value matches the value of the _Build platform_ parameter in the _Visual Studio Test_
   task's _Reporting options_ section! Otherwise the policy will not pick up the generated code coverage values.
+
+- <a name="explicitFilter">**Force Filter:**</a> Check this option to force the policy to only evaluate coverage data associated with the configured _Configuration_
+  and _Platform_. If this option is not checked, the policy aggregates coverage data from all test runs unless both _Configuration_ and _Platform_ are specified. This
+  is usually a good default value unless you have multiple code coverage tools like the _Visual Studio Test_ task and _Cobertura_. In such a scenario you have to
+  check this option and leave both _Platform_ and _Configuration_ empty when you only want to evaluate _Cobertura_ coverage data. Otherwise, the policy would
+  evaluate the aggregated values from _Visual Studio Test_ and _Cobertura_ resulting in too high coverage values. 
