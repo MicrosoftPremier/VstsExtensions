@@ -25,6 +25,8 @@ the policy breaks the build, you still get test results as well as the compile o
 
 ![Task Placement](../assets/AddTask.png "Proper placement of the Build Quality Checks task")
 
+**Note:** When you want to use the [Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md) you need to make sure that you publish code coverage values calculated by your test tool first. The Policy itself does **not** calculate the code coverage. Before you add the task and activate the policy, please make sure that you can already see code coverage values in your build summary. If you are using a test tool other then MSTest (i.e., the _Visual Studio Test_ task), please use the _Publish Code Coverage Results_ task to publish your coverage data before you add the policy.
+
 ### Policies
 The *Build Quality Checks* task currently supports two policies (click the link for details):
 

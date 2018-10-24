@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.2.1
+- Fix a null reference in the new force filter logic.
+
 #### 5.2.0
 - Add support for only evaluating code coverage data that is not associated with a platform and configuration as created by 3rd party tools like Cobertura.
 - Add variable BQC.ForceNewBaseline to force a new baseline build.
