@@ -2,6 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 1.1.0
+- Add support for creating work items in a team's current iteration.
+- Add support for output variables.
+- Fix nested variable substitution and handling of variables with equal signs (e.g., URLs).
+
 #### 1.0.7
 - Fix error in additional fields editor due to new "magic fields" in work items.
 
