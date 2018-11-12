@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.2.2
+- Update extension manifest to include links to license, GitHub repository for issue tracking, and build badge.
+
 #### 5.2.1
 - Fix a null reference in the new force filter logic.
 
