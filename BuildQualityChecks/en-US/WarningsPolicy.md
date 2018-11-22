@@ -22,29 +22,43 @@ if the number of warnings exceeds a specific value or increases between builds.
 - <a name="enabled">**Enabled:**</a> Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
   visible.
 
+  **YAML: checkWarnings** - Default is *false*. Set to *true* to enable the option.
+
 - <a name="failOption">**Fail Build On:**</a> Set this option to `Fixed Threshold` to fail the build if the number of warnings exceeds a specific value.
   This is useful if you want to allow a low number of warnings but keep them from getting out of hand, or if you want to follow a
   "no warnings policy" (i.e., *Warning Threshold* = 0). To bring down the number of warnings over time, set this option to
   `Previous Value`. This will fail the build if the number of warnings has increased since the previous build.
 
+  **YAML: warningFailOption** - Default is *build*. Set to *build* for the `Previous Value` option or to *fixed* for the `Fixed Threshold` option.
+
 - <a name="threshold">**Warning Threshold:**</a> Specify the number of warnings that must not be exceeded. This parameter is only visible if *Fail Build On*
   is set to `Fixed Threshold`.
 
+  **YAML: warningThreshold** - Default is 0. Required if **warningFailOption* is set to *fixed*.
+
 - <a name="forceFewer">**Force Fewer Warnings:**</a> Check this option if you want the current build to always have fewer warnings than the previous one. This
   option is only visible if *Fail Build On* is set to `Previous Value`.
+
+  **YAML: forceFewerWarnings** - Default is *false*. Set to *true* to enable the option.
 
 - <a name="allowWarningVariance">**Allow Variance:**</a> Check this option to allow a temporary increase of warnings. Enabling this option will allow the policy to pass
   even though the number of warnings has increased. The allowed increase is configured using the *Variance* parameter. This option is only available if the parameter
   *Fail Build On* is set to `Previous Value` and the parameter *Force Fewer Warnings* is not enabled.
 
+  **YAML: allowWarningVariance** - Default is *false*. Set to *true* to enable the option.
+
 - <a name="warningVariance">**Variance:**</a> Specify by how many the current warning count may exceed the previous value before the policy fails. Please be aware that
   the number of warnings may slowly but steadily increase from build to build if you allow a warning variance. Thus, you should keep this value as low as possible.
+
+  **YAML: warningVariance** - Default is empty. Required if **allowWarningVariance** is set to *true*.
 
 - <a name="warnFilters">**Warning Filters:**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code
   analysis warnings). *Warning Filters* allow you to do just that. Specify a list of regular expressions (one per line) that only match
   the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number
   of warnings as well as the number of filtered warnings. Keep in mind that *Warning Filters* analyze the log file of build tasks and does
   a simple text match. Thus, you need to make sure that your regular expressions match each warning only once.
+
+  **YAML: warningFilters** - Default is empty. Set to one or more filter values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
   
   **Examples:**
   - Unused variables (.NET): `/##\[warning\].+CS0219:/i`
@@ -65,6 +79,8 @@ if the number of warnings exceeds a specific value or increases between builds.
   only shows the total number of warnings but also the changes in number of warnings per code file. To keep statistics short, only files
   with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters*, the filters will be applied
   first and only matching warnings will appear in the warning statistics.
+
+  **YAML: showStatistics** - Default is *false*. Set to *true* to enable the option.
   
   ![Warning Statistics](../assets/WarningStatisticsResult.png "Policy Result with Warning Statistics")
   
@@ -79,5 +95,7 @@ if the number of warnings exceeds a specific value or increases between builds.
   change the display name of a task in your build definition, make sure to update the task filters appropriately. The default value
   `/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` matches most of the standard build tasks in Team Foundation Server/Visual
   Studio Team Services.
+
+  **YAML: warningTaskFilters** - Default is shown above. Set to one or more task filter values. Start multiple entires with a pipe sign and keep each entry on a separate indented line.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.

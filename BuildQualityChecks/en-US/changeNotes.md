@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.2.3
+- Add YAML documentation.
+
 #### 5.2.2
 - Update extension manifest to include links to license, GitHub repository for issue tracking, and build badge.
 

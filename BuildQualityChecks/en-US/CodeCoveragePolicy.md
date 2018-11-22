@@ -37,9 +37,13 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 - <a name="enabled">**Enabled:**</a> Use this checkbox to enable or disable the policy. If the policy is disabled, none of the following parameters is
   visible.
 
+  **YAML: checkCoverage** - Default is *false*. Set to *true* to enable the option.
+
 - <a name="failOption">**Fail Build On:**</a> Set this option to `Fixed Threshold` to fail the build if the code coverage value falls below a specific value.
   This is useful if you want to allow some variance in code coverage but always keep a minimum coverage. If you set this option to
   `Previous Value`, the build will fail, whenever the code coverage falls below that of the previous build.
+
+  **YAML: coverageFailOption** - Default is *build*. Set to *build* for the `Previous Value` option or to *fixed* for the `Fixed Threshold` option.
 
 - <a name="coverType">**Coverage Type:**</a> Select the type of code coverage you want to evaluate. Most code coverage tools calculate coverage based on
   several different elements of your code. For example, the *Visual Studio Test* task evaluates how many lines of code as well as how
@@ -49,36 +53,53 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   branch coverage is not available, use `Line Coverage`. For third party code coverage tools like *JaCoCo*, which support additional
   coverage types, select `Custom Coverage` and specify the coverage type name (see below).
 
+  **YAML: coverageType** - Default is *blocks*. Set to *blocks* for the `Block Coverage` option, *lines* for the `Line Coverage` option, *branches* for the `Branch Coverage` option, or *custom* for the `Custom Coverage` option.
+
 - <a name="coverTypeName">**Coverage Type Name:**</a> Specify the name of the custom coverage type you want to evaluate. If you are unsure about the exact
   coverage type name, look at the code coverage section of the build summary page. The coverage type name must match one of the coverage
   types displayed in this section. This parameter is only visible if *Coverage Type* is set to `Custom Coverage`.
 
+  **YAML: customCoverageType** - Default is empty. Required if **coverageType** is set to *custom*.
+
 - <a name="threshold">**Code Coverage Threshold:**</a> Specify the minimum code coverage value in percentage terms. This parameter is only visible if
   *Fail Build On* is set to `Fixed Threshold`.
+
+  **YAML: coverageThreshold** - Default is 60.
 
 - <a name="forceImprove">**Force Coverage Improvement:**</a> Check this option if you want the current build to always have higher code coverage than the previous one.
   This option is only visible if *Fail Build On* is set to `Previous Value`.
 
-- <a name="upperThreshold">**Upper Threshold:**</a> Specify the upper threshold for code coverage improvements. It is generally not recommended to strive for 100% code coverage,
-  as this would force you to test even trivial code (e.g., getters/setters). Set this parameter to a reasonable high value (e.g., 70%-80%). The build
+  **YAML: forceCoverageImprovement** - Default is *false*. Set to *true* to enable the option.
+
+- <a name="upperThreshold">**Upper Threshold:**</a> Specify the upper threshold for code coverage improvements. It is generally not recommended to strive for 100%
+  code coverage, as this would force you to test even trivial code (e.g., getters/setters). Set this parameter to a reasonable high value (e.g., 70%-80%). The build
   will fail as long as the code coverage stays below this value and will pass, as soon as it is reached or exceeded. This parameter is only visible if
   the option *Force Coverage Improvement* is checked.
 
-- <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary decrease of code coverage. Enabling this option will allow the policy to pass
-  even though the code coverage value has decreased. The allowed decrease is configured using the *Variance* parameter. This option is only available if the parameter
-  *Fail Build On* is set to `Previous Value` and the parameter *Force Coverage Improvement* is not enabled.
+  **YAML: coverageUpperThreshold** - Default is 80.
 
-- <a name="coverageVariance">**Variance:**</a> Specify by how much the current code coverage may fall below the previous value before the policy fails. Please be aware that
-  the code coverage may slowly but steadily decrease from build to build if you allow a code coverage variance. Thus, you should keep this value as low as possible.
+- <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary decrease of code coverage. Enabling this option will allow the policy
+  to pass even though the code coverage value has decreased. The allowed decrease is configured using the *Variance* parameter. This option is only available if the parameter *Fail Build On* is set to `Previous Value` and the parameter *Force Coverage Improvement* is not enabled.
+
+  **YAML: allowCoverageVariance** - Default is *false*. Set to *true* to enable the option.
+
+- <a name="coverageVariance">**Variance:**</a> Specify by how much the current code coverage may fall below the previous value before the policy fails. Please be
+  aware that the code coverage may slowly but steadily decrease from build to build if you allow a code coverage variance. Thus, you should keep this value as low as possible.
+
+  **YAML: coverageVariance** - Default is empty. Required if **allowCoverageVariance** is set to *true*.
 
 - <a name="deltaType">**Delta Type:**</a> Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
   on the percentage value of code coverage. If you set this option to `Absolute Value`, the absolute number of covered blocks will be used during
   comparison.
 
+  **YAML: coverageDeltaType** - Default is *absolute*. Set to *absolute* for the `Absolute Value` option, or *percentage* for the `Percentage Value` option.
+
 - <a name="config">**Configuration:**</a> Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
   configuration (e.g., debug). Thus, the empty default value should be suitable for most situations. If you compile and test multiple configurations in
   a single build job or have a multi-configuration build, either specify a specific configuration, use the variable `$(BuildConfiguration)` (esp. for
   multi-config builds), or specify no value to check the aggregated code coverage of all configurations.
+
+  **YAML: buildConfiguration** - Default is empty.
 
   **Note:** If you configure this parameter, make sure its value matches the value of the _Build configuration_ parameter in the _Visual Studio Test_
   task's _Reporting options_ section! Otherwise the policy will not pick up the generated code coverage values.
@@ -88,6 +109,8 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   single build job or have a multi-configuration build, either specify a specific platform, use the variable `$(BuildPlatform)` (esp. for multi-config
   builds), or specify no value to check the aggregated code coverage of all platforms.
 
+  **YAML: buildPlatform** - Default is empty.
+
   **Note:** If you configure this parameter, make sure its value matches the value of the _Build platform_ parameter in the _Visual Studio Test_
   task's _Reporting options_ section! Otherwise the policy will not pick up the generated code coverage values.
 
@@ -95,4 +118,6 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   and _Platform_. If this option is not checked, the policy aggregates coverage data from all test runs unless both _Configuration_ and _Platform_ are specified. This
   is usually a good default value unless you have multiple code coverage tools like the _Visual Studio Test_ task and _Cobertura_. In such a scenario you have to
   check this option and leave both _Platform_ and _Configuration_ empty when you only want to evaluate _Cobertura_ coverage data. Otherwise, the policy would
-  evaluate the aggregated values from _Visual Studio Test_ and _Cobertura_ resulting in too high coverage values. 
+  evaluate the aggregated values from _Visual Studio Test_ and _Cobertura_ resulting in too high coverage values.
+
+  **YAML: explicitFilter** - Default is *false*. Set to *true* to enable the option.
