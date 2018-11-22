@@ -2,6 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 1.1.1
+- Fix bug in variable substitution that could lead to variables not being replaced by their actual values.
+- Update extension manifest to include links to license, GitHub repository for issue tracking.
+- Add YAML documentation.
+
 #### 1.1.0
 - Add support for creating work items in a team's current iteration.
 - Add support for output variables.
