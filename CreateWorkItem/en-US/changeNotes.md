@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.2.1
+- Remove error log message when not items to link are found.
+
 #### 1.2.0
 - Add support for creating work items in different team projects.
 - Add new link option to link all work items associated with the current build/release to the created work item.
