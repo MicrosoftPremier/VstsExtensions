@@ -2,6 +2,10 @@
 
 # Create Work Item - Change Notes
 
+#### 1.2.0
+- Add support for creating work items in different team projects.
+- Add new link option to link all work items associated with the current build/release to the created work item.
+
 #### 1.1.1
 - Fix bug in variable substitution that could lead to variables not being replaced by their actual values.
 - Update extension manifest to include links to license, GitHub repository for issue tracking.

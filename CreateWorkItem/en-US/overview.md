@@ -50,6 +50,10 @@ The task supports the default parameters listed below. All parameters support va
 
 ![Default Task Parameters](../assets/DefaultInputs.png "Configuring the Create Work Item task")
 
+- <a name="teamProject">**Team Project:**</a> Select the team project in which to create the new work item or leave empty to use the current project. If the list is empty, click the refresh button on the right.
+
+  **YAML: teamProject** - Default is empty.
+
 - <a name="workItemType">**Work Item Type:**</a> Specify the work item type you want to create. If you know the exact name of the work item type, simply type it into the textbox. You may also click on the selection icon on the right (three dots) and select a work item type from the drop-down list displayed in the opening dialog. This field is required.
 
   ![Work Item Type Picker](../assets/WorkItemTypePicker.png "Selecting a work item type")
@@ -107,9 +111,9 @@ Use the parameters in the *Linking* group to control links from the newly create
 
   **Note:** The link type you select is used for the linked work item, not the created work item. Thus, if you select *Parent*, the linked work item will become the parent of the newly created work item. Please ensure that the combination of *Link Type* and *Link Target* results in a valid link relationship. E.g., if you select *Parent* as the link type and then use a *Target Query* that results in two or more work items, the task will fail to create the work item links since a work item can only have one parent.
 
-- <a name="linkTarget">**Link Target:**</a> Choose `ID` and specify the *Target ID* to link the new work item to a specific work item with a known ID. Select `Query` and enter a valid *Target Query* to link the new work item to one ore more items matching a given work item query. This option is only visible if linking is enabled.
+- <a name="linkTarget">**Link Target:**</a> Choose `ID` and specify the *Target ID* to link the new work item to a specific work item with a known ID. Select `Query` and enter a valid *Target Query* to link the new work item to one ore more items matching a given work item query. Use the option `Associated Work Items` to link all work items that are associated with the current build or release to the new work item. This option is only visible if linking is enabled.
   
-  **YAML: linkTarget** - Default is *id*. Set to *id* for the `ID` option or *wiql* for the `Query` option.
+  **YAML: linkTarget** - Default is *id*. Set to *id* for the `ID` option, *wiql* for the `Query` option, or *associate* for the `Associated Work Items` option.
 
 - <a name="targetId">**Target ID:**</a> Enter the ID of the work item that should be linked to the new work item. This option is only visible if linking is enabled and *Link Target* is set to `ID`.
   
