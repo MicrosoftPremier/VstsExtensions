@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.2.2
+- Fix bug in output variable creation that led to empty variables.
+
 #### 1.2.1
 - Remove error log message when not items to link are found.
 
