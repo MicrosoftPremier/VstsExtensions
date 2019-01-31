@@ -2,6 +2,11 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.8
+- Update extension manifest to include links to license, and GitHub repository for issue tracking.
+- Fix doc bugs.
+- Add YAML documentation.
+
 #### 3.0.7
 - Fix post-job script to only run if the Post Build Cleanup task itself actually ran and cleanup is activated.
 
