@@ -1,0 +1,4 @@
+# Create Work Item Extension - on-prem
+Thank you for your interest in the [Create Work Item](https://marketplace.visualstudio.com/items?itemName=mspremier.CreateWorkItem) extension from Microsoft Premier Services. In this folder you find the on-prem versions of the extension that can be installed in a Team Foundation Server 2018 without internet connection.
+
+If your Team Foundation Server ist connected to the internet, we recommend installing the extension directly from the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=mspremier.CreateWorkItem) in _connected mode_. To do so, follow the instructions mentioned [here](https://docs.microsoft.com/en-us/azure/devops/marketplace/get-tfs-extensions?view=azure-devops-2019).
