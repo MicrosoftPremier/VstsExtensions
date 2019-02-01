@@ -2,6 +2,13 @@
 
 # Create Work Item - Change Notes
 
+#### 1.3.1
+- Update docs (fix link to on-prem extension).
+
+#### 1.3.0
+- Fix compatibility issue with latest Azure DevOps deployment leading to the error **VS403666: The email of the identity is not viewable**.
+- Remove support for Team Foundation Server 2017 due to library incompatibility.
+
 #### 1.2.2
 - Fix bug in output variable creation that led to empty variables.
 
