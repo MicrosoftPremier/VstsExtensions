@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.3.2
+- Fix performance issue when testing identity values.
+
 #### 1.3.1
 - Update docs (fix link to on-prem extension).
 
