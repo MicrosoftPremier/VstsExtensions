@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 5.2.4
+- Increase default wait timeouts.
+
 #### 5.2.3
 - Add YAML documentation.
 
