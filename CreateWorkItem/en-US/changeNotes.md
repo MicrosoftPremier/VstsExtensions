@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.3.3
+- Fix an issue with identity value validation (fails for email addresses that have mixed casing).
+
 #### 1.3.2
 - Fix performance issue when testing identity values.
 
