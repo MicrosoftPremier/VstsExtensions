@@ -2,8 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 1.3.4
+- Fix another issue with identity validation (failed for on-prem identities in domain format (e.g., "Some User <Domain\\SUser>"))
+
 #### 1.3.3
-- Fix an issue with identity value validation (fails for email addresses that have mixed casing).
+- Fix an issue with identity value validation (failed for email addresses that have mixed casing).
 
 #### 1.3.2
 - Fix performance issue when testing identity values.
