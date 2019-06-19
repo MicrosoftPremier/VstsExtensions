@@ -2,8 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 1.3.5
+- Fix issue in WIQL generation that sometimes failed the duplicate prevention.
+
 #### 1.3.4
-- Fix another issue with identity validation (failed for on-prem identities in domain format (e.g., "Some User <Domain\\SUser>"))
+- Fix another issue with identity validation (failed for on-prem identities in domain format (e.g., "Some User <Domain\\SUser>")).
 
 #### 1.3.3
 - Fix an issue with identity value validation (failed for email addresses that have mixed casing).
