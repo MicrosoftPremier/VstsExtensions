@@ -124,6 +124,10 @@ Use the parameters in the *Linking* group to control links from the newly create
   
   **YAML: targetWiql** - Default is empty. Required if **linkTarget** is set to *wiql*.
 
+- <a name="linkPR">**Link Pull Request:**</a> Check this option to enable linking the WorkItem with the Pull Request.  This option will be ignored if it is not a Pull Request validation.
+  
+  **YAML: linkPR** - Default is *false*. Set to *true* to enable the option.
+
 #### Duplicates
 Use the parameters in the *Duplicates* group to control handling of duplicates that might be created by the task:
 

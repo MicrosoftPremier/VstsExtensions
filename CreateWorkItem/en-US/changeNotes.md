@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.4.0
+- Add support for linking PR with WorkItem.
+
 #### 1.3.5
 - Fix issue in WIQL generation that sometimes failed the duplicate prevention.
 
