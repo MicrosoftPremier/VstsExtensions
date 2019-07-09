@@ -2,6 +2,12 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.0.0
+- Change default behavior of the "Force Coverage Improvement" setting. The policy does not fail if the code coverage decreases but still remains above the upper threshold. To revert back to the old behavior, unselect the new "Ignore Decrease Above Threshold" option.
+- Change default behavior of the "Force Filter" setting. The policy now fails if it cannot find code coverage data associated with the specified configuration and platform. 
+- Add support for new code coverage backend in Azure DevOps (better performance and reliability).
+- Fix a bug that kept the task waiting for skipped previous tasks.
+
 #### 5.2.4
 - Increase default wait timeouts.
 

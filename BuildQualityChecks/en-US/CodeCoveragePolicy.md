@@ -78,6 +78,11 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
   **YAML: coverageUpperThreshold** - Default is 80.
 
+  - <a name="ignoreDecreaseAboveUpperThreshold">**Ignore Decrease Above Threshold:**</a> Uncheck this option to fail the build if your code coverage value decreases even though it stays above the configured *Upper Threshold*. This option is only visible if
+  the option *Force Coverage Improvement* is checked.
+
+    **YAML: ignoreDecreaseAboveUpperThreshold** - Default is *true*.
+
 - <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary decrease of code coverage. Enabling this option will allow the policy
   to pass even though the code coverage value has decreased. The allowed decrease is configured using the *Variance* parameter. This option is only available if the parameter *Fail Build On* is set to `Previous Value` and the parameter *Force Coverage Improvement* is not enabled.
 
@@ -121,3 +126,5 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
   evaluate the aggregated values from _Visual Studio Test_ and _Cobertura_ resulting in too high coverage values.
 
   **YAML: explicitFilter** - Default is *false*. Set to *true* to enable the option.
+
+  **Note:** If the policy cannot find any code coverage data associated with the configured *Configuration* and *Platform* it will fail.
