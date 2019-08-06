@@ -35,11 +35,16 @@ A sample YAML representation of the task is shown below.
     linkWorkItems: true
     linkType: 'System.LinkTypes.Hierarchy-Forward'
     targetId: 42
+    linkPR: true
     preventDuplicates: true
     keyFields: |
      Title
      Area Path
      State
+    updateDuplicates: true
+    updateRules: |
+     System.State=Done
+     Title|= (auto-closed)
     createOutputs: true
     outputVariables: |
      NewId=System.Id
@@ -147,18 +152,36 @@ Use the parameters in the *Duplicates* group to control handling of duplicates t
 
   System.State is checked for the value *New* because that is the initial value that would be used by the new work item.
 
+- <a name="updateDuplicates">**Update Duplicate:**</a> Check this option to update a possible duplicate work item. If multiple duplicate work items are found, the task only updates the one that was last created (i.e., the item with the highest ID). To update work item fields specify one ore more *Update Rules*. The option ensures that work item links, build associations and pull request links are updates even if no *Update Rules* are specified. This option is only visible if duplicate prevention is enabled.
+
+  **YAML: updateDuplicates** - Default is *false*. Set to *true* to enable the option.
+
+- <a name="updateRules">**Update Rules:**</a> Enter one ore more work item field update rules (one per line) to specify how the duplicate work item needs to be updated. Each rule has the format *&lt;Work Item Field (Reference) Name&gt;&lt;Update Operator&gt;&lt;Value&gt;*. You can use the field name or field reference name to specify the work item field. Within the value, you can reference pipeline variables in the regular format *$(Variable Name)* and work item field values in the format *${Work Item Field (Reference) Name}*. Possible update operators are:
+
+  - Equals (**=**)  
+    The equals operator simply overwrites the value of the specified work item field with the specified value. The rule *State=Done* would simply set the work item state to *Done*.
+  - Plus-equals (**+=**)  
+    The plus-equals operator only works for numeric fields and arithemtically adds the value to the current work item field value. The rule *BuildCount+=1* would increase the value in the field *BuildCount* by one.
+  - Pipe-equals (**|=**)  
+    The pipe-equals operator only works for text fields and concatenates the current work item field value with the new value. This is useful for multi-value fields like tags. The rule *Tags|=; Build $(Build.BuildNumber)* would add a new tag with the build number information. This is a convenient short form for using work item field references like this: *Tags=${System.Tags}; Build $(Build.BuildNumber)*
+
+  **Note:** Field updates are applied in the order they in which they appear. Thus, if you need the original value of a work item field, make sure to reference it before updating it. Example: Use *System.History=Original title: ${System.Title}* first to store the original work item title in a comment before using *System.Title=New Title* to update the title.
+
+  **YAML: updateRules** - Default is empty. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
+
 #### Outputs
 Use the parameter in the *Output Variables* group to control the creation of output variables that can be used by subsequent tasks:
 
 ![Outputs Parameters](../assets/OutputsInputs.png "Configuring the creation of output variables")
 
-- <a name="createOutputs">**Create Output Variables:**</a> Check this option to enable the creation of output variables. Variables are based on field values of the newly created work item and can be used in subsequent tasks within the same build/release phase.
+- <a name="createOutputs">**Create Output Variables:**</a> Check this option to enable the creation of output variables. Variables are based on field values of the newly created work item and can be used in subsequent tasks within the same build/release phase. If duplicate handling is active and duplicates are found, the output variables are created based on the duplicate work item with the highest ID (i.e., the one that has been created last).
   
   **YAML: createOutputs** - Default is *false*. Set to *true* to enable the option.
 
 - <a name="outputVariables">**Output Variables:**</a> To allow maximum flexibility the task does not simply create a predefined set of output variables. Instead you can specify variable-value-mappings (one per line) in the form of **Variable Name=Work Item Value** (e.g., *NewDescription=Description*). This allows you to create just the variables you need for the values you need. You may use either the friendly field name (e.g., *Description*) or the reference name (e.g., *System.Description*) as the work item value. The following values can be used to reference special information of the work item:
 
-  - **CWI.WorkItemUrl** - returns the URL that can be used to view the newly created work item in the browser
+  - **CWI.WorkItemUrl** - returns the URL that can be used to access the work item data as JSON (api URL)
+  - **CWI.WorkItemEditUrl** - returns the URL that can be used to view and the work item in the browser
 
   You can reference the output variables like any other variable. If you used the mapping *NewDescription=Description*, you would reference your variable as *$(NewDescription)*.
 

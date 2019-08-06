@@ -2,6 +2,14 @@
 
 # Create Work Item - Change Notes
 
+#### 1.5.0
+- Fix an error **Cannot read property 'relations' of null**
+- Output variables are now also created when duplicate handling is active and duplicates are found.
+- Add new special value *CWI.WorkItemEditUrl* to access the editor URL of a work item for output variable creation.
+- Special values and field names for output variable creation are now case-insensitive.
+- Fix creation of output variables for identity values. Ouput variables for identity values now have the format *Display Name &lt;Uniqe Name&gt;* where unique name is the UPN for Azure DevOps Services or the domain account for Team Foundation Server/Azure DevOps Server.
+- Add support for updating a single duplicate work item.
+
 #### 1.4.0
 - Add support for linking PR with WorkItem.
 
