@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.5.1
+- Fix error **Cannot read property '...' of undefined** in output variable creation
+
 #### 1.5.0
 - Fix an error **Cannot read property 'relations' of null**
 - Output variables are now also created when duplicate handling is active and duplicates are found.
