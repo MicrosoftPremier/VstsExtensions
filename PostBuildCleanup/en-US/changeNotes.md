@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.0.9
+- Fix an out-dated link in the task description.
+
 #### 3.0.8
 - Update extension manifest to include links to license, and GitHub repository for issue tracking.
 - Fix doc bugs.
