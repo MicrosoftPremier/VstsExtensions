@@ -75,6 +75,10 @@ if the number of warnings exceeds a specific value or increases between builds.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
+- <a name="inclusiveFiltering">**Make Warning Filters Inclusive:**</a> Checking this option changes the behavior of *Warning Filters*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Filters* parameter (*exclusive filtering*; see above). In some cases, though, you might want to count warnings that are not properly logged by build tasks in addition to the regular warnings (*inclusive filtering*). This can be achieved by activating the *Make Warning Filters Inclusive* option.
+
+  **YAML: inclusiveFiltering** - Default is *false*. Set to *true* to enable the option.
+
 - <a name="statistics">**Show Warning Statistics:**</a> Enable this options to generate statistical information about warning changes. When enabled the policy not
   only shows the total number of warnings but also the changes in number of warnings per code file. To keep statistics short, only files
   with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters*, the filters will be applied

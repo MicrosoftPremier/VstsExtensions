@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.1.0
+- Add option to include filtered warnings in addition to regularly detected warnings.
+
 #### 6.0.0
 - Change default behavior of the "Force Coverage Improvement" setting. The policy does not fail if the code coverage decreases but still remains above the upper threshold. To revert back to the old behavior, unselect the new "Ignore Decrease Above Threshold" option.
 - Change default behavior of the "Force Filter" setting. The policy now fails if it cannot find code coverage data associated with the specified configuration and platform. 
