@@ -2,8 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 1.5 3
+- Fix compatibility issues with Team Foundation Server versions prior to 2018 Update 2.
+
 #### 1.5.2
-- Fix error **Cannot read property 'isNew' of null** when new work item could not be created
+- Fix error **Cannot read property 'isNew' of null** when new work item could not be created.
 .
 #### 1.5.1
 - Fix error **Cannot read property '...' of undefined** in output variable creation.

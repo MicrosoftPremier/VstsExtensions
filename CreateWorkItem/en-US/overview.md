@@ -152,6 +152,8 @@ Use the parameters in the *Duplicates* group to control handling of duplicates t
 
   System.State is checked for the value *New* because that is the initial value that would be used by the new work item.
 
+  **Note:** Since all long-text fields (e.g., *Description*, *Steps to Reproduce*, *History*) do not support the equals comparison operator, the task will use the *CONTAINS* operator instead. Thus, a key field definition of *Description=Hello, World* will find all work items with a description containing the phrase "Hello, world".
+
 - <a name="updateDuplicates">**Update Duplicate:**</a> Check this option to update a possible duplicate work item. If multiple duplicate work items are found, the task only updates the one that was last created (i.e., the item with the highest ID). To update work item fields specify one ore more *Update Rules*. The option ensures that work item links, build associations and pull request links are updates even if no *Update Rules* are specified. This option is only visible if duplicate prevention is enabled.
 
   **YAML: updateDuplicates** - Default is *false*. Set to *true* to enable the option.
