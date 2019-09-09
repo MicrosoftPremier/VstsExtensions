@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.1.1
+- Fix double counting of warnings when warning filters were combined with warning statistics.
+
 #### 6.1.0
 - Add option to include filtered warnings in addition to regularly detected warnings.
 
