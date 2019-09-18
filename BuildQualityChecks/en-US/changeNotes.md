@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.1.2
+- Support using the global regex flag (/g) for warning filters.
+
 #### 6.1.1
 - Fix double counting of warnings when warning filters were combined with warning statistics.
 
