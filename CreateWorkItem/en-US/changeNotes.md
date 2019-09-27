@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.5.4
+- Fix error when trying to set iteration path to the special value {team ID}@currentIteration during work item duplicate update.
+
 #### 1.5 3
 - Fix compatibility issues with Team Foundation Server versions prior to 2018 Update 2.
 
