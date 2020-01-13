@@ -2,7 +2,7 @@
 
 # Build Quality Checks - Change Notes
 
-#### 6.2.1
+#### 6.2.2
 - Fix baseline build handling for old build pipelines.
 
 #### 6.2.0
