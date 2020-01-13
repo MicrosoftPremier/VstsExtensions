@@ -2,6 +2,10 @@
 
 # Create Work Item - Change Notes
 
+#### 1.5.5
+- Fix null reference when duplicate handling is enabled and input data for work item creation is invalid.
+- Log errors to standard log output instead of debug output.
+
 #### 1.5.4
 - Fix error when trying to set iteration path to the special value {team ID}@currentIteration during work item duplicate update.
 
