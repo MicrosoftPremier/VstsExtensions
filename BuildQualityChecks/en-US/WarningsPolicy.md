@@ -97,8 +97,7 @@ if the number of warnings exceeds a specific value or increases between builds.
   regular expressions (one per line). The policy will only look at build tasks that match one of the task filters. The matching is done by
   looking at the timeline name of each task, i.e., the name displayed in the list on the left hand side of the build summary view. If you
   change the display name of a task in your build definition, make sure to update the task filters appropriately. The default value
-  `/^(((android|xcode|gradlew)\\s+)?build|ant|maven|cmake|gulp)/i` matches most of the standard build tasks in Team Foundation Server/Visual
-  Studio Team Services.
+  `/^((vs|ms)build|ant(\\s+.+)?|gradle(w)?(\\s+.+)?|grunt|gulp|maven(\\s+.+)?|xamarin(android|ios)|xcode(\\s+.+)?|cmake|build\\s+.+)$/i` matches most of the standard build tasks in Azure DevOps Server/Services.
 
   **YAML: warningTaskFilters** - Default is shown above. Set to one or more task filter values. Start multiple entires with a pipe sign and keep each entry on a separate indented line.
 

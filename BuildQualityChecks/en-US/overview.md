@@ -133,6 +133,10 @@ title is added to the subsection header in the summary in the format \<Build Job
 
   **YAML: disableCertCheck** - Default is *false*. Set to *true* to activate the option.
 
+- <a name="createBuildIssues">**Log task results as build issues:**</a> When enabled, task results are logged as build warnings/errors in addition to the summary section output. This option is enabled by default.
+
+  **YAML: createBuildIssues** - Default is *true*. Set to *false* to deactivate the option.
+
 ### Task Variables
 In addition to parameters visible in the task UI there are a few variables you can set to affect the tasks behavior:
 

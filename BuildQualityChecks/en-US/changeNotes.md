@@ -2,6 +2,14 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.2.0
+- Fix handling of parallel build jobs to ensure that warnings are only compared to warnings from the correct job of a previous build.
+- Add option to log task warnings and errors as build issue (enabled by default).
+- Fix bug that would not fail the coverage policy if delta type was absolute, ignoreDecreaseAboveUpperThreshold was enabled, and coverage value was above 100.
+- Add precision parameter.
+- Fix default task filters to properly work with YAML pipelines.
+- Fix MSBuild log analysis to ensure that all warnings are captured.
+
 #### 6.1.2
 - Support using the global regex flag (/g) for warning filters.
 

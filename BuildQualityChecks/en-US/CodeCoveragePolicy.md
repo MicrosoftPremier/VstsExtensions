@@ -78,10 +78,10 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
   **YAML: coverageUpperThreshold** - Default is 80.
 
-  - <a name="ignoreDecreaseAboveUpperThreshold">**Ignore Decrease Above Threshold:**</a> Uncheck this option to fail the build if your code coverage value decreases even though it stays above the configured *Upper Threshold*. This option is only visible if
+- <a name="ignoreDecreaseAboveUpperThreshold">**Ignore Decrease Above Threshold:**</a> Uncheck this option to fail the build if your code coverage value decreases even though it stays above the configured *Upper Threshold*. This option is only visible if
   the option *Force Coverage Improvement* is checked.
 
-    **YAML: ignoreDecreaseAboveUpperThreshold** - Default is *true*.
+  **YAML: ignoreDecreaseAboveUpperThreshold** - Default is *true*.
 
 - <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary decrease of code coverage. Enabling this option will allow the policy
   to pass even though the code coverage value has decreased. The allowed decrease is configured using the *Variance* parameter. This option is only available if the parameter *Fail Build On* is set to `Previous Value` and the parameter *Force Coverage Improvement* is not enabled.
@@ -93,11 +93,17 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
   **YAML: coverageVariance** - Default is empty. Required if **allowCoverageVariance** is set to *true*.
 
-- <a name="deltaType">**Delta Type:**</a> Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
+- <a name="coverageDeltaType">**Delta Type:**</a> Set this option to `Percentage Value` if the comparison between the current and previous code coverage value should be based
   on the percentage value of code coverage. If you set this option to `Absolute Value`, the absolute number of covered blocks will be used during
   comparison.
 
   **YAML: coverageDeltaType** - Default is *absolute*. Set to *absolute* for the `Absolute Value` option, or *percentage* for the `Percentage Value` option.
+
+- <a name="coveragePrecision">**Precision:**</a> The number of significant decimals used when comparing coverage percentage values. The default precision is 4, thus, the policy recognizes coverage value changes of 0.0001 % (e.g., one block in a million). If you want to use higher or lower precision, provide a higher or lower number of significant decimals.
+
+  **YAML: coveragePrecision** - Default is *4*.
+
+  **Note:** When you allow *variance*, the task uses the highest precision specified by either the *precision* or the *variance* parameter. E.g., when you specify a precision of 4 but a variance of 0.00001, the precision is taken from the variance parameter since it has more significant decimals than specified by the precision parameter.
 
 - <a name="config">**Configuration:**</a> Specify the configuration for which code coverage should be checked. Usually, one build compiles and tests just a single
   configuration (e.g., debug). Thus, the empty default value should be suitable for most situations. If you compile and test multiple configurations in
