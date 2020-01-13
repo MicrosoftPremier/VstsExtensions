@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.2.1
+- Fix baseline build handling for old build pipelines.
+
 #### 6.2.0
 - Fix handling of parallel build jobs to ensure that warnings are only compared to warnings from the correct job of a previous build.
 - Add option to log task warnings and errors as build issue (enabled by default).
