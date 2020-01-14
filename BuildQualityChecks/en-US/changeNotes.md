@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.2.4
+- Fix warning statistics creation when new baseline is forced or no baseline exists.
+
 #### 6.2.3
 - Fail policies with correct error message when invalid YAML inputs are provided.
 - Fix policy result for warnings policy when baseline build is missing.
