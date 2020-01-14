@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.2.3
+- Fail policies with correct error message when invalid YAML inputs are provided.
+- Fix policy result for warnings policy when baseline build is missing.
+
 #### 6.2.2
 - Fix baseline build handling for old build pipelines.
 
