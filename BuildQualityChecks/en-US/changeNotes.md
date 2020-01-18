@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.3.0
+- Fix comparison issue with warnings policy.
+- Add support for using uncovered elements when evaluating the code coverage policy (thanks for the suggestion, mjvk!).
+
 #### 6.2.4
 - Fix warning statistics creation when new baseline is forced or no baseline exists.
 

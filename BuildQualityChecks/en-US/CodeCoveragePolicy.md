@@ -83,13 +83,19 @@ The *Code Coverage Policy* allows breaking the build if code coverage falls belo
 
   **YAML: ignoreDecreaseAboveUpperThreshold** - Default is *true*.
 
-- <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary decrease of code coverage. Enabling this option will allow the policy
-  to pass even though the code coverage value has decreased. The allowed decrease is configured using the *Variance* parameter. This option is only available if the parameter *Fail Build On* is set to `Previous Value` and the parameter *Force Coverage Improvement* is not enabled.
+- <a name="useUncoveredElements">**Use Uncovered Elements:**</a> Check this option to evaluate coverage policy based on uncovered instead of covered elements. Usually, coverage policies are evaluated based on the covered elements in your code. However, when you remove covered code without adding additional tests, your coverage value automatically decreases even though you logically still cover the same code as before. This forces you to always add additional tests when removing covered lines from your code.
+
+  To avoid this you can switch policy evaluation to uncoverd elements. Instead of checking that the number or percentage of covered elements doesn't decrease the policy then ensures that the number of uncovered elements doesn't increase. Thus, you can freely remove covered code without being forced to add additional tests. Note, though, that by removing covered code and not covering additional code, the quality of your product might still decrease as more and more of the relevant code is not covered by tests.
+
+  This parameter is only visible if *Fail Build On* is set to `Previous Value` and the option *Force Coverage Improvement* is not enabled.
+
+  **YAML: useUncoveredElements** - Default is *false*.
+
+- <a name="allowCoverageVariance">**Allow Variance:**</a> Check this option to allow a temporary variance of coverage values. Enabling this option will allow the policy to pass even though the amount of covered code has decreased (when using covered elements) or the amount of uncovered code has increased (when using uncovered elements). The allowed variance is configured using the *Variance* parameter. This option is only available if the parameter *Fail Build On* is set to `Previous Value` and the option *Force Coverage Improvement* is not enabled.
 
   **YAML: allowCoverageVariance** - Default is *false*. Set to *true* to enable the option.
 
-- <a name="coverageVariance">**Variance:**</a> Specify by how much the current code coverage may fall below the previous value before the policy fails. Please be
-  aware that the code coverage may slowly but steadily decrease from build to build if you allow a code coverage variance. Thus, you should keep this value as low as possible.
+- <a name="coverageVariance">**Variance:**</a> Specify by how much the current amount of covered or uncovered code (depending on the parameter *Use Uncovered Elements*) may deviate from the previous value before the policy fails. Please be aware that the code coverage may slowly but steadily decrease from build to build if you allow a code coverage variance. Thus, you should keep this value as low as possible.
 
   **YAML: coverageVariance** - Default is empty. Required if **allowCoverageVariance** is set to *true*.
 
