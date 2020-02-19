@@ -2,6 +2,10 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.1.0
+- Fix issue with disabling NodeJS certificate check.
+- Support pipelines with decorators; task does not need to be the last in a job/phase anymore.
+
 #### 3.0.9
 - Fix an out-dated link in the task description.
 
