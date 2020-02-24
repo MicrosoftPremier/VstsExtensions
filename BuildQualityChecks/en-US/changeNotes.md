@@ -2,12 +2,16 @@
 
 # Build Quality Checks - Change Notes
 
-#### 6.4.0
+#### 6.4.1
 - Add policy result output variables.
 - Publish policy results as PR statuses.
 - Task filters now match against the display name as well as the task name.
 - Add better error handling around enumeration-based task parameters (e.g., coverageType) to deal with typos in YAML files.
 - Add support for evaluating warnings from arbitrary log files based on regular expression warning filters.
+- **!SCOPE CHANGE!** This version of the task requires two additional security scopes for Azure DevOps: *vso.code_write* and *vso.code_status*. These scopes are required in order to publish pull request statuses and create pull request comments (see [Pull Request Status API](https://docs.microsoft.com/en-us/rest/api/azure/devops/git/pull%20request%20statuses/create?view=azure-devops-rest-5.1) for more information).
+
+#### 6.4.0
+- Skipped due to publishing error.
 
 #### 6.3.0
 - Fix comparison issue with warnings policy.
