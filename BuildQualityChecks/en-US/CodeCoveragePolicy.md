@@ -7,6 +7,12 @@ testing while developing new code.
 
 The *Code Coverage Policy* allows breaking the build if code coverage falls below a certain value or decreases between builds.
 
+### Policy Result Variable
+The *Code Coverage Policy* creates an output variable named **CodeCoveragePolicyResult**. If the policy passed successfully, the variable value is set to *passed*, otherwise it's set to *failed*.
+
+### Pull Request Status
+When running in a pull request validation build, the *Code Coverage Policy* publishes its result as a pull request status named `coverage-policy`. The full status policy name is `bqc/coverage-policy`. To distinguish between multiple *Build Quality Checks* instances, configure the [Run Title](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#reporting-options) and use the policy name `bqc-{runTitle}/coverage-policy`. If you run title contains whitespaces, please replace them with dashes (e.g., run title = "My Run Title" -> policy name = `bqc-my-run-title/coverage-policy`).
+
 ### Limitations and Special Cases
 - **Using Test Impact Analysis (TIA)**  
   We recently announced [Test Impact Analysis](https://blogs.msdn.microsoft.com/visualstudioalm/2017/03/02/accelerated-continuous-testing-with-test-impact-analysis-part-1/)

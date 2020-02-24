@@ -1,4 +1,4 @@
-[Known Issues](#known-issues) | [Support](#support) | [YAML](#adding-the-task-to-a-yaml-build-definition) | [Policies](#policies) | [Task Parameters](#task-parameters) | [Task Variables](#task-variables) | [Common Usage Scenarios](#common-usage-scenarios) | [Policy Results](#policy-results) | [FAQ](#faq)
+[Known Issues](#known-issues) | [Support](#support) | [YAML](#adding-the-task-to-a-yaml-build-definition) | [Policies](#policies) | [Task Parameters](#task-parameters) | [Task Variables](#task-variables) | [Policy Results](#policy-results) | [Common Usage Scenarios](#common-usage-scenarios) | [FAQ](#faq)
 
 # Build Quality Checks
 The *Build Quality Checks* task allows you to add quality gates to your build process.
@@ -25,7 +25,7 @@ the policy breaks the build, you still get test results as well as the compile o
 
 ![Task Placement](../assets/AddTask.png "Proper placement of the Build Quality Checks task")
 
-**Note:** When you want to use the [Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md) you need to make sure that you publish code coverage values calculated by your test tool first. The Policy itself does **not** calculate the code coverage. Before you add the task and activate the policy, please make sure that you can already see code coverage values in your build summary. If you are using a test tool other then MSTest (i.e., the _Visual Studio Test_ task), please use the _Publish Code Coverage Results_ task to publish your coverage data before you add the policy.
+**Note:** When you want to use the [Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md) you need to make sure that you publish code coverage values calculated by your test tool first. The Policy itself does **not** calculate the code coverage. Before you add the task and activate the policy, please make sure that you can already see code coverage values in your build summary. If you are using a test tool other then MSTest (i.e., anything other than the _Visual Studio Test_ task), please use the _Publish Code Coverage Results_ task to publish your coverage data before you add the policy.
 
 ### Adding the Task to a YAML Build Definition
 To add the *Build Quality Checks* task to a YAML build definition, use the fully qualified task name and major version like this `- task: mspremier.BuildQualityChecks.QualityChecks-task.BuildQualityChecks@5` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
@@ -88,7 +88,7 @@ last build that ran against the same branch as the current build. This behavior 
   the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please
   click the refresh icon to reload the list of available build definitions. The drop-down list shows a maximum of 1000 build definitions. If your definition
   is not visible, please enter the build definition ID manually. See
-  [TFVC Topic Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-topic-branches)
+  [TFVC Feature Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-feature-branches)
   for examples for when using a different build definition might be useful.
 
   **YAML: baseDefinitionId** - Default is empty. Provide a build definition ID.
@@ -109,7 +109,7 @@ last build that ran against the same branch as the current build. This behavior 
   targeting the currently built branch will be used when comparing policy values. If the drop-down list is empty after selecting the
   *Repository*, please click the refresh icon to reload the list of available branches. Branches are shown with their Git ref name, e.g.
   refs/heads/master or refs/heads/myTopicBranch. See
-  [Pull Request Policy Builds](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#pull-request-policy-builds)
+  [Pull Request Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#pull-request-policy)
   for examples for when using a different branch might be useful.
 
   **YAML: baseBranchRef** - Default is empty. Provide a Git branch ref (e.g., *refs/heads/master*).
@@ -146,11 +146,10 @@ In addition to parameters visible in the task UI there are a few variables you c
 - **BQC.LogRawData:** You can set this variable to _true_ to enable logging of raw JSON data read by the task. In most cases you should not use this option as it does
   increase the log size of the task and may show sensitive data in the log file. However, this data is very helpful in support scenarios. Note that this variable only takes effect if the variable _System.Debug_ is also set to _true_. The default value is _false_.
 
-### Common Usage Scenarios
-
-- [Pull Requests and TFVC Topic Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md)
-
 ### Policy Results
+Policy results are returned in various ways to make it easy for you to see and use them in different scenarios:
+
+#### Extension Summary Section
 The *Build Quality Checks* task creates its own summary section in the build summary view. This section displays all success,
 warning, and error messages for all activated policies. If you run a multi-configuration build, a subsection for each build
 job is created so you can see exactly which configuration might have quality issues.
@@ -159,6 +158,18 @@ job is created so you can see exactly which configuration might have quality iss
 
 **Note:** Please see the [Limitations and Special Cases](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md)
 section of the *Code Coverage Policy* for possible issues with multi-configuration builds and code coverage.
+
+#### Policy Result Variables
+In addition, each policy you run creates an output variable that you can use to conditionally run other tasks in your pipeline (e.g., create a technical debt work item if quality metrics get worse). See policy documentation for more information.
+
+#### Pull Request Status
+If you run the task as part of a pull request validation build, each policy also publishes its result as a pull request status. With this you can keep your build from failing (i.e., set *Continue on error* option for *Build Quality Checks* task) for regular builds (e.g, nightly builds), but still prevent people from merging code of lesser quality into a protected branch through a pull request. See [Pull Requests and TFVC Feature Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md) for more information.
+
+**Important:** If you want to use the pull request features of the task, please ensure that your build account has the *Contribute to pull requests* permission! See [Git repository permissions](https://docs.microsoft.com/en-us/azure/devops/organizations/security/permissions?view=azure-devops&tabs=preview-page#git-repository-object-level) for more information. Depending on your *build job authorization scope* you need to either give that permission to your project build account (e.g., *YourProject Build Service (YourOrganization)*) or your project collection build account (e.g., *Project Collection Build Service (YourOrganization)*).
+
+### Common Usage Scenarios
+
+- [Pull Requests and TFVC Feature Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md)
 
 ### FAQ
 We have put together a list of frequently asked questions and answers in our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md) document.

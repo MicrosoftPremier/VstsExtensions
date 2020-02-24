@@ -2,6 +2,13 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.4.0
+- Add policy result output variables.
+- Publish policy results as PR statuses.
+- Task filters now match against the display name as well as the task name.
+- Add better error handling around enumeration-based task parameters (e.g., coverageType) to deal with typos in YAML files.
+- Add support for evaluating warnings from arbitrary log files based on regular expression warning filters.
+
 #### 6.3.0
 - Fix comparison issue with warnings policy.
 - Add support for using uncovered elements when evaluating the code coverage policy (thanks for the suggestion, mjvk!).
