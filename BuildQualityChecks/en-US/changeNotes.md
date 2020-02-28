@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.4.2
+- Fail code coverage policy if *Use Uncovered Elements* is enabled and there is no code coverage data or the task cannot read the data from Azure DevOps.
+- **!SCOPE CHANGE!** Since we received a lot of feedback after adding the additional security scopes *vso.code_write* and *vso.code_status*, we decided to remove them from the extension again. Those scopes do not affect pipeline tasks as their abilities are only tied to the permissions granted to the build service accounts. As security and privacy are important topics everybody should be concerned about, we put together detailed infomration in our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md#general).
+
 #### 6.4.1
 - Add policy result output variables.
 - Publish policy results as PR statuses.
