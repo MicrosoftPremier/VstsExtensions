@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 6.4.4
+- Fix bug on older Team Foundation Servers where system variable _System.CollectionUri_ is not properly set.
+
 #### 6.4.3
 - Fix pull request status feature for project containing whitespace in the project name.
 
