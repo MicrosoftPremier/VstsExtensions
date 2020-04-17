@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.6.0
+- Add support for work item attachments.
+
 #### 1.5.5
 - Fix null reference when duplicate handling is enabled and input data for work item creation is invalid.
 - Log errors to standard log output instead of debug output.
