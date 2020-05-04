@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.6.2
+- Doc update
+
 #### 1.6.1
 - Fix null reference when task is configured with invalid project or work item type.
 - Add proper validation for enumerated task inputs (typo handling for YAML pipelines).
