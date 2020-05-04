@@ -9,6 +9,7 @@ You can find the changes notes for this task [here](https://github.com/Microsoft
 ### Known Issues
 - Due to manifest changes in the Visual Studio Marketplace, the regular extension cannot be installed in an offline Team Foundation Server. If you need a working vsix file for your Team Foundation Server, please download the on-prem version of this extension from [here](https://github.com/MicrosoftPremier/VstsExtensions/tree/master/CreateWorkItem/on-prem).
 - Due to an issue in extension handling of Team Foundation Server and Azure DevOps Services (and a complementary mistake in our extension manifests) you might get the message "Error finding the extension" when you try to open one of the custom task editors using the "three dots" buttons. If you run into this issue, please contact us via email so we can work with you to fix the problem.
+- Due to security restrictions the task cannot be used in pull request builds from forked repositories. In that case the task issues a warning, skips all actions and succeeds to allow you to have a shared pipeline definition that works on all PRs.
 
 ### Support
 If you need help with the extension, run into issues, or have feedback or ideas for new features, please contact us at <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a> or create an issue [here](https://github.com/MicrosoftPremier/VstsExtensions/issues).
@@ -139,6 +140,8 @@ Use the parameters in the *Linking* group to control links from the newly create
 #### Attachments
 Use the parameters in the *Attachments* group to attach files to the new or updated work item.
 
+**Security Note:** Please be careful not to attach any files that may contain sensitive data (e.g., memory dumps). If you really need those files, please ensure that you restrict access to the work item using area permissions in Azure DevOps.
+
 ![Attachments Parameters](../assets/AttachmentsInputs.png "Configuring work item attachments")
 
 - <a name="addAttachments">**Add Attachments:**</a> Check this option to to attach files to the new or updated work item. This may be useful if you, e.g.,  want to add build logs or other build artifacts to the work item for easier access.
@@ -146,8 +149,6 @@ Use the parameters in the *Attachments* group to attach files to the new or upda
   **YAML: addAttachments** - (Optional) Default is *false*.
 
 - <a name="attachmentsFolder">**Source Folder:**</a> Root folder in which to search for attachments. If you leave this empty, the task looks for files in the default working directory (same as if you had specified `$(System.DefaultWorkingDirectory)`). This setting is only visible if the *Add Attachments* option is checked.
-
-  **Security Note:** Please be careful not to attach any files that may contain sensitive data (e.g., memory dumps). If you really need those files, please ensure that you restrict access to the work item using area permissions in Azure DevOps.
   
   **YAML: attachmentsFolder** - (Optional) Default is empty.
 
