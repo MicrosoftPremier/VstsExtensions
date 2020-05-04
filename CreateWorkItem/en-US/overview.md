@@ -31,25 +31,31 @@ YAML snippet:
     #iterationPath: # Optional
     #fieldMappings: # Optional; Required if your process defines additional required work item fields
     #associate: false # Optional
+    # ===== Linking Inputs =====
     #linkWorkItems: false # Optional
     #linkType: # Required if linkWorkItems = true
     #linkTarget: id # Optional; Valid values: id, wiql
     #targetId: # Required if linkWorkItems = true and linkTarget = id
     #targetWiql: # Required if linkWorkItems = true and linkTarget = wiql
     #linkPR: false # Optional
+    # ===== Attachments Inputs =====
     #addAttachments: false # Optional
     #attachmentsFolder: # Optional
     #attachments: # Required if addAttachments = true
+    # ===== Duplicate Inputs =====
     #preventDuplicates: false # Optional
     #keyFields: # Required if preventDuplicates = true
     #updateDuplicates: false # Optional
     #updateRules: # Optional
+    # ===== Outputs Inputs =====
     #createOutputs: false # Optional
     #outputVariables: # Required if createOutputs = true
 ```
 
 ### Task Parameters
 The task supports the default parameters listed below. All parameters support variables *including nested variables*.
+
+**Security Note:** For security reasons we mask all secrets automatically. This ensures that you cannot exploit the *Create Work Item* task to gain access to secret values stored in Azure DevOps.
 
 ![Default Task Parameters](../assets/DefaultInputs.png "Configuring the Create Work Item task")
 
@@ -140,6 +146,8 @@ Use the parameters in the *Attachments* group to attach files to the new or upda
   **YAML: addAttachments** - (Optional) Default is *false*.
 
 - <a name="attachmentsFolder">**Source Folder:**</a> Root folder in which to search for attachments. If you leave this empty, the task looks for files in the default working directory (same as if you had specified `$(System.DefaultWorkingDirectory)`). This setting is only visible if the *Add Attachments* option is checked.
+
+  **Security Note:** Please be careful not to attach any files that may contain sensitive data (e.g., memory dumps). If you really need those files, please ensure that you restrict access to the work item using area permissions in Azure DevOps.
   
   **YAML: attachmentsFolder** - (Optional) Default is empty.
 

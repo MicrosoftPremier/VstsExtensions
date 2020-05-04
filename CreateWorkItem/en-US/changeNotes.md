@@ -2,6 +2,12 @@
 
 # Create Work Item - Change Notes
 
+#### 1.6.1
+- Fix null reference when task is configured with invalid project or work item type.
+- Add proper validation for enumerated task inputs (typo handling for YAML pipelines).
+- Log warning and skip task on pull request builds for forked repositories (security context does not allow working with work items).
+- Mask all secrets in work item fields.
+
 #### 1.6.0
 - Add support for work item attachments.
 
