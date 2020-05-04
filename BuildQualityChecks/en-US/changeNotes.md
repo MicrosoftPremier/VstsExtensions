@@ -2,6 +2,12 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.0.0
+- Add support for evaluating file-based warnings from previous builds.
+- Add option to treat 0/0 covered elements as 100% coverage instead of 0%.
+- Add coverage delta type to log outputs.
+- **BREAKING CHANGE** Change default coverage delta type to percentage.
+
 #### 6.4.4
 - Fix bug on older Team Foundation Servers where system variable _System.CollectionUri_ is not properly set.
 
