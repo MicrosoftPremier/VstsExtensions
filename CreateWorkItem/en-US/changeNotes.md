@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.7.0
+- Add support for using a Personal Access Token (PAT) for authentication.
+
 #### 1.6.2
 - Doc update
 

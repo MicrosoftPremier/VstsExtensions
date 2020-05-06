@@ -1,4 +1,4 @@
-[Known Issues](#known-issues) | [Support](#support) | [YAML](#adding-the-task-to-a-yaml-definition) | [Task Parameters](#task-parameters) | [Linking](#linking) | [Attachments](#attachments) | [Duplicates](#duplicates) | [Outputs](#outputs)
+[Known Issues](#known-issues) | [Support](#support) | [YAML](#adding-the-task-to-a-yaml-definition) | [Task Parameters](#task-parameters) | [Linking](#linking) | [Attachments](#attachments) | [Duplicates](#duplicates) | [Outputs](#outputs) | [Advanced](#advanced)
 
 # Create Work Item
 The *Create Work Item* task allows you to create a work item from a build or release.
@@ -9,7 +9,6 @@ You can find the changes notes for this task [here](https://github.com/Microsoft
 ### Known Issues
 - Due to manifest changes in the Visual Studio Marketplace, the regular extension cannot be installed in an offline Team Foundation Server. If you need a working vsix file for your Team Foundation Server, please download the on-prem version of this extension from [here](https://github.com/MicrosoftPremier/VstsExtensions/tree/master/CreateWorkItem/on-prem).
 - Due to an issue in extension handling of Team Foundation Server and Azure DevOps Services (and a complementary mistake in our extension manifests) you might get the message "Error finding the extension" when you try to open one of the custom task editors using the "three dots" buttons. If you run into this issue, please contact us via email so we can work with you to fix the problem.
-- Due to security restrictions the task cannot be used in pull request builds from forked repositories. In that case the task issues a warning, skips all actions and succeeds to allow you to have a shared pipeline definition that works on all PRs.
 
 ### Support
 If you need help with the extension, run into issues, or have feedback or ideas for new features, please contact us at <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a> or create an issue [here](https://github.com/MicrosoftPremier/VstsExtensions/issues).
@@ -51,12 +50,14 @@ YAML snippet:
     # ===== Outputs Inputs =====
     #createOutputs: false # Optional
     #outputVariables: # Required if createOutputs = true
+    # ===== Advanced Inputs =====
+    #authToken: #Optional
 ```
 
 ### Task Parameters
 The task supports the default parameters listed below. All parameters support variables *including nested variables*.
 
-**Security Note:** For security reasons we mask all secrets automatically. This ensures that you cannot exploit the *Create Work Item* task to gain access to secret values stored in Azure DevOps.
+**Security Note:** For security reasons we mask all secrets automatically. This ensures that you cannot exploit the *Create Work Item* task to gain access to secret values stored in Azure DevOps. Please be aware, though, that it usually isn't a good idea to try putting secrets in work item fields in the first place.
 
 ![Default Task Parameters](../assets/DefaultInputs.png "Configuring the Create Work Item task")
 
@@ -213,5 +214,18 @@ Use the parameter in the *Output Variables* group to control the creation of out
   **YAML: outputVariables** - (Required) Default is empty. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **createOutputs** is set to *true*.
 
   **Note:** Make sure to name your output variables carefully when using multiple instances of the *Create Work Item* task in your build or release. If you use the same output variable in multiple tasks, each task overwrites the values from the previous task.
+
+#### Advanced
+Use the parameter in the *Advanced* group to control special task features:
+
+- <a name="authToken">**Auth Token:**</a> Provide a Personal Access Token (PAT) to use for authentication to Azure DevOps. This can be useful if you want to use the task in pull request builds that run from a forked repository, because the default security token used for those builds does not have sufficient privileges to create work items. In addition, using a specific PAT helps in situations where you need to create work items in different team projects to which the default security token (i.e., the Project Build Service account) does not have access. Please create a PAT with sufficient privileges (see below), store it in a secret variable (or another safe location from which you can retrieve it into a variable), and provide the variable here.
+
+  **YAML: authToken** - (Optional) Default is empty.
+
+  **Security Note:** Please be aware that allowing API access from pipelines that run for forked repositories can pose a security risk, especially if your pipeline is defined in YAML and you allow public forks! Use this setting with caution! In addition to setting the PAT here, you need to provide general access to secrets from pipelines that run for forks. See the official documentation about [repository protection](https://docs.microsoft.com/en-us/azure/devops/pipelines/security/repos?view=azure-devops) for more information.
+  
+  **Required Scopes:** We strongly encourage you to follow the *least privilege principle* when creating your PAT. For the task to properly work you only need the following security scopes:
+
+  - Work Items: Read & Write (`vso.work_write`)
 
 Icons made by [Pavel Kozlov](https://www.flaticon.com/authors/pavel-kozlov) from https://www.flaticon.com is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
