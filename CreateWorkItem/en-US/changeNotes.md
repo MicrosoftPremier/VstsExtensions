@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.7.1
+- Force minimum agent version v2.144.0 to support new Node10 execution handler.
+
 #### 1.7.0
 - Add support for using a Personal Access Token (PAT) for authentication.
 
