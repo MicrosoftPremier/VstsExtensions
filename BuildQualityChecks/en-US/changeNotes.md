@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.0.1
+- Force minimum agent version v2.144.0 to support new Node10 execution handler.
+
 #### 7.0.0
 - Add support for evaluating file-based warnings from previous builds.
 - Add option to treat 0/0 covered elements as 100% coverage instead of 0%.
