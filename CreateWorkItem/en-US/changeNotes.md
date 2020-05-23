@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.8.0
+- Created work item can now be associated with the current build or release.
+
 #### 1.7.1
 - Force minimum agent version v2.144.0 to support new Node10 execution handler.
 

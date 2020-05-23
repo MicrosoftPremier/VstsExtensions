@@ -103,7 +103,7 @@ The task supports the default parameters listed below. All parameters support va
 
   **YAML: fieldMappings** - (Optional) Default is empty. Start multiple entries with a pipe sign and keep each entry on a separate indented line. If the selected work item type has required fields other than title, make sure to include all of them in this list.
 
-- <a name="associate">**Associate Work Item With Current Build:**</a> Check this option if you want to associate the newly created work item with the current build. This option only takes effect when the task is running as part of a build; it is ignored when running inside a release.
+- <a name="associate">**Associate Work Item With Current Build or Release:**</a> Check this option if you want to associate the newly created work item with the current build or release environment.
   
   **YAML: associate** - (Optional) Default is *false*.
 
