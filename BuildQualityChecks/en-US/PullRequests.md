@@ -20,12 +20,16 @@ In order to use the *Build Quality Checks* task as a pull request quality gate, 
 
 For more information about build validation configuration see the [official documentation](https://docs.microsoft.com/en-us/azure/devops/repos/git/branch-policies?view=azure-devops#build-validation).
 
-#### Configuration *Build Quality Checks*
-Configure the policies you want to run as usual and make sure that you do not check the *Continue on error* option of the task so that the build fails if one of the policies fails. In most cases you should set the policies to fail based on the previous build's value (see *Fail Build On* setting). This ensures that new code changes that result in lesser quality cannot be merged back into the pull request's target branch (usually *master*).
+#### Configuring *Build Quality Checks*
+Configure the policies you want to run as usual and make sure that you do not check the *Continue on error* option of the task so that the build fails if one of the policies fails. In most cases you should set the policies to fail based on the previous build's value (see *Fail Build On* setting). This ensures that new code changes that result in lesser quality cannot be merged back into the pull request's target branch (e.g., *master*).
 
-In addition to setting the *Fail Build On* parameter to `Previous Build` you should also configure a proper baseline. Without doing so, the task only compares policy values to those of a previous build that ran for the same branch. In a pull request workflow, however, this means that the first validation build always succeeds as there has never been a build for a newly created pull request. To ensure a proper baseline, you should set the baseline branch to the pull request's target branch (usually *master*):
+In addition to setting the *Fail Build On* parameter to `Previous Build` you may also want to configure a baseline. Without any special baseline configuration the task first tries to compare policy values with those of a previous build that ran for the same branch. If it cannot find such a build (i.e., you are running the first build for you pull request), it automatically looks for the previous build that ran for the pull request target branch. Thus, the first build for you pull request compares policy values with those from the pull request target branch while all subsequent builds compare with the values from your pull request branch. This default behavior should be suitable for most situations.
+
+If you would like to always base policy evaluation on the pull request target or any other branch, you can set the baseline branch to a specific branch reference (e.g., *master*):
 
 ![Baseline Configuration](../assets/PullRequestBaseline.png "Configuration a proper baseline for pull request validation")
+
+**Note:** When you use the same pipeline definition for multiple pull request scenarios and always compare to the pull request target branch, you can set the baseline branch to the variable **$(System.PullRequest.TargetBranch)**. For pull request builds this ensures that policy values are compared with values from the correct target branch, while falling back to the default behavior for all non-pull-request builds (e.g., CI builds).
 
 ### Status Policy
 In some cases you may not want to always break your build whenever one of the *Build Quality Checks* policies fails. A good example is when you're using the same pipeline defition for a nightly build and pull request validations. Let's assume the nightly build should always be successful even if there are known quality issues (e.g., due to a quick fix for an urgent production issue), but you still want to prevent people from merging new code unless all quality checks succeed.

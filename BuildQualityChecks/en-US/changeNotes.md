@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.1.0
+- Automatically fall back to pull request target branch when looking for baseline builds.
+
 #### 7.0.1
 - Force minimum agent version v2.144.0 to support new Node10 execution handler.
 

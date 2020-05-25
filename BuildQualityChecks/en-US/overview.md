@@ -109,7 +109,9 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 
   **Note:** When you change the *Build Definition* after selecting a repository, you might see a GUID value in the repository parameter. This is a refresh limitation of the build UI. Please select the repository again to correct this.
 
-- <a name="baseBranch">**Branch (Git):**</a> Select the branch that should be used to search for the baseline build. If you do note set a value, the last build targeting the currently built branch will be used when comparing policy values. If the drop-down list is empty after selecting the *Repository*, please click the refresh icon to reload the list of available branches. Branches are shown with their Git ref name, e.g. refs/heads/master or refs/heads/myTopicBranch. See [Pull Request Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#pull-request-policy) for examples for when using a different branch might be useful.
+- <a name="baseBranch">**Branch (Git):**</a> Select the branch that should be used to search for the baseline build. If you do note set a value, the last build targeting the currently built branch will be used when comparing policy values, unless the build runs in the context of a pull request. In that case, the task looks for the last build targeting the pull request target branch if it cannot find a build for the currently built branch. See [Pull Request Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#configuring-build-quality-checks) for more information.
+
+  If the drop-down list is empty after selecting the *Repository*, please click the refresh icon to reload the list of available branches. Branches are shown with their Git ref name, e.g. refs/heads/master or refs/heads/myTopicBranch.
 
   **YAML: baseBranchRef** - (Optional) Default is empty. Provide a Git branch ref (e.g., *refs/heads/master*).
 
