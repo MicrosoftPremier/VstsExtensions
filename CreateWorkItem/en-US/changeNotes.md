@@ -2,6 +2,10 @@
 
 # Create Work Item - Change Notes
 
+#### 1.8.1
+- Fix error message in task editor when additional fields contains empty lines.
+- Fix issue where additional fields could not be saved when variable was used in task editor.
+
 #### 1.8.0
 - Created work item can now be associated with the current build or release.
 
