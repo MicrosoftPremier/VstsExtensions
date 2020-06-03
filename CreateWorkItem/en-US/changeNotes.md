@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.8.2
+- Fix extension packaging issue.
+
 #### 1.8.1
 - Fix error message in task editor when additional fields contains empty lines.
 - Fix issue where additional fields could not be saved when variable was used in task editor.
