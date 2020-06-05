@@ -35,11 +35,11 @@ YAML snippet:
     #forceFewerWarnings: false # Optional
     #allowWarningVariance: false # Optional
     #warningVariance: # Required if allowWarningVariance = true
+    #showStatistics: false # Optional
     #evaluateTaskWarnings: true # Optional
     #warningTaskFilters: '/^((vs|ms)build|ant(\\s+.+)?|gradle(w)?(\\s+.+)?|grunt|gulp|maven(\\s+.+)?|xamarin(android|ios)|xcode(\\s+.+)?|cmake|build\\s+.+)$/i' # Optional
     #warningFilters: # Optional
     #inclusiveFiltering: false # Optional
-    #showStatistics: false # Optional
     #evaluateFileWarnings: false # Optional
     #warningFilesFolder: # Optional
     #warningFiles: # Required if evaluateFileWarnings = true
@@ -120,11 +120,15 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
   **Note:** Whenever you choose a different baseline branch, make sure that the [retention policy](https://www.visualstudio.com/en-us/docs/build/concepts/policies/retention) is configured to keep at least one successful build for your baseline branch! 
 
 #### Reporting Options
+![Reporting Options](../assets/ReportingOptions.png "Configuring reporting options")
+
 If you are using multiple *Build Quality Checks* tasks within the same build, you may use the **Run Title** parameter to specify a title that is associated with a specific instance of the task. This will help distinguishing between the task results in the summary section. The run title is added to the subsection header in the summary in the format \<Build Job Name\> - \<Run Title\>.
 
 **YAML: runTitle** - (Optional) Default is empty. Provide a run title.
 
 #### Advanced
+![Advanced Parameters](../assets/Advanced.png "Configuring advanced options")
+
 - <a name="noCertCheck">**Disable NodeJS certificate check:**</a> Check this option if your Team Foundation Server is using a self-signed or corporate SSL certificate and your build agent version is lower than 2.117.0. The option disables the certificate chain validation of NodeJS. Please read [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/NodeJSAndCertificates.md) for details.
 
   **YAML: disableCertCheck** - (Optional) Default is *false*.
@@ -143,6 +147,11 @@ In addition to parameters visible in the task UI there are a few variables you c
 ### Policy Results
 Policy results are returned in various ways to make it easy for you to see and use them in different scenarios:
 
+#### Build Issue List
+If the advanced option _Log task results as build issues_ is enabled (default), the task reports policy violations as regular build issues. These are listed with all other issues on the build's summary page:
+
+![Policy Violations](../assets/PolicyViolations.png "Policy Violations in Build Summary")
+
 #### Extension Summary Section
 The *Build Quality Checks* task creates its own summary section in the build summary view. This section displays all success, warning, and error messages for all activated policies. If you run a multi-configuration build, a subsection for each build job is created so you can see exactly which configuration might have quality issues.
 
@@ -153,8 +162,12 @@ The *Build Quality Checks* task creates its own summary section in the build sum
 #### Policy Result Variables
 In addition, each policy you run creates an output variable that you can use to conditionally run other tasks in your pipeline (e.g., create a technical debt work item if quality metrics get worse). See policy documentation for more information.
 
-#### Pull Request Status
-If you run the task as part of a pull request validation build, each policy also publishes its result as a pull request status. With this you can keep your build from failing (i.e., set *Continue on error* option for *Build Quality Checks* task) for regular builds (e.g, nightly builds), but still prevent people from merging code of lesser quality into a protected branch through a pull request. See [Pull Requests and TFVC Feature Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md) for more information.
+#### Pull Request Statuses
+If you run the task as part of a pull request validation build, each policy also publishes its result as a pull request status:
+
+![Branch Policy Results](../assets/BranchPolicyResult.png "Policy results on the pull request summary page")
+
+See [Pull Requests and TFVC Feature Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md) for more information.
 
 **Important:** If you want to use the pull request features of the task, please ensure that your build account has the *Contribute to pull requests* permission! See [Git repository permissions](https://docs.microsoft.com/en-us/azure/devops/organizations/security/permissions?view=azure-devops&tabs=preview-page#git-repository-object-level) for more information. Depending on your *build job authorization scope* you need to either give that permission to your project build account (e.g., *YourProject Build Service (YourOrganization)*) or your project collection build account (e.g., *Project Collection Build Service (YourOrganization)*).
 

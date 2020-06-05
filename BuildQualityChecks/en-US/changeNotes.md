@@ -2,6 +2,12 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.2.0
+- Add warning statistics support for more pipeline tasks. Every task logging issues using the logging commands (i.e., `##vso[task.logissue ...]`) should be automatically picked up by the statistics (thanks to Gerwin J. for the suggestion!).
+- Include .NET Core task in the default task filters.
+- Add warning statistics support for custom warning filters with predefined named groups.
+- Fix doc issues.
+
 #### 7.1.0
 - Automatically fall back to pull request target branch when looking for baseline builds.
 

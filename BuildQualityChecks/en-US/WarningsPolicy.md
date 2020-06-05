@@ -43,6 +43,14 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **YAML: warningVariance** - (Required) Default is empty. Required if **allowWarningVariance** is set to *true*.
 
+- <a name="statistics">**Show Warning Statistics:**</a> Enable this options to generate statistical information about warning changes. When enabled the policy not only shows the total number of warnings but also the changes in number of warnings grouped by task and code file or object. To keep statistics short, only files with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters (Tasks)*, the filters will be applied first and only matching warnings will appear in the warning statistics.
+
+  **YAML: showStatistics** - (Optional) Default is *false*.
+  
+  ![Warning Statistics](../assets/WarningStatisticsResult.png "Policy Result with Warning Statistics")
+  
+  **Note:** Statistics only work for tasks that properly log warnings with the Azure DevOps logging command (i.e., `##vso[task.logissue ...]`) and only on Team Foundation Server 2017 or later and Azure DevOps Services. If you need support for additional tasks, please let us know and preferably send us a sample log of the corresponding build task to <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
+
 ### Task Warnings Parameters
 
 ![Task Warnings Parameters](../assets/WarningsPolicyTasks.png "Task Warnings Parameters of the Warnings Policy")
@@ -60,13 +68,26 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 - <a name="warnFilters">**Warning Filters (Tasks):**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code analysis warnings). *Warning Filters (Tasks)* allow you to do just that. Specify a list of regular expressions (one per line) that only match the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number of warnings as well as the number of filtered warnings. Keep in mind that *Warning Filters (Tasks)* analyze the log file of build tasks and does a simple text match. Thus, you need to make sure that your regular expressions match each warning only once. This setting is only visible if *Evaluate Task Warnings* is checked.
 
   **YAML: warningFilters** - (Optional) Default is empty. Set to one or more filter values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
+
+  By default, filtered warnings are listed under _unknown files_ in warning statistics. However, you can use the following predefined named groups in your regular expression to provide the necessary information for the task to correctly include your filtered warnings in statistics. Use the following named groups:
+  - **filename** or **object** - the name of the file or object in which the warning occurred
+  - **line** - the line number on which the warning occurred
+  - **column** - the column number on which the warning occurred
+  - **identifier** or **category** - the warning ID or category
+  - **message** - the warning message
   
-  **Examples:**
+  **Examples of filters for specific warning types:**
   - Unused variables (.NET): `/##\[warning\].+CS0219:/i`
   - Static code analysis (.NET): `/##\[warning\].+CA.+:/i`
   - StyleCop warnings (MSBuild and Roslyn): `/##\[warning\].+SA.+:/i`
+  
+  **Exmaples of filters for custom warning format with statistics information:**
+  - **Log output:** ISSUE: warning in file myfile.cs on line 13, column 2: ID123 - This is not good  
+    **Filter:** `/issue: warning in file (?<filename>.+?) on line (?<line>\d+), column (?<column>\d+): (?<identifier>[^ ]+) - (?<message>.+)$/i`
+  - **Log output:** ANALYSIS: Performance - 'Class1' should be made static  
+    **Filter:** `/analysis: (?<category>[^ ]+) - (?<message>(?:[^']+?)?(?:'(?<object>.+)'.+)?)$/i`
 
-  *Warning Filters (Tasks)* can also be used to count warnings if a build task does not log warnings as build issues, as long as the task logs the number of warnings to its log file. To do so, specify a warning filter that contains exactly **one** matching group that captures the number of warnings. The captured number will be added to the total warning count as well was the filtered warning count.
+  *Warning Filters (Tasks)* can also be used to count warnings if a build task does not log warnings as build issues, as long as the task logs the number of warnings to its log file. To do so, specify a warning filter that contains exactly **one** unnamed capture group that matches the number of warnings. The captured number will be added to the total warning count as well was the filtered warning count.
 
   **Example (based on _StyleCop Runner_ task):**
   - Log output: `StyleCop found [28448] violations warnings across [82] projects`
@@ -77,14 +98,6 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 - <a name="inclusiveFiltering">**Make Warning Filters Inclusive:**</a> Checking this option changes the behavior of *Warning Filters (Tasks)*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Filters (Tasks)* parameter (*exclusive filtering*; see above). In some cases, though, you might want to count warnings that are not properly logged by build tasks in addition to the regular warnings (*inclusive filtering*). This can be achieved by activating the *Make Warning Filters Inclusive* option. This setting is only visible if *Evaluate Task Warnings* is checked.
 
   **YAML: inclusiveFiltering** - (Optional) Default is *false*.
-
-- <a name="statistics">**Show Warning Statistics:**</a> Enable this options to generate statistical information about warning changes. When enabled the policy not only shows the total number of warnings but also the changes in number of warnings per code file. To keep statistics short, only files with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters (Tasks)*, the filters will be applied first and only matching warnings will appear in the warning statistics. This option is only visible if *Evaluate Task Warnings* is checked and *Evaluate File Warnings* is not checked.
-
-  **YAML: showStatistics** - (Optional) Default is *false*.
-  
-  ![Warning Statistics](../assets/WarningStatisticsResult.png "Policy Result with Warning Statistics")
-  
-  **Note:** Statistics currently only work for MSBuild builds (i.e., the *Visual Studio Build* and *MSBuild* tasks) and only on Team Foundation Server 2017 or later and Azure DevOps Services. If you need support for additional tasks, please let us know and preferably send us a sample log of the corresponding build task to <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
 
 ### File Warnings Parameters
 
@@ -102,7 +115,7 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **YAML: warningFiles** - (Required) Default is empty. Set to one or more file matching patterns. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **evaluateFileWarnings** is set to *true*.
 
-- <a name="warningFileFilters">**Warning Filters (Files):**</a> (Required) Specify a list of regular expressions (one per line) that match the warnings in your log files. Make sure that your regular expressions match each warning only once, otherwise they will be counted multiple times. If you need separate regular expressions for specific log files, please use multiple instances of the *Build Quality Checks* task. This setting is only visible if *Evaluate File Warnings* is checked.
+- <a name="warningFileFilters">**Warning Filters (Files):**</a> (Required) Specify a list of regular expressions (one per line) that match the warnings in your log files. Make sure that your regular expressions match each warning only once, otherwise they will be counted multiple times. If you need separate regular expressions for specific log files, please use multiple instances of the *Build Quality Checks* task. You can use the same special filters as described under [Warning Filters (Tasks)](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md#warnFilters) This setting is only visible if *Evaluate File Warnings* is checked.
 
   **YAML: warningFileFilters** - (Required) Default is empty. Set to one or more filter values. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **evaluateFileWarnings** is set to *true*.
 
