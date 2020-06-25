@@ -2,6 +2,11 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.2.1
+- Fix typo in docs.
+- Fix handling of missing baseline build during file warnings analysis. (fixes GitHub issue #100)
+- Fix issue with baseline handling for GitHub repositories. (fixes GitHub issues #101, #102)
+
 #### 7.2.0
 - Add warning statistics support for more pipeline tasks. Every task logging issues using the logging commands (i.e., `##vso[task.logissue ...]`) should be automatically picked up by the statistics (thanks to Gerwin J. for the suggestion!).
 - Include .NET Core task in the default task filters.

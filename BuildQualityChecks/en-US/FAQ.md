@@ -29,7 +29,7 @@ By default, a build's OAuth token only has limited permissions (read all source 
 only written to a build task's log file. You might be able to use [warning filters](./WarningsPolicy.md#warnFilters) to make the policy pick up those warnings as well.
 
 **Q: Why does the policy report fewer warnings than the build summary?**  
-**A:** The build summary shows all warnings that have been reoprted as build issues, while the policy only counts warnings from specific build tasks. Make sure that the
+**A:** The build summary shows all warnings that have been reported as build issues, while the policy only counts warnings from specific build tasks. Make sure that the
 [task filters](./WarningsPolicy.md#taskFilters) match all relevant tasks in your build definition.
 
 ## Code Coverage Policy
