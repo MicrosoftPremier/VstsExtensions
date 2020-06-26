@@ -2,6 +2,11 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.2.2
+- Fix typo in warning message.
+- Additional fixes for GitHub baseline handling. (GitHub issue #102)
+- Remove warning about missing permissions when repository is not in Azure DevOps.
+
 #### 7.2.1
 - Fix typo in docs.
 - Fix handling of missing baseline build during file warnings analysis. (fixes GitHub issue #100)
