@@ -2,6 +2,13 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.3.0
+- Fix: Create warning statistics when only file warnings analysis is enabled.
+- Improvements to policy result output:
+  - Make run title more prominent
+  - Display subtotals in warning statistics
+  - Add warning file analysis title
+
 #### 7.2.2
 - Fix typo in warning message.
 - Additional fixes for GitHub baseline handling. (GitHub issue #102)

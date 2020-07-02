@@ -20,12 +20,12 @@ The *Build Quality Checks* (in task category *Build*) task needs to be placed af
 **Note:** When you want to use the [Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md) you need to make sure that you publish code coverage values calculated by your test tool first. The Policy itself does **not** calculate the code coverage. Before you add the task and activate the policy, please make sure that you can already see code coverage values in your build summary. If you are using a test tool other then MSTest (i.e., anything other than the _Visual Studio Test_ task), please use the _Publish Code Coverage Results_ task to publish your coverage data before you add the policy.
 
 ### Adding the Task to a YAML Build Definition
-To add the *Build Quality Checks* task to a YAML build definition, use the  task name and major version like this `- task: BuildQualityChecks@6` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
+To add the *Build Quality Checks* task to a YAML build definition, use the  task name and major version like this `- task: BuildQualityChecks@7` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
 
 YAML snippet:
 
 ``` yaml
-- task: BuildQualityChecks@6
+- task: BuildQualityChecks@7
   displayName: 'Check build quality'
   inputs:
     # ===== Warnings Policy Inputs =====
@@ -44,7 +44,7 @@ YAML snippet:
     #warningFilesFolder: # Optional
     #warningFiles: # Required if evaluateFileWarnings = true
     #warningFileFilters: # Required if evaluateFileWarnings = true
-    #warningFilesArtifact: # Required if evaluateFileWarnings = true and warningFailOption = build
+    #warningFilesArtifact: # Required if evaluateFileWarnings = true and (warningFailOption = build or showStatistics = true)
     # ===== Code Coverage Policy Inputs =====
     #checkCoverage: false # Optional
     #coverageFailOption: build # Optional; Valid values: build, fixed
@@ -71,6 +71,7 @@ YAML snippet:
     #baseBranchRef: # Optional
     # ===== Reporting Inputs =====
     #runTitle: # Optional
+    #fileAnalysisTitle: # Optional
     # ===== Advanced Inputs =====
     #disableCertCheck: false # Optional
     #createBuildIssues: true # Optional
@@ -122,9 +123,13 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 #### Reporting Options
 ![Reporting Options](../assets/ReportingOptions.png "Configuring reporting options")
 
-If you are using multiple *Build Quality Checks* tasks within the same build, you may use the **Run Title** parameter to specify a title that is associated with a specific instance of the task. This will help distinguishing between the task results in the summary section. The run title is added to the subsection header in the summary in the format \<Build Job Name\> - \<Run Title\>.
+- <a name="runTitle">**Run Title:**</a> If you are using multiple *Build Quality Checks* tasks within the same build, you may use this parameter to specify a title that is associated with a specific instance of the task. This will help distinguishing between the task results in the summary section. The run title is used as the section header in the summary (see [Extension Summary Section](#extension-summary-section)).
 
-**YAML: runTitle** - (Optional) Default is empty. Provide a run title.
+  **YAML: runTitle** - (Optional) Default is empty.
+
+- <a name="fileAnalysisTitle">**File Analysis Title:**</a> Provide a custom name for the file warnings analysis. The name is used in warning statistics instead of the default value _File Analysis_. (see [Show Warning Statistics](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md#statistics)).
+
+  **YAML: fileAnalysisTitle** - (Optional) Default is empty.
 
 #### Advanced
 ![Advanced Parameters](../assets/Advanced.png "Configuring advanced options")
