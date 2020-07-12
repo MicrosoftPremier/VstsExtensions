@@ -2,6 +2,11 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.0
+- Move summary markdown to temporary files instead of `$(Build.SourcesDirectory)`.
+- Enhance warning statistics with detailed inforamtion about added and removed warnings.
+- Fix error with summary upload when run title includes invalid characters. (fixes GitHub issue #106)
+
 #### 7.3.0
 - Fix: Create warning statistics when only file warnings analysis is enabled.
 - Improvements to policy result output:

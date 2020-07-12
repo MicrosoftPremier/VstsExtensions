@@ -32,6 +32,18 @@ only written to a build task's log file. You might be able to use [warning filte
 **A:** The build summary shows all warnings that have been reported as build issues, while the policy only counts warnings from specific build tasks. Make sure that the
 [task filters](./WarningsPolicy.md#taskFilters) match all relevant tasks in your build definition.
 
+**Q: How do warning statistics work and why is it reporting incorrect warning changes?**
+**A:** The detailed warning analysis within the statistics is based on a heuristic mechanism and might not be accurate. Since the *Build Quality Checks* task solely relies on log information, it doesn't have enough context per warning (e.g., method or class containing the warning) to accuarately find removed or new warnings. We still do our best and want to share the mechanics behind the analysis.
+
+1. We first eliminate all warnings that exactly match a previous warning (i.e., same file, line, column, identifier, and message).
+2. Then we search for partial matches, which are warnings for the same file, identifier, and message on a different line and/or column.
+3. Those partial matches are clustered into groups that have moved in the same way (e.g., a block of ten warnings that has moved five lines down, which has most likely been caused by added code above the block of warnings), and we eliminate all clusters per file.
+4. Finally, from the remaining partial matches we eliminate the ones that are closest to the original warning. This is the most inaccurate part of the heuristic that will result in wrong warning details if you restructure a code file completely.
+
+All warnings that still remain after performing the above four steps are listed as either removed (if the warning existed in the previous build and we couldn't find a match in the current build) or added (if the warning only exists in the current build).
+
+If you encounter too many inaccuracies or you believe you have an idea how to improve our heuristic, please contact us via email at <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
+
 ## Code Coverage Policy
 **Q: Can I exclude specific files/folders or namespaces/modules/members from code coverage?**  
 **A:** Yes, but not through the code coverage policy. To only calculate coverage for specific parts of your code, use [run settings](https://msdn.microsoft.com/en-us/library/jj159530.aspx)

@@ -51,6 +51,8 @@ When running in a pull request validation build, the *Warnings Policy* publishes
   
   **Note:** Statistics only work for tasks that properly log warnings with the Azure DevOps logging command (i.e., `##vso[task.logissue ...]`) and only on Team Foundation Server 2017 or later and Azure DevOps Services. If you need support for additional tasks, please let us know and preferably send us a sample log of the corresponding build task to <a href='&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;'>&#112;&#115;&#103;&#101;&#114;&#101;&#120;&#116;&#115;&#117;&#112;&#112;&#111;&#114;&#116;&#64;&#109;&#105;&#99;&#114;&#111;&#115;&#111;&#102;&#116;&#46;&#99;&#111;&#109;</a>.
 
+  **Note:** Detailed statistics use a heuristic mechanism to find changed (i.e., added or removed) warnings. That algorithm cannot always be accurate and might report wrong changes. If you feel details are inaccurate, please take a look at our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md).
+
 ### Task Warnings Parameters
 
 ![Task Warnings Parameters](../assets/WarningsPolicyTasks.png "Task Warnings Parameters of the Warnings Policy")

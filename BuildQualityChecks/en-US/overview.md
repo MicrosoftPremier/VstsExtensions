@@ -127,6 +127,8 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 
   **YAML: runTitle** - (Optional) Default is empty.
 
+  **Note:** Run titles cannot contain the following characters: `", <, >, |, :, ;, *, ?, \, /, %, +, #, [, ]`. If the configured value does contain invalid charachters, they are replaced by an underscore. 
+
 - <a name="fileAnalysisTitle">**File Analysis Title:**</a> Provide a custom name for the file warnings analysis. The name is used in warning statistics instead of the default value _File Analysis_. (see [Show Warning Statistics](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md#statistics)).
 
   **YAML: fileAnalysisTitle** - (Optional) Default is empty.
@@ -148,6 +150,10 @@ In addition to parameters visible in the task UI there are a few variables you c
 - **BQC.ForceNewBaseline:** You can set this variable (usually when queueing a new build) to _true_ to force the policies to ignore an existing baseline build. This essentially creates a new baseline for future builds. This is especially helpful if there was a larger refactoring or redesign that resulted in a big change in code coverage and you need to establish a new base value. The default value is _false_.
 
 - **BQC.LogRawData:** You can set this variable to _true_ to enable logging of raw JSON data read by the task. In most cases you should not use this option as it does increase the log size of the task and may show sensitive data in the log file. However, this data is very helpful in support scenarios. Note that this variable only takes effect if the variable _System.Debug_ is also set to _true_. The default value is _false_.
+
+- **BQC.Statistics.MaxAddedWarnings:** Set this variable to the maximum number of added warnings that should be listed in the warnings statistics. The default value is _50_.
+
+- **BQC.Statistics.MaxRemovedWarnings:** Set this variable to the maximum number of removed warnings that should be listed in the warnings statistics. The default value is _50_.
 
 ### Policy Results
 Policy results are returned in various ways to make it easy for you to see and use them in different scenarios:
