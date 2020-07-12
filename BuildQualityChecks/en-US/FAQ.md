@@ -32,7 +32,7 @@ only written to a build task's log file. You might be able to use [warning filte
 **A:** The build summary shows all warnings that have been reported as build issues, while the policy only counts warnings from specific build tasks. Make sure that the
 [task filters](./WarningsPolicy.md#taskFilters) match all relevant tasks in your build definition.
 
-**Q: How do warning statistics work and why is it reporting incorrect warning changes?**
+**Q: How do warning statistics work and why is it reporting incorrect warning changes?**  
 **A:** The detailed warning analysis within the statistics is based on a heuristic mechanism and might not be accurate. Since the *Build Quality Checks* task solely relies on log information, it doesn't have enough context per warning (e.g., method or class containing the warning) to accuarately find removed or new warnings. We still do our best and want to share the mechanics behind the analysis.
 
 1. We first eliminate all warnings that exactly match a previous warning (i.e., same file, line, column, identifier, and message).
