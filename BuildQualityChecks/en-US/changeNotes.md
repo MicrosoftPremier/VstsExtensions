@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.1
+- Fix null reference in new warnings statistics. (fixes GitHub issue #107)
+
 #### 7.4.0
 - Move summary markdown to temporary files instead of `$(Build.SourcesDirectory)`.
 - Enhance warning statistics with detailed inforamtion about added and removed warnings.
