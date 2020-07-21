@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.8.3
+- Increase number of projects listed in the drop-down. (fixes GitHub issue #108)
+
 #### 1.8.2
 - Fix extension packaging issue.
 
