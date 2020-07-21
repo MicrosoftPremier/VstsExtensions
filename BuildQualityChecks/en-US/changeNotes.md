@@ -2,12 +2,15 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.2
+- Fix sporadic incorrect message in warning statistics that warnings haven't changed even if changes are displayed.
+
 #### 7.4.1
 - Fix null reference in new warnings statistics. (fixes GitHub issue #107)
 
 #### 7.4.0
 - Move summary markdown to temporary files instead of `$(Build.SourcesDirectory)`.
-- Enhance warning statistics with detailed inforamtion about added and removed warnings.
+- Enhance warning statistics with detailed information about added and removed warnings.
 - Fix error with summary upload when run title includes invalid characters. (fixes GitHub issue #106)
 
 #### 7.3.0
@@ -53,7 +56,7 @@
 
 #### 6.4.2
 - Fail code coverage policy if *Use Uncovered Elements* is enabled and there is no code coverage data or the task cannot read the data from Azure DevOps.
-- **!SCOPE CHANGE!** Since we received a lot of feedback after adding the additional security scopes *vso.code_write* and *vso.code_status*, we decided to remove them from the extension again. Those scopes do not affect pipeline tasks as their abilities are only tied to the permissions granted to the build service accounts. As security and privacy are important topics everybody should be concerned about, we put together detailed infomration in our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md#general).
+- **!SCOPE CHANGE!** Since we received a lot of feedback after adding the additional security scopes *vso.code_write* and *vso.code_status*, we decided to remove them from the extension again. Those scopes do not affect pipeline tasks as their abilities are only tied to the permissions granted to the build service accounts. As security and privacy are important topics everybody should be concerned about, we put together detailed information in our [FAQ](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/FAQ.md#general).
 
 #### 6.4.1
 - Add policy result output variables.
