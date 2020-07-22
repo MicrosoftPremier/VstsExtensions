@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.3
+- Improve statistics output (rearrange some messages).
+- Fix artifact download issue on non-Windows agents.
+
 #### 7.4.2
 - Fix sporadic incorrect message in warning statistics that warnings haven't changed even if changes are displayed.
 
