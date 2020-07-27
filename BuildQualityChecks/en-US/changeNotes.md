@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.4
+- Further improve statistics output.
+
 #### 7.4.3
 - Improve statistics output (rearrange some messages).
 - Fix artifact download issue on non-Windows agents.
