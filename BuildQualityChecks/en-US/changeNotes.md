@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.5
+- Always show all warning changes in statistics output.
+
 #### 7.4.4
 - Further improve statistics output.
 
