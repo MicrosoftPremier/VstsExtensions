@@ -4,6 +4,7 @@
 
 #### 7.4.5
 - Always show all warning changes in statistics output.
+- **NOTE:** You might need to approve installation of this version because we finally changed our publisher name from _Microsoft Premier Services_ to _Microsoft_. The approval does not show any scope changes (there are none).
 
 #### 7.4.4
 - Further improve statistics output.
