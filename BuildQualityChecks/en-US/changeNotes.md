@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.4.7
+- Fix issue in statistics generation that leads to a null reference output in the policy result view.
+
 #### 7.4.6
 - Fix null reference in statistics generation.
 
