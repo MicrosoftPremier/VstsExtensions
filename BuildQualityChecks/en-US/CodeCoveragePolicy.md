@@ -6,7 +6,16 @@ Most teams that do unit testing as part of their development calculate code cove
 The *Code Coverage Policy* allows breaking the build if code coverage falls below a certain value or decreases between builds.
 
 ### Policy Result Variable
-The *Code Coverage Policy* creates an output variable named **CodeCoveragePolicyResult**. If the policy passed successfully, the variable value is set to *passed*, otherwise it's set to *failed*.
+The *Code Coverage Policy* creates the following output variables, which you can use in subsequent tasks:
+
+- **CodeCoveragePolicyResult (deprecated)** - Set to _passed_ when the policy passed, otherwise it's set to _failed_. This variable will be removed with a future major update. Please use the variable _WarningsPolicy.Result_ instead.
+- **CodeCoveragePolicy.Result** - Set to _passed_ when the policy passed, otherwise it's set to _failed_.
+- **CodeCoveragePolicy.Elements.Total** - Set to the total number of coverable elements in the current build.
+- **CodeCoveragePolicy.Elements.Covered** - Set to the number of covered elements in the current build.
+- **CodeCoveragePolicy.Elements.Uncovered** - Set to the number of uncovered elements in the current build.
+- **CodeCoveragePolicy.Percentage.Covered** - Set to the percentage of covered elements in the current build.
+- **CodeCoveragePolicy.Percentage.Uncovered** - Set to the percentage of uncovered elements in the current build.
+- **CodeCoveragePolicy.Elements.Label** - Set to the label (or type) of elements evaluated by the policy (e.g., blocks, lines, etc.).
 
 ### Pull Request Status
 When running in a pull request validation build, the *Code Coverage Policy* publishes its result as a pull request status named `coverage-policy`. The full status policy name is `bqc/coverage-policy`. To distinguish between multiple *Build Quality Checks* instances, configure the [Run Title](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#reporting-options) and use the policy name `bqc-{runTitle}/coverage-policy`. If you run title contains whitespaces, please replace them with dashes (e.g., run title = "My Run Title" -> policy name = `bqc-my-run-title/coverage-policy`).

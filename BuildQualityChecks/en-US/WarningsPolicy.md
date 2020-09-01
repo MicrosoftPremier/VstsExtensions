@@ -6,10 +6,15 @@ Many software projects, especially older ones, that have grown over time end up 
 The *Warnings Policy* helps you keep track of your warnings and reduce them over time. This is done by failing the build if the number of warnings exceeds a specific value or increases between builds.
 
 ### Policy result variable
-The *Warnings Policy* creates an output variable named **WarningsPolicyResult**. If the policy passed successfully, the variable value is set to *passed*, otherwise it's set to *failed*.
+The *Warnings Policy* creates the following output variables, which you can use in subsequent tasks:
+
+- **WarningsPolicyResult (deprecated)** - Set to _passed_ when the policy passed, otherwise it's set to _failed_. This variable will be removed with a future major update. Please use the variable _WarningsPolicy.Result_ instead.
+- **WarningsPolicy.Result** - Set to _passed_ when the policy passed, otherwise it's set to _failed_.
+- **WarningsPolicy.Warnings.Total** - Set to the number of total warnings in the current build as seen by the _Warnings Policy_.
+- **WarningsPolicy.Warnings.Filtered** - Set to the number of filtered warnings in the current build as seen by the _Warnings Policy_.
 
 ### Pull Request Status
-When running in a pull request validation build, the *Warnings Policy* publishes its result as a pull request status named `warnings-policy`. The full status policy name is `bqc/warnings-policy`. To distinguish between multiple *Build Quality Checks* instances, configure the [Run Title](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#reporting-options) and use the policy name `bqc-{runTitle}/warnings-policy`. If you run title contains whitespaces, please replace them with dashes (e.g., run title = "My Run Title" -> policy name = `bqc-my-run-title/warnings-policy`).
+When running in a pull request validation build, the *Warnings Policy* publishes its result as a pull request status named `warnings-policy`. The full status policy name is `bqc/warnings-policy`. To distinguish between multiple *Build Quality Checks* instances, configure the [Run Title](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#reporting-options) and use the policy name `bqc-{runTitle}/warnings-policy`. If you run title contains whitespace, please replace them with dashes (e.g., run title = "My Run Title" -> policy name = `bqc-my-run-title/warnings-policy`).
 
 ### Limitations and Special Cases
 - **Warnings must be build issues**  

@@ -140,7 +140,7 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 
   **YAML: disableCertCheck** - (Optional) Default is *false*.
 
-- <a name="createBuildIssues">**Log task results as build issues:**</a> When enabled, task results are logged as build warnings/errors in addition to the summary section output. This option is enabled by default.
+- <a name="createBuildIssues">**Log task results as build issues:**</a> When enabled, warnings and errors emitted by the task are also logged as regular build warnings/errors. This makes them visible on the build summary page. If this option is disabled, warnings and errors are only displayed in the task summary section. **Note:** The option does **not** impact the task result. Even if it is disabled, the task will still fail when one of the policies is violated. This option is enabled by default.
 
   **YAML: createBuildIssues** - (Optional) Default is *true*.
 

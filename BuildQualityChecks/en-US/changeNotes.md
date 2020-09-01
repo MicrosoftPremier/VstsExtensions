@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.5.0
+- Clarify docs about issue reporting
+- Add policy values as output variables
+
 #### 7.4.7
 - Fix issue in statistics generation that leads to a null reference output in the policy result view.
 
