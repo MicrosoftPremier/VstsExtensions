@@ -5,7 +5,7 @@ Many software projects, especially older ones, that have grown over time end up 
 
 The *Warnings Policy* helps you keep track of your warnings and reduce them over time. This is done by failing the build if the number of warnings exceeds a specific value or increases between builds.
 
-### Policy result variable
+### Policy result variables
 The *Warnings Policy* creates the following output variables, which you can use in subsequent tasks:
 
 - **WarningsPolicyResult (deprecated)** - Set to _passed_ when the policy passed, otherwise it's set to _failed_. This variable will be removed with a future major update. Please use the variable _WarningsPolicy.Result_ instead.

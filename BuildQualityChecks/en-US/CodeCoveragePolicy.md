@@ -5,10 +5,10 @@ Most teams that do unit testing as part of their development calculate code cove
 
 The *Code Coverage Policy* allows breaking the build if code coverage falls below a certain value or decreases between builds.
 
-### Policy Result Variable
+### Policy Result Variables
 The *Code Coverage Policy* creates the following output variables, which you can use in subsequent tasks:
 
-- **CodeCoveragePolicyResult (deprecated)** - Set to _passed_ when the policy passed, otherwise it's set to _failed_. This variable will be removed with a future major update. Please use the variable _WarningsPolicy.Result_ instead.
+- **CodeCoveragePolicyResult (deprecated)** - Set to _passed_ when the policy passed, otherwise it's set to _failed_. This variable will be removed with a future major update. Please use the variable CodeCoveragePolicy.Result_ instead.
 - **CodeCoveragePolicy.Result** - Set to _passed_ when the policy passed, otherwise it's set to _failed_.
 - **CodeCoveragePolicy.Elements.Total** - Set to the total number of coverable elements in the current build.
 - **CodeCoveragePolicy.Elements.Covered** - Set to the number of covered elements in the current build.
