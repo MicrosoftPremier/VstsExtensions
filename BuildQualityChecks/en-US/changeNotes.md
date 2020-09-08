@@ -2,12 +2,15 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.5.2
+- Fix _force fewer warnings_ option. (fixes GitHub issue #117)
+
 #### 7.5.1
 - Fix null reference when running on Team Foundation Version Control builds. (fixes GitHub issue #116)
 
 #### 7.5.0
-- Clarify docs about issue reporting
-- Add policy values as output variables
+- Clarify docs about issue reporting.
+- Add policy values as output variables.
 
 #### 7.4.7
 - Fix issue in statistics generation that leads to a null reference output in the policy result view.
