@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.5.1
+- Fix null reference when running on Team Foundation Version Control builds. (fixes GitHub issue #116)
+
 #### 7.5.0
 - Clarify docs about issue reporting
 - Add policy values as output variables
