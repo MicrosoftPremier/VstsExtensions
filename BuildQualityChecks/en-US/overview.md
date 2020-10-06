@@ -155,6 +155,8 @@ In addition to parameters visible in the task UI there are a few variables you c
 
 - **BQC.Statistics.MaxRemovedWarnings:** Set this variable to the maximum number of removed warnings that should be listed in the warnings statistics. The default value is _50_.
 
+- **BQC.DisableVariableCreation:** Set this variable to _true_ to disable the creation of output variables. This can be done to work around an issue that currently exists on Team Foundation Server 2017. The default value is _false_.
+
 ### Policy Results
 Policy results are returned in various ways to make it easy for you to see and use them in different scenarios:
 

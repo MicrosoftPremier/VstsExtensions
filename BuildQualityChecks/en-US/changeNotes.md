@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.6.0
+- Add variable _BQC.DisableVariableCreation_ to disable the creation of output variables (workaround for current issue on Team Foundation Server 2017.3).
+
 #### 7.5.2
 - Fix _force fewer warnings_ option. (fixes GitHub issue #117)
 
