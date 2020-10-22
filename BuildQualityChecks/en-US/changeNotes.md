@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.6.1
+- Fix issue with finding the proper baseline build when pipeline is using BitBucket.
+
 #### 7.6.0
 - Add variable _BQC.DisableVariableCreation_ to disable the creation of output variables (workaround for current issue on Team Foundation Server 2017.3).
 
