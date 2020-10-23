@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 7.6.2
+- Add workaround to mitigate API change while under investigation. (mitigates GitHub issue #121)
+
 #### 7.6.1
 - Fix issue with finding the proper baseline build when pipeline is using BitBucket.
 
