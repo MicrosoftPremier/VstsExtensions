@@ -2,8 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 1.9.0
+- Allow identity IDs (e.g., $(Build.RequestedForId)) for identity fields.
+
 #### 1.8.4
-- Fix a null reference (`Cannot read property 'replace' of null`) when empty secret variables exist in your pipeline
+- Fix a null reference (`Cannot read property 'replace' of null`) when empty secret variables exist in your pipeline.
 - **NOTE:** You might need to approve installation of this version because we finally changed our publisher name from _Microsoft Premier Services_ to _Microsoft_. The approval does not show any scope changes (there are none).
 
 #### 1.8.3

@@ -77,7 +77,7 @@ The task supports the default parameters listed below. All parameters support va
   
   **YAML: title** - (Required) Default is empty.
 
-- <a name="assignedTo">**Assigned To:**</a> Enter an optional identity to assign the new work item to. Since there currently is no way to use the regular identity picker control in build tasks or extensions, you have to manually enter the value in the correct format. Please make sure to use the format **Display Name &lt;Login Email Address&gt;** (e.g., *John Doe &lt;johnd@contoso.com&gt;*). If you use an incorrect format, the task will fail to create the work item.
+- <a name="assignedTo">**Assigned To:**</a> Enter an optional identity to assign the new work item to. Since there currently is no way to use the regular identity picker control in build tasks or extensions, you have to manually enter the value in the correct format. Please make sure to use the format **Display Name &lt;Login Email Address&gt;** (e.g., *John Doe &lt;johnd@contoso.com&gt;*) or **Display Name &lt;Domain Account&gt;** (e.g., *John Doe &lt;contoso\\johnd&gt;*) for on-premises servers. If you want to dynamically assign the work item to the person requesting the build or release, you should use one of the RequestedForId variables (e.g., *$(Build.RequestedForId)* or *$(Release.Deployment.RequestedForId)*). Any incorrect format will creates an error and work item creation or update fails.
   
   **YAML: assignedTo** - (Optional) Default is empty.
 
