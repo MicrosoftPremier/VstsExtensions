@@ -7,6 +7,7 @@ The *Create Work Item* task allows you to create a work item from a build or rel
 You can find the changes notes for this task [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/CreateWorkItem/en-US/changeNotes.md).
 
 ### Known Issues
+- The dialogs for selecting work item type, area, iteration, as well as the dialog for setting up the field-value-mappings for additional fields only work in the classic pipeline UI. Due to technical restrictions they do **not** work in the task assistant view when editing YAML pipelines.
 - Due to manifest changes in the Visual Studio Marketplace, the regular extension cannot be installed in an offline Team Foundation Server. If you need a working vsix file for your Team Foundation Server, please download the on-prem version of this extension from [here](https://github.com/MicrosoftPremier/VstsExtensions/tree/master/CreateWorkItem/on-prem).
 - Due to an issue in extension handling of Team Foundation Server and Azure DevOps Services (and a complementary mistake in our extension manifests) you might get the message "Error finding the extension" when you try to open one of the custom task editors using the "three dots" buttons. If you run into this issue, please contact us via email so we can work with you to fix the problem.
 
@@ -91,9 +92,9 @@ The task supports the default parameters listed below. All parameters support va
 
   ![Iteration Path Picker - Specific](../assets/SpecificIterationPathPicker.png "Selecting a specific iteration path") ![Iteration Path Picker - Team](../assets/TeamIterationPathPicker.png "Selecting a team iteration path")
 
-  **YAML: iterationPath** - (Optional) Default is empty. Use a backslash as the delimiter of iteration hierarchies (e.g., *'MyProject\Release1\Sprint1'*). If you want to assign the current area of a specific team, use the special value &lt;team ID&gt;@currentIteration. To find the team ID, go to the team settings view and copy the value from the URL.
+  **YAML: iterationPath** - (Optional) Default is empty. Use a backslash as the delimiter of iteration hierarchies (e.g., *'MyProject\Release1\Sprint1'*). If you want to assign the current area of a specific team, use the special value &lt;team name&gt;@currentIteration.
 
-  **Note:** When you select a team's current iteration, the iteration path parameter has the special value *Team ID;@currentIteration*. Do not change this value manually or the work item creation might fail.
+  **Note:** When you select a team's current iteration, the iteration path parameter has the special value *team name@currentIteration*. Do not change this value manually or the work item creation might fail.
 
 - <a name="fieldMappings">**Additional Fields:**</a> If you want to set additional field values, specify them here. Each line in the text box should contain a field-value-mapping in the form of **Field Name=Field Value** (e.g., *Description=This is a test*). Please make sure to set valid values for all required fields in the selected work item type. If you use incorrect field values or field names, the task will fail to create the work item. Like the rest of the task inputs, the field mappings support variables and nested variables.
 
