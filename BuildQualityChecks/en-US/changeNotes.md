@@ -2,6 +2,11 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.0.0
+- Drop support for Team Foundation Server 2017.3 due to incompatibility with output variables.
+- Add retry logic for downloading task log files. This fixes a rare condition that results in error `TF400714: File ID 0 not found.`.
+- Correctly escape HTML elements in warning statistics. (fixes GitHub issue #126)
+
 #### 7.6.2
 - Add workaround to mitigate API change while under investigation. (mitigates GitHub issue #121)
 
