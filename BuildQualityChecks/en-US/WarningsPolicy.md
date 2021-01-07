@@ -72,7 +72,7 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
-- <a name="warnFilters">**Warning Filters (Tasks):**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code analysis warnings). *Warning Filters (Tasks)* allow you to do just that. Specify a list of regular expressions (one per line) that only match the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number of warnings as well as the number of filtered warnings. Keep in mind that *Warning Filters (Tasks)* analyze the log file of build tasks and does a simple text match. Thus, you need to make sure that your regular expressions match each warning only once. This setting is only visible if *Evaluate Task Warnings* is checked.
+- <a name="warnFilters">**Warning Filters (Tasks):**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code analysis warnings). *Warning Filters (Tasks)* allow you to do just that. Specify a list of regular expressions (one per line) that only match the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number of warnings as well as the number of warnings that match the filter (i.e., filtered warnings). Keep in mind that *Warning Filters (Tasks)* analyze the log file of build tasks and does a simple text match. Thus, you need to make sure that your regular expressions match each warning only once. This setting is only visible if *Evaluate Task Warnings* is checked.
 
   **YAML: warningFilters** - (Optional) Default is empty. Set to one or more filter values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
 
@@ -94,7 +94,7 @@ When running in a pull request validation build, the *Warnings Policy* publishes
   - **Log output:** ANALYSIS: Performance - 'Class1' should be made static  
     **Filter:** `/analysis: (?<category>[^ ]+) - (?<message>(?:[^']+?)?(?:'(?<object>.+)'.+)?)$/i`
 
-  *Warning Filters (Tasks)* can also be used to count warnings if a build task does not log warnings as build issues, as long as the task logs the number of warnings to its log file. To do so, specify a warning filter that contains exactly **one** unnamed capture group that matches the number of warnings. The captured number will be added to the total warning count as well was the filtered warning count.
+  *Warning Filters (Tasks)* can also be used to count warnings *if a build task **does not** log warnings as build issues*, as long as the task logs the number of warnings to its log file. To do so, specify a warning filter that contains exactly **one** unnamed capture group that matches the number of warnings. The captured number will be added to the total warning count as well was the filtered warning count. Be aware, though, that this special use of warning filters only applies to tasks that **do not** properly log warnings as build issues! If you need to have this feature for a task that does already log warnings as build issues (e.g., the *Visual Studio Build*), you need to enable the option *Make Warning Filters Inclusive*.
 
   **Example (based on _StyleCop Runner_ task):**
   - Log output: `StyleCop found [28448] violations warnings across [82] projects`
@@ -102,7 +102,7 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
-- <a name="inclusiveFiltering">**Make Warning Filters Inclusive:**</a> Checking this option changes the behavior of *Warning Filters (Tasks)*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Filters (Tasks)* parameter (*exclusive filtering*; see above). In some cases, though, you might want to count warnings that are not properly logged by build tasks in addition to the regular warnings (*inclusive filtering*). This can be achieved by activating the *Make Warning Filters Inclusive* option. This setting is only visible if *Evaluate Task Warnings* is checked.
+- <a name="inclusiveFiltering">**Make Warning Filters Inclusive:**</a> Checking this option changes the behavior of *Warning Filters (Tasks)*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Filters (Tasks)* parameter (*exclusive filtering*; see above). In some cases, though, you might want to count warnings that are not properly logged by build tasks in addition to the regular warnings (*inclusive filtering*). This can be achieved by activating the *Make Warning Filters Inclusive* option. This setting is only visible if *Evaluate Task Warnings* is checked. You need to enable this option if you want to use the special syntaxes (i.e., named or unnamed capturing groups) of the *Warning Filters (Tasks)*.
 
   **YAML: inclusiveFiltering** - (Optional) Default is *false*.
 

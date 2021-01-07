@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.0.1
+- Clarify the use of warning filters in the documentation.
+- Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`
+
 #### 8.0.0
 - Drop support for Team Foundation Server 2017.3 due to incompatibility with output variables.
 - Add retry logic for downloading task log files. This fixes a rare condition that results in error `TF400714: File ID 0 not found.`.
