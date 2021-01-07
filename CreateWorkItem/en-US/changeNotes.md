@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.10.1
+- Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`
+
 #### 1.10.0
 - Clarify missing task editors (work item type, area, iteration, additional fields) when used in task assistant view for YAML pipelines.
 - Support team name instead of team ID for specifying current iteration.
