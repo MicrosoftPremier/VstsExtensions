@@ -2,6 +2,9 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 3.1.1
+- Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`
+
 #### 3.1.0
 - Fix issue with disabling NodeJS certificate check.
 - Support pipelines with decorators; task does not need to be the last in a job/phase anymore.
