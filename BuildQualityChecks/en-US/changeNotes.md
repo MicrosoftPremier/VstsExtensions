@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.0.2
+- Fix logging (`Resource file haven\'t set, can\'t find loc string for key:`).
+
 #### 8.0.1
 - Clarify the use of warning filters in the documentation.
 - Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`
