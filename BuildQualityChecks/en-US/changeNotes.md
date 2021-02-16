@@ -2,6 +2,11 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.0.3
+- Remove warning when optional numeric parameters (e.g., `coverageVariance`) are not specified. (mitigates GitHub issue #134)
+- Bump version of azure-devops-node-api to fix proxy bug.
+- Allow use of special warning filters for all types of tasks/task logs. (fully fixes GitHub issue #129)
+
 #### 8.0.2
 - Fix logging (`Resource file haven\'t set, can\'t find loc string for key:`).
 
