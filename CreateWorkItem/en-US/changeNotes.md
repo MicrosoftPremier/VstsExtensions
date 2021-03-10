@@ -2,6 +2,10 @@
 
 # Create Work Item - Change Notes
 
+#### 1.10.2
+- Bump version of azure-devops-node-api to fix proxy bug.
+- Fix error `Cannot read property 'find' of undefined` on Team Foundation Server 2017.3. (fixes GitHub issue #137)
+
 #### 1.10.1
 - Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`
 
