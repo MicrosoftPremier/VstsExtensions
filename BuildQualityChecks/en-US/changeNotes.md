@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.1.0
+- Add option to disable the fallback on the Pull Request target branch when no baseline build for the current branch can be found.
+
 #### 8.0.3
 - Remove warning when optional numeric parameters (e.g., `coverageVariance`) are not specified. (mitigates GitHub issue #134)
 - Bump version of azure-devops-node-api to fix proxy bug.

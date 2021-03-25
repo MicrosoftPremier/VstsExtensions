@@ -65,6 +65,7 @@ YAML snippet:
     #explicitFilter: false # Optional
     # ===== Baseline Inputs =====
     #includePartiallySucceeded: true # Optional
+    #fallbackOnPRTargetBranch: true # Optional
     #baseDefinitionFilter: # Ignored - only used by UI editor
     #baseDefinitionId: # Optional
     #baseRepoId: # Ignored - only used by UI editor
@@ -93,6 +94,8 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 - <a name="partial">**Include Partially Succeeded Builds:**</a> Uncheck this option if policy values should only be compared to successful baseline builds. In most cases, including partially succeeded builds is the best option, so you can use the default setting.
 
   **YAML: includePartiallySucceeded** - (Optional) Default value is *true*.
+
+- <a name="fallbackOnPRTargetBranch">**Fall Back on PR Target Branch**</a> Disable this option to prevent the task from automatically looking for a baseline build for the pull request target branch if a baseline for the current branch cannot be found. Naturally, the first build that runs for a pull request won't find a baseline build for the current branch, since pull requests run builds on a special branch named refs/pull/&lt;PR-ID&gt;/merge, which is dynamically created by the pull request. To prevent that the first pipeline run for each PR automatically succeeds due to the lack of a baseline, the task automatically looks for a baseline build associated with the pull request's target branch, which usually provides a good quality baseline. If you still want the first PR build to always succeed, disabled this option to prevent the fallback.
 
 - <a name="baseDefFilter">**Definition Filter**</a> If you have lots of build definitions, it can get hard to find the right one in the *Build Definition* drop-down list. You can use the *Definition Filter* to limit the number of definitions shown in the list. Either enter a specific definition name or use the asterisk (\*) wildcard to search for definitions starting with (e.g., Def\*), ending with (e.g., \*def), or containing (e.g., \*def\*) a specific value. If you want to list all build definitions in your project, use the default value "\*".
 
