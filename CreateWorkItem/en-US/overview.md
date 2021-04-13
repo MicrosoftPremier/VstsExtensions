@@ -53,6 +53,7 @@ YAML snippet:
     #outputVariables: # Required if createOutputs = true
     # ===== Advanced Inputs =====
     #authToken: #Optional
+    #allowRedirectDowngrade: false # Optional
 ```
 
 ### Task Parameters
@@ -228,5 +229,9 @@ Use the parameter in the *Advanced* group to control special task features:
   **Required Scopes:** We strongly encourage you to follow the *least privilege principle* when creating your PAT. For the task to properly work you only need the following security scopes:
 
   - Work Items: Read & Write (`vso.work_write`)
+
+- <a name="allowRedirectDowngrade">**Allow Downgrade Redirects:**</a> Enable this option to allow redirects to downgrade from HTTPS to HTTP. Normally, you should never need to enable this option. However, for some on-premises setups where your Team Foundation or Azure DevOps Server is exposed through a gateway, which terminates the SSL connection, setting this option may be needed. If you are affected by such a setup, you will see the error message `Redirect from HTTPS to HTTP protocol. This downgrade is not allowed for security reasons. If you want to allow this behavior, set the allowRedirectDowngrade option to true.`.
+
+  **Attention:** HTTPS to HTTP downgrades pose a security risk! Before enabling this option, please first consider changing your on-premises setup and enable HTTPS on your server instance instead of terminating the SSL connection on the gateway. To make the potential security risk visible, the task creates a warning if this option is enabled.
 
 Icons made by [Pavel Kozlov](https://www.flaticon.com/authors/pavel-kozlov) from https://www.flaticon.com is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)

@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.11.0
+- Add option to allow HTTPS to HTTP downgrade redirects.
+
 #### 1.10.2
 - Bump version of azure-devops-node-api to fix proxy bug.
 - Fix error `Cannot read property 'find' of undefined` on Team Foundation Server 2017.3. (fixes GitHub issue #137)
