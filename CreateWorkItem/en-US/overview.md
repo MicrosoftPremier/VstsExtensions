@@ -32,6 +32,7 @@ YAML snippet:
     #iterationPath: # Optional
     #fieldMappings: # Optional; Required if your process defines additional required work item fields
     #associate: false # Optional
+    #associationType: build # Optional; Valid values: build, integratedInBuild, foundInBuild
     # ===== Linking Inputs =====
     #linkWorkItems: false # Optional
     #linkType: # Required if linkWorkItems = true
@@ -39,6 +40,8 @@ YAML snippet:
     #targetId: # Required if linkWorkItems = true and linkTarget = id
     #targetWiql: # Required if linkWorkItems = true and linkTarget = wiql
     #linkPR: false # Optional
+    #linkCode: false # Optional
+    #commitsAndChangesets: # Required if linkCode = true
     # ===== Attachments Inputs =====
     #addAttachments: false # Optional
     #attachmentsFolder: # Optional
@@ -109,6 +112,10 @@ The task supports the default parameters listed below. All parameters support va
   
   **YAML: associate** - (Optional) Default is *false*.
 
+- <a name="associationType">**Association Type:**</a> Select the association type that should be used when linking work items to the current build or release. You can choose between `Build` (default), `Found in build`, or `Integrated in build`. Note that this parameter is only used for classic build or YAML pipelines; classic release always associates the work item with the `Integrated in release environment` type. This parameter is only visible if association to current build or release is enabled.
+  
+  **YAML: associationType** - (Optional) Default is *build*. Set to *build* for the `Build` option, *foundInBuild* for the `Found in build` option, and *integratedInBuild* for the `Integrated in build` option.
+
 #### Linking
 Use the parameters in the *Linking* group to control links from the newly created work item to already existing work items:
 
@@ -136,9 +143,26 @@ Use the parameters in the *Linking* group to control links from the newly create
   
   **YAML: targetWiql** - (Required) Default is empty. Required if **linkTarget** is set to *wiql*.
 
-- <a name="linkPR">**Link Pull Request:**</a> Check this option to enable linking the WorkItem with the Pull Request. This option will be ignored if it is not a Pull Request validation.
+- <a name="linkPR">**Link to Pull Request:**</a> Check this option to enable linking the WorkItem with the Pull Request. This option will be ignored if it is not a Pull Request validation.
   
   **YAML: linkPR** - (Optional) Default is *false*.
+
+- <a name="linkCode">**Link to Code:**</a> Enable this option to link the work item to specific commits or changesets.
+  
+  **YAML: linkCode** - (Optional) Default is *false*.
+
+- <a name="commitsAndChangesets">**Commits and Changesets:**</a> List the commits and/or changesets to link to (one per line). Use the format *&lt;project name or ID&gt;:&lt;repository name or ID&gt;:&lt;commit hash&gt;* for commits or *CS&lt;changeset ID&gt;* for changesets. You must enter at least one commit or changeset if you enabled the option to link to code.
+  
+  **YAML: commitsAndChangesets** - (Required) Default is empty. Set to one or more commit and/or changeset IDs using the format described above. Start multiple entries with a pipe sign and keep each entry on a separate indented line. The use of variables is supported. Required if **linkCode** is set to *true*.
+
+  **Example:**  
+  ```yaml
+  linkCode: true
+  commitsAndChangesets: |
+    $(System.TeamProjectId):$(Build.Repository.ID):$(Build.SourceVersion)
+    myOtherProject:anotherRepo:ac2add7fae80bd4fe85f670243a40d79961b7ffb
+    CS4711
+  ```
 
 #### Attachments
 Use the parameters in the *Attachments* group to attach files to the new or updated work item.
@@ -189,7 +213,7 @@ Use the parameters in the *Duplicates* group to control handling of duplicates t
   - Equals (**=**)  
     The equals operator simply overwrites the value of the specified work item field with the specified value. The rule *State=Done* would simply set the work item state to *Done*.
   - Plus-equals (**+=**)  
-    The plus-equals operator only works for numeric fields and arithemtically adds the value to the current work item field value. The rule *BuildCount+=1* would increase the value in the field *BuildCount* by one.
+    The plus-equals operator only works for numeric fields and arithmetically adds the value to the current work item field value. The rule *BuildCount+=1* would increase the value in the field *BuildCount* by one.
   - Pipe-equals (**|=**)  
     The pipe-equals operator only works for text fields and concatenates the current work item field value with the new value. This is useful for multi-value fields like tags. The rule *Tags|=; Build $(Build.BuildNumber)* would add a new tag with the build number information. This is a convenient short form for using work item field references like this: *Tags=${System.Tags}; Build $(Build.BuildNumber)*
 

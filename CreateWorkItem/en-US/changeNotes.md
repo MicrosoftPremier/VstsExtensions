@@ -2,6 +2,12 @@
 
 # Create Work Item - Change Notes
 
+#### 1.12.0
+- Fix task result when task fails (was set to failed and then succeeded again)
+- Fix WIQL generation when using empty fields as key fields like *Closed Date* in duplicate prevention. (fixes GitHub issue #147)
+- Add parameter to specify the type of link used when associating work items with the current pipeline. (fixes GitHub issue #146)
+- Add option to link to specific commits or changesets. (fixes GitHub issue #142)
+
 #### 1.11.0
 - Add option to allow HTTPS to HTTP downgrade redirects.
 
