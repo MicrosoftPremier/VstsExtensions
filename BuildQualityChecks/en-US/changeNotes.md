@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.1.1
+- Fix resolving of correlating job for all types of YAML pipelines. (fixes GitHub issue #150)
+
 #### 8.1.0
 - Add option to disable the fallback on the Pull Request target branch when no baseline build for the current branch can be found.
 
