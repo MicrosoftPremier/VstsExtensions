@@ -2,6 +2,10 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.1.2
+- Fix small bug in warning output with inclusive filtering ('x/0 warnings' instead of 'x/x warnings').
+- Add retries for all API calls to guard against intermittent connectivity issues with Azure DevOps.
+
 #### 8.1.1
 - Fix resolving of correlating job for all types of YAML pipelines. (fixes GitHub issue #150)
 
