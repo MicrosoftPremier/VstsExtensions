@@ -2,6 +2,10 @@
 
 # Create Work Item - Change Notes
 
+#### 1.13.0
+- Fix WIQL generation error when identity fields are used as key fields for duplicate prevention.
+- Add support for setting/updating extension fields (i.e., Kanban column, swimlane, and doing/done state). (fixes GitHub issue #148)
+
 #### 1.12.0
 - Fix task result when task fails (was set to failed and then succeeded again)
 - Fix WIQL generation when using empty fields as key fields like *Closed Date* in duplicate prevention. (fixes GitHub issue #147)

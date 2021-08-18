@@ -106,6 +106,13 @@ The task supports the default parameters listed below. All parameters support va
 
   ![Field Mapping Helper](../assets/FieldMappingHelper.png "Mapping values to additional work item fields")
 
+  If you need to set team-specific fields (i.e., Kanban column, Kanban swimlane, or Kanban column doing/done state), use the special syntax **&lt;Team Name&gt;:&lt;Board Type&gt;:&gt;Column|Lane|Column.Done&gt;=Value**. Examples for the three fields are:
+  - *My Team:Backlog Items:Column=Approved*
+  - *My Team:Backlog Items:Column.Done=true*
+  - *My Team:Backlog Items:Lane=High Priority*
+
+  **Note:** Team-specific fields are not supported by the special field mapping editor. You need to add them manually!
+
   **YAML: fieldMappings** - (Optional) Default is empty. Start multiple entries with a pipe sign and keep each entry on a separate indented line. If the selected work item type has required fields other than title, make sure to include all of them in this list.
 
 - <a name="associate">**Associate Work Item With Current Build or Release:**</a> Check this option if you want to associate the newly created work item with the current build or release environment.
