@@ -20,12 +20,12 @@ The *Build Quality Checks* (in task category *Build*) task needs to be placed af
 **Note:** When you want to use the [Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md) you need to make sure that you publish code coverage values calculated by your test tool first. The Policy itself does **not** calculate the code coverage. Before you add the task and activate the policy, please make sure that you can already see code coverage values in your build summary. If you are using a test tool other then MSTest (i.e., anything other than the _Visual Studio Test_ task), please use the _Publish Code Coverage Results_ task to publish your coverage data before you add the policy.
 
 ### Adding the Task to a YAML Build Definition
-To add the *Build Quality Checks* task to a YAML build definition, use the  task name and major version like this `- task: BuildQualityChecks@7` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
+To add the *Build Quality Checks* task to a YAML build definition, use the  task name and major version like this `- task: BuildQualityChecks@8` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
 
 YAML snippet:
 
 ``` yaml
-- task: BuildQualityChecks@7
+- task: BuildQualityChecks@8
   displayName: 'Check build quality'
   inputs:
     # ===== Warnings Policy Inputs =====
