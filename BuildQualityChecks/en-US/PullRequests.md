@@ -14,7 +14,7 @@ Running a validation build as part of a branch policy is the simplest form of au
 If you don't want to run some of the build steps (e.g., publishing of build artifacts) during pull request validation, you can use [task conditions](https://docs.microsoft.com/en-us/azure/devops/pipelines/process/conditions?view=azure-devops&tabs=yaml) to only run those steps when needed. Since it is harder to understand what a pipeline does the more conditions you add, though, it is better to use mulitple pipeline definitons whenever there are lots of differences between a regular build and a pull request validation build.
 
 #### Prerequisites
-In order to use the *Build Quality Checks* task as a pull request quality gate, simply create a pipeline definition that contains the taks and configure this pipeline as a *build validation* pipeline in the branch policy:
+In order to use the *Build Quality Checks* task as a pull request quality gate, simply create a pipeline definition that contains the tasks and configure this pipeline as a *build validation* pipeline in the branch policy:
 
 ![Build Validation](../assets/BuildValidation.png "Configuration a pull request validation build")
 
