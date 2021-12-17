@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.15.0
+- Add support for limiting work item links to the same project. (fixes GitHub issue #166)
+
 #### 1.14.0
 - Add variable support to the project field in classic pipelines. (fixes GitHub issue #163)
 - Remove unnecessary quotes from field mappings.

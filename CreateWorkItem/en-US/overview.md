@@ -39,6 +39,7 @@ YAML snippet:
     #linkTarget: id # Optional; Valid values: id, wiql
     #targetId: # Required if linkWorkItems = true and linkTarget = id
     #targetWiql: # Required if linkWorkItems = true and linkTarget = wiql
+    #limitWorkItemLinksToSameProject: false # Optional
     #linkPR: false # Optional
     #linkCode: false # Optional
     #commitsAndChangesets: # Required if linkCode = true
@@ -149,6 +150,10 @@ Use the parameters in the *Linking* group to control links from the newly create
 - <a name="targetWiql">**Target Query:**</a> Enter a valid work item query ([WIQL syntax](https://docs.microsoft.com/en-us/vsts/boards/queries/wiql-syntax?view=vsts)) to select the linked work items. You may enter a full query or just the *WHERE* clause of the query as shown in the screenshot. The task will only use the *WHERE* clause and ignore any *SELECT*, *ORDER BY*, or *ASOF* clauses. This option is only visible if linking is enabled and *Link Target* is set to `Query`.
   
   **YAML: targetWiql** - (Required) Default is empty. Required if **linkTarget** is set to *wiql*.
+
+- <a name="limitWorkItemLinksToSameProject">**Prevent Links to Other Projects:**</a> Check this option to prevent creating links to work items in a different project than the one the new work item was created in.
+
+  **YAML: limitWorkItemLinksToSameProject** - (Optional) Default is *false*.
 
 - <a name="linkPR">**Link to Pull Request:**</a> Check this option to enable linking the WorkItem with the Pull Request. This option will be ignored if it is not a Pull Request validation.
   
