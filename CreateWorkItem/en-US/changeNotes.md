@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.16.0
+- Add new output variable `LinksFiltered` to check if work item links have been filtered to the current project. (fixes GitHub issue #167)
+
 #### 1.15.0
 - Add support for limiting work item links to the same project. (fixes GitHub issue #166)
 

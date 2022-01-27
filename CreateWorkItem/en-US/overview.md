@@ -253,6 +253,11 @@ Use the parameter in the *Output Variables* group to control the creation of out
 
   **Note:** Make sure to name your output variables carefully when using multiple instances of the *Create Work Item* task in your build or release. If you use the same output variable in multiple tasks, each task overwrites the values from the previous task.
 
+**Standard Output Variables**  
+In addition to the custom defined output variables the task automatically creates the following output variables:
+
+- **LinksFiltered** - "Set to true if work item links have been filtered to the current project, false otherwise. Note: the variable is only generated if work item linking and the option 'Prevent Links to Other Projects' are enabled!
+
 #### Advanced
 Use the parameter in the *Advanced* group to control special task features:
 
