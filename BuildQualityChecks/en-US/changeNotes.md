@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.1.4
+- Allow `BQC.Statistics.MaxAddedWarnings` and `BQC.Statistics.MaxRemovedWarnings` to be set to zero. (fixes GitHub issue #170)
+
 #### 8.1.3
 - Reduce retries for PR status. (fixes GitHub issue #154)
 
