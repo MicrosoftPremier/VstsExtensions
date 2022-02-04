@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.16.1
+- Fix error `Cannot read property 'id' of null` when trying to link a non-existent work item. (fixes remaining part of GitHub issue #167)
+
 #### 1.16.0
 - Add new output variable `LinksFiltered` to check if work item links have been filtered to the current project. (fixes GitHub issue #167)
 
