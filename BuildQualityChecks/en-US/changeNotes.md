@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.1.5
+- Fix additional issue with `BQC.Statistics.MaxAddedWarnings` and `BQC.Statistics.MaxRemovedWarnings` that prevented zero to be accepted as valid value.
+
 #### 8.1.4
 - Allow `BQC.Statistics.MaxAddedWarnings` and `BQC.Statistics.MaxRemovedWarnings` to be set to zero. (fixes GitHub issue #170)
 
