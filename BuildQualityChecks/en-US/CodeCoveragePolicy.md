@@ -15,6 +15,11 @@ The *Code Coverage Policy* creates the following output variables, which you can
 - **CodeCoveragePolicy.Elements.Uncovered** - Set to the number of uncovered elements in the current build.
 - **CodeCoveragePolicy.Percentage.Covered** - Set to the percentage of covered elements in the current build.
 - **CodeCoveragePolicy.Percentage.Uncovered** - Set to the percentage of uncovered elements in the current build.
+- **CodeCoveragePolicy.Baseline.Elements.Total** - Set to the total number of coverable elements in the baseline build.
+- **CodeCoveragePolicy.Baseline.Elements.Covered** - Set to the number of covered elements in the baseline build.
+- **CodeCoveragePolicy.Baseline.Elements.Uncovered** - Set to the number of uncovered elements in the baseline build.
+- **CodeCoveragePolicy.Baseline.Percentage.Covered** - Set to the percentage of covered elements in the baseline build.
+- **CodeCoveragePolicy.Baseline.Percentage.Uncovered** - Set to the percentage of uncovered elements in the baseline build.
 - **CodeCoveragePolicy.Elements.Label** - Set to the label (or type) of elements evaluated by the policy (e.g., blocks, lines, etc.).
 
 ### Pull Request Status

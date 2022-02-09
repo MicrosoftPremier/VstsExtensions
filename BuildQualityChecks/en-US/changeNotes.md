@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.2.0
+- Add additional output variables for policy baseline values. (fixes GitHub issue #172)
+
 #### 8.1.5
 - Fix additional issue with `BQC.Statistics.MaxAddedWarnings` and `BQC.Statistics.MaxRemovedWarnings` that prevented zero to be accepted as valid value.
 

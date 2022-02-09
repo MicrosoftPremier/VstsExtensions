@@ -1,4 +1,4 @@
-[Back to Overview](./overview.md) | [Pull Request Policy](./pull-request-policy) | [TFVC Feature Branches](./tfvc-feature-branches)
+[Back to Overview](./overview.md) | [Pull Request Policy](#pull-request-policy) | [TFVC Feature Branches](#tfvc-feature-branches)
 
 # Pull Requests and TFVC Feature Branches
 One of the most common uses for the *Build Quality Checks* task is to validate code quality metrics for new code before it is integrated back into the main code branch. For Git repositories this usually means running the task as part of a pull request workflow. While Team Foundation Version Control (TFVC) does not support pull requests, you can still use the task to ensure code quality on a feature branch does not fall below that of the main branch.
