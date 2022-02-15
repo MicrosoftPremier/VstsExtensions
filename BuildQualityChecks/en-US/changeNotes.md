@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 8.2.1
+- Correctly add new output variables as task output variables (for classic pipelines and unified variable naming schema).
+
 #### 8.2.0
 - Add additional output variables for policy baseline values. (fixes GitHub issue #172)
 
