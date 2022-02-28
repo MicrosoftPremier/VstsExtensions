@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.17.0
+- Add additional output variables to check linking status. (fixes final discussion points from GitHub issue #167)
+
 #### 1.16.1
 - Fix error `Cannot read property 'id' of null` when trying to link a non-existent work item. (fixes remaining part of GitHub issue #167)
 

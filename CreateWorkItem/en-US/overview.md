@@ -256,7 +256,13 @@ Use the parameter in the *Output Variables* group to control the creation of out
 **Standard Output Variables**  
 In addition to the custom defined output variables the task automatically creates the following output variables:
 
-- **LinksFiltered** - "Set to true if work item links have been filtered to the current project, false otherwise. Note: the variable is only generated if work item linking and the option 'Prevent Links to Other Projects' are enabled!
+- **WorkItemLinkingSucceeded** - Set to `true` if work item linking was enabled and no errors occurred during linking. If there was an error (e.g., target work item not found), the variable is set to `false`. **Note:** The variable is not created at all if work item linking is not enabled.
+
+- **WorkItemLinksFiltered** - Set to `true` if work item links have been filtered to the current project, `false` otherwise. **Note:** the variable is only generated if work item linking and the option 'Prevent Links to Other Projects' are enabled.
+
+- **LinksFiltered (deprecated)** - This variable will be removed in a future version. Use *WorkItemLinksFiltered* instead.
+
+- **CodeLinkingSucceeded** - Set to `true` if code linking was enabled and no errors occurred during linking. If there was an error (e.g., target commit/changeset not found), the variable is set to `false`. **Note:** The variable is not created at all if code linking is not enabled.
 
 #### Advanced
 Use the parameter in the *Advanced* group to control special task features:
