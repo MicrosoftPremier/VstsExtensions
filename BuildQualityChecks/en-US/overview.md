@@ -25,7 +25,7 @@ To add the *Build Quality Checks* task to a YAML build definition, use the  task
 YAML snippet:
 
 ``` yaml
-- task: BuildQualityChecks@7
+- task: BuildQualityChecks@8
   displayName: 'Check build quality'
   inputs:
     # ===== Warnings Policy Inputs =====
