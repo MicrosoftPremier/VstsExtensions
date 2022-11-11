@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 1.17.1
+- Allow manual specification of the link type when enabling work item linking (workaround for GitHub issues #191 and #192)
+
 #### 1.17.0
 - Add additional output variables to check linking status. (fixes final discussion points from GitHub issue #167)
 
