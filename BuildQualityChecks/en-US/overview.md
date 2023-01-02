@@ -37,7 +37,7 @@ YAML snippet:
     #warningVariance: # Required if allowWarningVariance = true
     #showStatistics: false # Optional
     #evaluateTaskWarnings: true # Optional
-    #warningTaskFilters: '/^((vs|ms)build|ant(\\s+.+)?|gradle(w)?(\\s+.+)?|grunt|gulp|maven(\\s+.+)?|xamarin(android|ios)|xcode(\\s+.+)?|cmake|build\\s+.+)$/i' # Optional
+    #warningTaskFilters: '/^((vs|ms)build|ant(\s+.+)?|gradle(w)?(\s+.+)?|grunt|gulp|maven(\s+.+)?|xamarin(android|ios)|xcode(\s+.+)?|cmake|build\s+.+)$/i' # Optional
     #warningFilters: # Optional
     #inclusiveFiltering: false # Optional
     #evaluateFileWarnings: false # Optional
