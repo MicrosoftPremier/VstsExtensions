@@ -11,16 +11,16 @@ The *Warnings Policy* creates the following output variables, which you can use 
 - **WarningsPolicyResult (deprecated)** - Set to _passed_ when the policy passed, otherwise it's set to _failed_. This variable will be removed with a future major update. Please use the variable _WarningsPolicy.Result_ instead.
 - **WarningsPolicy.Result** - Set to _passed_ when the policy passed, otherwise it's set to _failed_.
 - **WarningsPolicy.Warnings.Total** - Set to the total number of warnings in the current build as seen by the _Warnings Policy_.
-- **WarningsPolicy.Warnings.Filtered** - Set to the number of filtered warnings in the current build as seen by the _Warnings Policy_.
+- **WarningsPolicy.Warnings.Filtered** - Set to the number of selected (pka filtered) warnings in the current build as seen by the _Warnings Policy_.
 - **WarningsPolicy.Baseline.Warnings.Total** - Set to the total number of warnings in the baseline build as seen by the _Warnings Policy_.
-- **WarningsPolicy.Baseline.Warnings.Filtered** - Set to the number of filtered warnings in the baseline build as seen by the _Warnings Policy_.
+- **WarningsPolicy.Baseline.Warnings.Filtered** - Set to the number of selected (pka filtered) warnings in the baseline build as seen by the _Warnings Policy_.
 
 ### Pull Request Status
 When running in a pull request validation build, the *Warnings Policy* publishes its result as a pull request status named `warnings-policy`. The full status policy name is `bqc/warnings-policy`. To distinguish between multiple *Build Quality Checks* instances, configure the [Run Title](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/overview.md#reporting-options) and use the policy name `bqc-{runTitle}/warnings-policy`. If you run title contains whitespace, please replace them with dashes (e.g., run title = "My Run Title" -> policy name = `bqc-my-run-title/warnings-policy`).
 
 ### Limitations and Special Cases
 - **Warnings must be build issues**  
-  The *Warnings Policy* only counts warnings that have been logged as build issues. If a task writes warning messages to its output but does not log them as build issues in the build system, the policy does not automatically pick those warnings up. You may use *Warning Filters (Tasks)* (see below) to add those warnings to the policy. 
+  The *Warnings Policy* only counts warnings that have been logged as build issues. If a task writes warning messages to its output but does not log them as build issues in the build system, the policy does not automatically pick those warnings up. You may use *Warning Selectors (Tasks)* (see below) to add those warnings to the policy. 
 
 ### Base Parameters of the Build Warnings Policy
 
@@ -50,7 +50,7 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **YAML: warningVariance** - (Required) Default is empty. Required if **allowWarningVariance** is set to *true*.
 
-- <a name="statistics">**Show Warning Statistics:**</a> Enable this options to generate statistical information about warning changes. When enabled the policy not only shows the total number of warnings but also the changes in number of warnings grouped by task and code file or object. To keep statistics short, only files with actual changes in the number of warnings are listed. If you combine this option with *Warning Filters (Tasks)*, the filters will be applied first and only matching warnings will appear in the warning statistics.
+- <a name="statistics">**Show Warning Statistics:**</a> Enable this options to generate statistical information about warning changes. When enabled the policy not only shows the total number of warnings but also the changes in number of warnings grouped by task and code file or object. To keep statistics short, only files with actual changes in the number of warnings are listed. If you combine this option with *Warning Selectors (Tasks)*, the selectors will be applied first and only matching warnings will appear in the warning statistics.
 
   **YAML: showStatistics** - (Optional) Default is *false*.
   
@@ -68,51 +68,51 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **YAML: evaluateTaskWarnings** - (Optional) Default is *true*.
 
-- <a name="taskFilters">**Task Filters:**</a> Since the build system can run all kinds of tasks during the build process and any of these tasks can create warnings, the *Warnings Policy* needs to know, which tasks it should look at and which to ignore. *Task Filters* takes a list of regular expressions (one per line). The policy will only look at build tasks that match one of the task filters. The matching is done against the name (e.g., _VSBuild_) and display name (e.g, _Build solution **/*.sln_) of each task. The default value `/^((vs|ms)build|ant(\s+.+)?|gradle(w)?(\s+.+)?|grunt|gulp|maven(\s+.+)?|xamarin(android|ios)|xcode(\s+.+)?|cmake|build\s+.+)$/i` matches most of the standard build tasks in Azure DevOps Server/Services. This setting is only visible if *Evaluate Task Warnings* is checked.
+- <a name="warningTaskSelectors">**Task Selectors:**</a> Since the build system can run all kinds of tasks during the build process and any of these tasks can create warnings, the *Warnings Policy* needs to know, which tasks it should look at and which to ignore. *Task Selectors* takes a list of regular expressions (one per line). The policy will only look at build tasks that match one of the task selectors. The matching is done against the name (e.g., _VSBuild_) and display name (e.g, _Build solution **/*.sln_) of each task. The default value `/^((vs|ms)build|ant(\s+.+)?|gradle(w)?(\s+.+)?|grunt|gulp|maven(\s+.+)?|xamarin(android|ios)|xcode(\s+.+)?|cmake|build\s+.+)$/i` matches most of the standard build tasks in Azure DevOps Server/Services. This setting is only visible if *Evaluate Task Warnings* is checked.
 
-  **YAML: warningTaskFilters** - (Optional) Default is shown above. Set to one or more task filter values. Start multiple entires with a pipe sign and keep each entry on a separate indented line.
+  **YAML: warningTaskSelectors (alias: warningTaskFilters)** - (Optional) Default is shown above. Set to one or more task selector values. Start multiple entires with a pipe sign and keep each entry on a separate indented line.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
-- <a name="warnFilters">**Warning Filters (Tasks):**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code analysis warnings). *Warning Filters (Tasks)* allow you to do just that. Specify a list of regular expressions (one per line) that only match the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number of warnings as well as the number of warnings that match the filter (i.e., filtered warnings). Keep in mind that *Warning Filters (Tasks)* analyze the log file of build tasks and does a simple text match. Thus, you need to make sure that your regular expressions match each warning only once. This setting is only visible if *Evaluate Task Warnings* is checked.
+- <a name="warningSelectors">**Warning Selectors (Tasks):**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code analysis warnings). *Warning Selectors (Tasks)* allow you to do just that. Specify a list of regular expressions (one per line) that only match the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number of warnings as well as the number of warnings that match the selectors (i.e., specific warnings). Keep in mind that *Warning Selectors (Tasks)* analyze the log file of build tasks and does a simple text match. Thus, you need to make sure that your regular expressions match each warning only once. This setting is only visible if *Evaluate Task Warnings* is checked.
 
-  **YAML: warningFilters** - (Optional) Default is empty. Set to one or more filter values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
+  **YAML: warningSelectors (alias: warningFilters)** - (Optional) Default is empty. Set to one or more selector values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
 
-  By default, filtered warnings are listed under _unknown files_ in warning statistics. However, you can use the following predefined named groups in your regular expression to provide the necessary information for the task to correctly include your filtered warnings in statistics. Use the following named groups:
+  By default, specific warnings are listed under _unknown files_ in warning statistics. However, you can use the following predefined named groups in your regular expression to provide the necessary information for the task to correctly include your specific warnings in statistics. Use the following named groups:
   - **filename** or **object** - the name of the file or object in which the warning occurred
   - **line** - the line number on which the warning occurred
   - **column** - the column number on which the warning occurred
   - **identifier** or **category** - the warning ID or category
   - **message** - the warning message
   
-  **Examples of filters for specific warning types:**
+  **Examples of selectors for specific warning types:**
   - Unused variables (.NET): `/##\[warning\].+CS0219:/i`
   - Static code analysis (.NET): `/##\[warning\].+CA.+:/i`
   - StyleCop warnings (MSBuild and Roslyn): `/##\[warning\].+SA.+:/i`
   
-  **Exmaples of filters for custom warning format with statistics information:**
+  **Exmaples of selectors for custom warning format with statistics information:**
   - **Log output:** ISSUE: warning in file myfile.cs on line 13, column 2: ID123 - This is not good  
-    **Filter:** `/issue: warning in file (?<filename>.+?) on line (?<line>\d+), column (?<column>\d+): (?<identifier>[^ ]+) - (?<message>.+)$/i`
+    **Selector:** `/issue: warning in file (?<filename>.+?) on line (?<line>\d+), column (?<column>\d+): (?<identifier>[^ ]+) - (?<message>.+)$/i`
   - **Log output:** ANALYSIS: Performance - 'Class1' should be made static  
-    **Filter:** `/analysis: (?<category>[^ ]+) - (?<message>(?:[^']+?)?(?:'(?<object>.+)'.+)?)$/i`
+    **Selector:** `/analysis: (?<category>[^ ]+) - (?<message>(?:[^']+?)?(?:'(?<object>.+)'.+)?)$/i`
 
-  *Warning Filters (Tasks)* can also be used to count aggregated warnings from log output (e.g., from a log line containing the total number of warnings in a file). To do so, specify a warning filter that contains exactly **one** unnamed capture group that matches the number of warnings. The captured number will be added to the total warning count as well was the filtered warning count. **Be aware, though, that this special use of warning disables the full warnings analysis and, thus, warning statistics!** If you need to have both aggregated warnings and full warnings analysis, you need to enable the option *Make Warning Filters Inclusive*.
+  *Warning Selectors (Tasks)* can also be used to count aggregated warnings from log output (e.g., from a log line containing the total number of warnings in a file). To do so, specify a warning selector that contains exactly **one** unnamed capture group that matches the number of warnings. The captured number will be added to the total warning count as well was the specific warning count. **Be aware, though, that this special use of warning disables the full warnings analysis and, thus, warning statistics!** If you need to have both aggregated warnings and full warnings analysis, you need to enable the option *Make Warning Selectors Inclusive*.
 
   **Example (based on _StyleCop Runner_ task):**
-  - Log output: `StyleCop found [28448] violations warnings across [82] projects`
-  - Filter value: `/\[(\d+)\]\s+violations/i`
+  - **Log output:** `StyleCop found [28448] violations warnings across [82] projects`
+  - **Selector**:** `/\[(\d+)\]\s+violations/i`
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
-- <a name="inclusiveFiltering">**Make Warning Filters Inclusive:**</a> Checking this option changes the behavior of *Warning Filters (Tasks)*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Filters (Tasks)* parameter, which is called *exclusive filtering*. In some cases, though, you might want to count aggregated warnings in addition to the regular warnings (called *inclusive filtering*). This can be achieved by activating the *Make Warning Filters Inclusive* option. This setting is only visible if *Evaluate Task Warnings* is checked. You need to enable this option if you want to use the special syntaxes (i.e., named or unnamed capturing groups) of the *Warning Filters (Tasks)*.
+- <a name="inclusiveSelection">**Make Warning Selectors Inclusive:**</a> Checking this option changes the behavior of *Warning Selectors (Tasks)*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Selectors (Tasks)* parameter, which is called *exclusive selection*. In some cases, though, you might want to count aggregated warnings in addition to the regular warnings (called *inclusive selection*). This can be achieved by activating the *Make Warning Selectors Inclusive* option. This setting is only visible if *Evaluate Task Warnings* is checked. You need to enable this option if you want to use the special syntaxes (i.e., named or unnamed capturing groups) of the *Warning Selectors (Tasks)*.
 
-  **YAML: inclusiveFiltering** - (Optional) Default is *false*.
+  **YAML: inclusiveSelection (alias: inclusiveFiltering)** - (Optional) Default is *false*.
 
 ### File Warnings Parameters
 
 ![File Warnings Parameters](../assets/WarningsPolicyFiles.png "File Warnings Parameters of the Warnings Policy")
 
-- <a name="evaluateFileWarnings">**Evaluate File Warnings:**</a> Check this option to evaluate warnings from arbitrary log files. If you want to evaluate warnings from log files, check this option and specify *File Warning Filters*. The task will then parse the log files based on the provided regular expressions and count every match as a warning. If you check this option in addition to the *Evaluate Task Warnings* option, the task counts all warnings from log files in addition to warnings from pipeline tasks. You need to either check this or the *Evaluate Task Warnings* option. This option is only available if *Fail Build On* is set to `Fixed Threshold`.
+- <a name="evaluateFileWarnings">**Evaluate File Warnings:**</a> Check this option to evaluate warnings from arbitrary log files. If you want to evaluate warnings from log files, check this option and specify *File Warning Selectors*. The task will then parse the log files based on the provided regular expressions and count every match as a warning. If you check this option in addition to the *Evaluate Task Warnings* option, the task counts all warnings from log files in addition to warnings from pipeline tasks. You need to either check this or the *Evaluate Task Warnings* option. This option is only available if *Fail Build On* is set to `Fixed Threshold`.
 
   **YAML: evaluateFileWarnings** - (Optional) Default is *false*.
 
@@ -124,9 +124,11 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **YAML: warningFiles** - (Required) Default is empty. Set to one or more file matching patterns. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **evaluateFileWarnings** is set to *true*.
 
-- <a name="warningFileFilters">**Warning Filters (Files):**</a> (Required) Specify a list of regular expressions (one per line) that match the warnings in your log files. Make sure that your regular expressions match each warning only once, otherwise they will be counted multiple times. If you need separate regular expressions for specific log files, please use multiple instances of the *Build Quality Checks* task. You can use the same special filters as described under [Warning Filters (Tasks)](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md#warnFilters) This setting is only visible if *Evaluate File Warnings* is checked.
+  **Note:** Don't use relative path placeholders like `.` (for current folder) or `..` (for parent folder) as it breaks the minimatch mathing of files during analysis!
 
-  **YAML: warningFileFilters** - (Required) Default is empty. Set to one or more filter values. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **evaluateFileWarnings** is set to *true*.
+- <a name="fileWarningSelectors">**Warning Selectors (Files):**</a> (Required) Specify a list of regular expressions (one per line) that match the warnings in your log files. Make sure that your regular expressions match each warning only once, otherwise they will be counted multiple times. If you need separate regular expressions for specific log files, please use multiple instances of the *Build Quality Checks* task. You can use the same special selectors as described under [Warning Selectors (Tasks)](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md#warningSelectors) This setting is only visible if *Evaluate File Warnings* is checked.
+
+  **YAML: fileWarningSelectors (alias warningFileFilters)** - (Required) Default is empty. Set to one or more selector values. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **evaluateFileWarnings** is set to *true*.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 

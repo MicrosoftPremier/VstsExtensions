@@ -20,12 +20,12 @@ The *Build Quality Checks* (in task category *Build*) task needs to be placed af
 **Note:** When you want to use the [Code Coverage Policy](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/CodeCoveragePolicy.md) you need to make sure that you publish code coverage values calculated by your test tool first. The Policy itself does **not** calculate the code coverage. Before you add the task and activate the policy, please make sure that you can already see code coverage values in your build summary. If you are using a test tool other then MSTest (i.e., anything other than the _Visual Studio Test_ task), please use the _Publish Code Coverage Results_ task to publish your coverage data before you add the policy.
 
 ### Adding the Task to a YAML Build Definition
-To add the *Build Quality Checks* task to a YAML build definition, use the  task name and major version like this `- task: BuildQualityChecks@8` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
+To add the *Build Quality Checks* task to a YAML build definition, use the  task name and major version like this `- task: BuildQualityChecks@9` and set a display name using the `displayName` property. Then add all task inputs as described under [Task Parameters](#task-parameters) or in the [Policies](#policies) section.
 
 YAML snippet:
 
 ``` yaml
-- task: BuildQualityChecks@8
+- task: BuildQualityChecks@9
   displayName: 'Check build quality'
   inputs:
     # ===== Warnings Policy Inputs =====
@@ -37,13 +37,13 @@ YAML snippet:
     #warningVariance: # Required if allowWarningVariance = true
     #showStatistics: false # Optional
     #evaluateTaskWarnings: true # Optional
-    #warningTaskFilters: '/^((vs|ms)build|ant(\s+.+)?|gradle(w)?(\s+.+)?|grunt|gulp|maven(\s+.+)?|xamarin(android|ios)|xcode(\s+.+)?|cmake|build\s+.+)$/i' # Optional
-    #warningFilters: # Optional
-    #inclusiveFiltering: false # Optional
+    #warningTaskSelectors: '/^((vs|ms)build|ant(\s+.+)?|gradle(w)?(\s+.+)?|grunt|gulp|maven(\s+.+)?|xamarin(android|ios)|xcode(\s+.+)?|cmake|build\s+.+)$/i' # Optional (alias: warningTaskFilters)
+    #warningSelectors: # Optional (alias: warningFilters)
+    #inclusiveSelection: false # Optional (alias: inclusiveFiltering)
     #evaluateFileWarnings: false # Optional
     #warningFilesFolder: # Optional
     #warningFiles: # Required if evaluateFileWarnings = true
-    #warningFileFilters: # Required if evaluateFileWarnings = true
+    #fileWarningSelectors: # Required if evaluateFileWarnings = true (alias: warningFileFilters)
     #warningFilesArtifact: # Required if evaluateFileWarnings = true and (warningFailOption = build or showStatistics = true)
     # ===== Code Coverage Policy Inputs =====
     #checkCoverage: false # Optional
@@ -62,11 +62,11 @@ YAML snippet:
     #coveragePrecision: '4' # Optional
     #buildConfiguration: # Optional
     #buildPlatform: # Optional
-    #explicitFilter: false # Optional
+    #explicitSelector: false # Optional (alias: explicitFilter)
     # ===== Baseline Inputs =====
     #includePartiallySucceeded: true # Optional
     #fallbackOnPRTargetBranch: true # Optional
-    #baseDefinitionFilter: # Ignored - only used by UI editor
+    #baseDefinitionSelector: # Ignored - only used by UI editor
     #baseDefinitionId: # Optional
     #baseRepoId: # Ignored - only used by UI editor
     #baseBranchRef: # Optional
@@ -97,9 +97,9 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 
 - <a name="fallbackOnPRTargetBranch">**Fall Back on PR Target Branch**</a> Disable this option to prevent the task from automatically looking for a baseline build for the pull request target branch if a baseline for the current branch cannot be found. Naturally, the first build that runs for a pull request won't find a baseline build for the current branch, since pull requests run builds on a special branch named refs/pull/&lt;PR-ID&gt;/merge, which is dynamically created by the pull request. To prevent that the first pipeline run for each PR automatically succeeds due to the lack of a baseline, the task automatically looks for a baseline build associated with the pull request's target branch, which usually provides a good quality baseline. If you still want the first PR build to always succeed, disabled this option to prevent the fallback.
 
-- <a name="baseDefFilter">**Definition Filter**</a> If you have lots of build definitions, it can get hard to find the right one in the *Build Definition* drop-down list. You can use the *Definition Filter* to limit the number of definitions shown in the list. Either enter a specific definition name or use the asterisk (\*) wildcard to search for definitions starting with (e.g., Def\*), ending with (e.g., \*def), or containing (e.g., \*def\*) a specific value. If you want to list all build definitions in your project, use the default value "\*".
+- <a name="baseDefinitionSelector">**Definition Selector**</a> If you have lots of build definitions, it can get hard to find the right one in the *Build Definition* drop-down list. You can use the *Definition Selector* to limit the number of definitions shown in the list. Either enter a specific definition name or use the asterisk (\*) wildcard to search for definitions starting with (e.g., Def\*), ending with (e.g., \*def), or containing (e.g., \*def\*) a specific value. If you want to list all build definitions in your project, use the default value "\*".
 
-  **YAML: baseDefinitionFilter** - (Ignored) This parameter is ignored in YAML definitions.
+  **YAML: baseDefinitionSelector** - (Ignored) This parameter is ignored in YAML definitions.
 
 - <a name="baseDef">**Build Definition:**</a> Select the build definition that should be used to search for the baseline build. If you do not set a value, the last build of the current build definition will be used when comparing policy values. If the drop-down list is empty, please click the refresh icon to reload the list of available build definitions. The drop-down list shows a maximum of 1000 build definitions. If your definition is not visible, please enter the build definition ID manually. See [TFVC Feature Branches](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/PullRequests.md#tfvc-feature-branches) for examples for when using a different build definition might be useful.
 

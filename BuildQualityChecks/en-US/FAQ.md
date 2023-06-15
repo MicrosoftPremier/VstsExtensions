@@ -26,11 +26,11 @@ By default, a build's OAuth token only has limited permissions (read all source 
 ## Warnings Policy
 **Q: Why does the policy report zero warnings although I see warnings in the build log?**  
 **A:** The policy only picks up warnings that are reported as build issues (see [limitations](./WarningsPolicy.md#limitations-and-special-cases)) and cannot see warnings that are
-only written to a build task's log file. You might be able to use [warning filters](./WarningsPolicy.md#warnFilters) to make the policy pick up those warnings as well.
+only written to a build task's log file. You might be able to use [warning selectors](./WarningsPolicy.md#warningSelectors) to make the policy pick up those warnings as well.
 
 **Q: Why does the policy report fewer warnings than the build summary?**  
 **A:** The build summary shows all warnings that have been reported as build issues, while the policy only counts warnings from specific build tasks. Make sure that the
-[task filters](./WarningsPolicy.md#taskFilters) match all relevant tasks in your build definition.
+[task selectors](./WarningsPolicy.md#warningTaskSelectors) match all relevant tasks in your build definition.
 
 **Q: How do warning statistics work and why is it reporting incorrect warning changes?**  
 **A:** The detailed warning analysis within the statistics is based on a heuristic mechanism and might not be accurate. Since the *Build Quality Checks* task solely relies on log information, it doesn't have enough context per warning (e.g., method or class containing the warning) to accuarately find removed or new warnings. We still do our best and want to share the mechanics behind the analysis.

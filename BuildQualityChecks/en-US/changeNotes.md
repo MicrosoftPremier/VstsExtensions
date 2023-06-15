@@ -2,6 +2,13 @@
 
 # Build Quality Checks - Change Notes
 
+#### 9.0.0
+- Upgrade task to Node 16.
+- Add required coverage threshold to log output. (fixes GitHub issue #209)
+- Rename filters to selectors (aliases are in place for backwards compatiblity in YAML pipelines; **Note:** this is a BREAKING CHANGE for classic pipelines). (fixes GitHub issue #185)
+- BREAKING CHANGE: Make coverage policy pass when using uncovered elements and there are no coverable elements. (fixes GitHub issue #215)
+- Add run title to pull request status. (fixes GitHub issue #204)
+
 #### 8.2.1
 - Correctly add new output variables as task output variables (for classic pipelines and unified variable naming schema).
 
