@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 9.0.1
+- Fix error `Cannot find module 'node:timers'` when task tries to retry API calls.
+
 #### 9.0.0
 - Upgrade task to Node 16.
 - Add required coverage threshold to log output. (fixes GitHub issue #209)
