@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 2.0.1
+- Fix task editors for classic pipelines.
+
 #### 2.0.0
 - Upgrade task to Node 16.
 - **BREAKING CHANGE:** Allow linking to work items outside the target project when using WIQL unless link limiting is enabled. (fixes GitHub issue #167)
