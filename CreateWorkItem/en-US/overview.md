@@ -218,7 +218,7 @@ Use the parameters in the *Duplicates* group to control handling of duplicates t
 
   **Note:** Since long-text fields (e.g., *Description*, *Steps to Reproduce*, *History*) do not support the equals comparison operator, the task will use the *CONTAINS* operator instead. Thus, a key field definition for the field `Description` (without a rule) looks for all work items in which the description field contains the words from the new work item's description field.
 
-  To allow flexibility in the search for duplicates, you can add rules to the key fields, which are used in the work item query. Rules take the form `{field name or reference name}{operator}{field value}` (e.g., `System.State!=Done`). The field value can either be a literal value, a pipeline variable, or a [WIQL macro](https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#macros-or-variables) with the exception of the `[Any]` variable. If you want to check if a field is empty, use an empty string (i.e., `''` or `""`) as the value. Allowed operators are:
+  To allow flexibility in the search for duplicates, you can add rules to the key fields, which are used in the work item query. Rules take the form `{field name or reference name}{operator}{field value}` (e.g., `System.State!==Done`). The field value can either be a literal value, a pipeline variable, or a [WIQL macro](https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#macros-or-variables) with the exception of the `[Any]` variable. If you want to check if a field is empty, use an empty string (i.e., `''` or `""`) as the value. Allowed operators are:
   - `===`, `!==` - checks if field is equal or not equal the given value
   - `<`, `<=`, `>`, `>=` - checks if the field value is lower than, lower than or equal, greater than, greater than or equal the given value
   - `==`, `!=` - checks if field value contains or does not contain the given value
@@ -234,7 +234,7 @@ Use the parameters in the *Duplicates* group to control handling of duplicates t
 
   System.State is checked for the value *New* because that is the initial value that would be used by the new work item.
 
-  **Complex example:** You configure the task to create a *Product Backlog Item* with title set to `Some Title` and area path set to `MyProject\Area1`, and you configure the key fields `Title`, `Area Path`, and `State!=Done`. The task would then create the following query:
+  **Complex example:** You configure the task to create a *Product Backlog Item* with title set to `Some Title` and area path set to `MyProject\Area1`, and you configure the key fields `Title`, `Area Path`, and `State!==Done`. The task would then create the following query:
 
   `SELECT System.Id FROM WorkItems WHERE System.Title = 'Some Title' AND System.AreaPath = 'MyProject\Area1' AND System.State <> 'Done'`
 
