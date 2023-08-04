@@ -2,8 +2,16 @@
 
 # Create Work Item - Change Notes
 
+#### 2.0.0
+- Upgrade task to Node 16.
+- **BREAKING CHANGE:** Allow linking to work items outside the target project when using WIQL unless link limiting is enabled. (fixes GitHub issue #167)
+- Add support for identity mentions (i.e., `@<display name>`, `@<upn>`, or `@<domain\username>`), work item mentions (i.e., `#id`), and pull request mentions (i.e., `!pr-id`).
+- **BREAKING CHANGE:** Remove support for Team Foundation Server 2018 and Azure DevOps Server 2019.
+- **BREAKING CHANGE:** Remove the `LinksFiltered` variable. Use `WorkItemLinksFiltered` instead.
+- Add support for more complex duplicate rules. (fixes GitHub issue 211)
+
 #### 1.17.1
-- Allow manual specification of the link type when enabling work item linking (workaround for GitHub issues #191 and #192)
+- Allow manual specification of the link type when enabling work item linking. (workaround for GitHub issues #191 and #192)
 
 #### 1.17.0
 - Add additional output variables to check linking status. (fixes final discussion points from GitHub issue #167)

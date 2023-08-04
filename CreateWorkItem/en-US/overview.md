@@ -112,7 +112,17 @@ The task supports the default parameters listed below. All parameters support va
   - *My Team:Backlog Items:Column.Done=true*
   - *My Team:Backlog Items:Lane=High Priority*
 
-  **Note:** Team-specific fields are not supported by the special field mapping editor. You need to add them manually!
+  **Note:** Team-specific fields are not supported by the special field mapping editor. You must add them manually!
+
+  For long-text fields (e.g., Description, Acceptance Criteria), you can also mention identities, work items, or pull requests in the field value. To do so, you must use the following syntax:
+  - **Identities:** `@<display name>`, `@<upn>` (for Azure DevOps Services only), or `@<domain\username>` (for Azure DevOps Server only).
+  - **Work items:** `#id`
+  - **Pull requests:** `!pr-id`
+
+  **Examples:**
+  - *Description=According to @&lt;contoso\\johnd&gt;, this is similar to #1234* - (this identity mention only works with Azure DevOps Server)
+  - *Acceptance Criteria=Needs further details from @&lt;johnd@contoso.com&gt; Seems to add to the changes introduced by !42* - (this identity only works with Azure DevOps Services)
+  - *History=@&lt;John Doe&gt;: please look into this*
 
   **YAML: fieldMappings** - (Optional) Default is empty. Start multiple entries with a pipe sign and keep each entry on a separate indented line. If the selected work item type has required fields other than title, make sure to include all of them in this list.
 
@@ -205,16 +215,28 @@ Use the parameters in the *Duplicates* group to control handling of duplicates t
   **YAML: preventDuplicates** - (Optional) Default is *false*.
 
 - <a name="keyFields">**Key Fields:**</a> List the fields (one per line) that should be used by the task to check whether the new work item would be a duplicate or not. You may use either the field names, field reference names, or a combination of both. To check for duplicates, the task constructs a work item query based on the key fields listed here and the values of those fields in the new work item. If the query returns one or more work items, they are considered duplicates of the new work item and the task does not create a new work item. This option is only visible if duplicate prevention is enabled.
+
+  **Note:** Since long-text fields (e.g., *Description*, *Steps to Reproduce*, *History*) do not support the equals comparison operator, the task will use the *CONTAINS* operator instead. Thus, a key field definition for the field `Description` (without a rule) looks for all work items in which the description field contains the words from the new work item's description field.
+
+  To allow flexibility in the search for duplicates, you can add rules to the key fields, which are used in the work item query. Rules take the form `{field name or reference name}{operator}{field value}` (e.g., `System.State!=Done`). The field value can either be a literal value, a pipeline variable, or a [WIQL macro](https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#macros-or-variables) with the exception of the `[Any]` variable. If you want to check if a field is empty, use an empty string (i.e., `''` or `""`) as the value. Allowed operators are:
+  - `===`, `!==` - checks if field is equal or not equal the given value
+  - `<`, `<=`, `>`, `>=` - checks if the field value is lower than, lower than or equal, greater than, greater than or equal the given value
+  - `==`, `!=` - checks if field value contains or does not contain the given value
+  - `==[value, value, ...]`, `!=[value, value, ...]` - checks if field was is in or not in the list of given values
+
+  **Note:** Not all fields support all operators. See [WIQL Operators](https://learn.microsoft.com/en-us/azure/devops/boards/queries/wiql-syntax?view=azure-devops#operators) for more information (even though the HTML field type that is used for most long-text fields like `System.Description` is not listed, it supports the same operators as *plaintext* fields)!
   
   **YAML: keyFields** - (Required) Default is empty. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **preventDuplicates** is set to *true*.
 
-  **Example:** You configure the task to create a *Product Backlog Item* with title set to "Some Title" and area path set to "MyProject\Area1", and you configure the key fields *Title*, *Area Path*, and *State*. The task would then create the following query:
+  **Example:** You configure the task to create a *Product Backlog Item* with title set to `Some Title` and area path set to `MyProject\Area1`, and you configure the key fields `Title`, `Area Path`, and `State`. The task would then create the following query:
 
   `SELECT System.Id FROM WorkItems WHERE System.Title = 'Some Title' AND System.AreaPath = 'MyProject\Area1' AND System.State = 'New'`
 
   System.State is checked for the value *New* because that is the initial value that would be used by the new work item.
 
-  **Note:** Since long-text fields (e.g., *Description*, *Steps to Reproduce*, *History*) do not support the equals comparison operator, the task will use the *CONTAINS* operator instead. Thus, a key field definition of *Description=Hello, World* will find all work items with a description containing the phrase "Hello, world".
+  **Complex example:** You configure the task to create a *Product Backlog Item* with title set to `Some Title` and area path set to `MyProject\Area1`, and you configure the key fields `Title`, `Area Path`, and `State!=Done`. The task would then create the following query:
+
+  `SELECT System.Id FROM WorkItems WHERE System.Title = 'Some Title' AND System.AreaPath = 'MyProject\Area1' AND System.State <> 'Done'`
 
 - <a name="updateDuplicates">**Update Duplicate:**</a> Check this option to update a possible duplicate work item. If multiple duplicate work items are found, the task only updates the one that was last created (i.e., the item with the highest ID). To update work item fields specify one ore more *Update Rules*. The option ensures that work item links, build associations and pull request links are updates even if no *Update Rules* are specified. This option is only visible if duplicate prevention is enabled.
 
@@ -259,8 +281,6 @@ In addition to the custom defined output variables the task automatically create
 - **WorkItemLinkingSucceeded** - Set to `true` if work item linking was enabled and no errors occurred during linking. If there was an error (e.g., target work item not found), the variable is set to `false`. **Note:** The variable is not created at all if work item linking is not enabled.
 
 - **WorkItemLinksFiltered** - Set to `true` if work item links have been filtered to the current project, `false` otherwise. **Note:** the variable is only generated if work item linking and the option 'Prevent Links to Other Projects' are enabled.
-
-- **LinksFiltered (deprecated)** - This variable will be removed in a future version. Use *WorkItemLinksFiltered* instead.
 
 - **CodeLinkingSucceeded** - Set to `true` if code linking was enabled and no errors occurred during linking. If there was an error (e.g., target commit/changeset not found), the variable is set to `false`. **Note:** The variable is not created at all if code linking is not enabled.
 
