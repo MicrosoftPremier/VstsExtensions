@@ -56,7 +56,9 @@ YAML snippet:
     #createOutputs: false # Optional
     #outputVariables: # Required if createOutputs = true
     # ===== Advanced Inputs =====
-    #authToken: #Optional
+    #authType: internal # Optional; Valid values: internal, oidc, pat
+    #authToken: # Required if authType = pat
+    #serviceConnection: # Required if authType = oidc
     #allowRedirectDowngrade: false # Optional
 ```
 
@@ -287,18 +289,37 @@ In addition to the custom defined output variables the task automatically create
 #### Advanced
 Use the parameter in the *Advanced* group to control special task features:
 
-- <a name="authToken">**Auth Token:**</a> Provide a Personal Access Token (PAT) to use for authentication to Azure DevOps. This can be useful if you want to use the task in pull request builds that run from a forked repository, because the default security token used for those builds does not have sufficient privileges to create work items. In addition, using a specific PAT helps in situations where you need to create work items in different team projects to which the default security token (i.e., the Project Build Service account) does not have access. Please create a PAT with sufficient privileges (see below), store it in a secret variable (or another safe location from which you can retrieve it into a variable), and provide the variable here.
+- <a name="authType">**Auth Type:**</a> By default (**Internal**), the task uses the pipeline's identity (a.k.a. build service account) to connect to Azure DevOps and create work items. In some cases, though, this might fail, because the identity does not have the necessary permissions to create work items. When you are running the task in a pull request build from a forked repository or limiting access of your pipelines to the pipeline's project but want to create work items in another project, you must provide a different way of authenticating to Azure DevOps. The task supports two additional authentication options: Personal Access Token (PAT) and workload identity federation (OIDC).
 
-  **YAML: authToken** - (Optional) Default is empty.
+  When selecting **PAT**, you must provide a PAT in the **Auth Token** parameter. When selecting **OIDC**, you must provide a service connection of type Azure Resource Manager with workload identity federation in the **OIDC Connection** parameter.
 
-  **Security Note:** Please be aware that allowing API access from pipelines that run for forked repositories can pose a security risk, especially if your pipeline is defined in YAML and you allow public forks! Use this setting with caution! In addition to setting the PAT here, you need to provide general access to secrets from pipelines that run for forks. See the official documentation about [repository protection](https://docs.microsoft.com/en-us/azure/devops/pipelines/security/repos?view=azure-devops) for more information.
+  **Security Note:** Please be aware that allowing API access from pipelines that run for forked repositories can pose a security risk, especially if your pipeline is defined in YAML and you allow public forks! Use PAT and OIDC authentication with caution! In addition to configuring authentication here, you need to provide general access to secrets from pipelines that run for forks. See the official documentation about [repository protection](https://docs.microsoft.com/en-us/azure/devops/pipelines/security/repos?view=azure-devops) for more information.
+
+  **YAML: authType** - (Required) Default is `internal`. Set to `pat` to use PAT authentication, set to `oidc` to use workload identity federation.
+
+- <a name="authToken">**Auth Token:**</a> Provide a Personal Access Token (PAT) to use for authentication to Azure DevOps. Please create a PAT with sufficient privileges (see below), store it in a secret variable (or another safe location from which you can retrieve it into a variable), and provide the variable here.
+
+  **Note:** PATs are user-specific, expire after a certain amount of time, and require the creator of the PAT to regularly interact with Azure DevOps. Thus, PATs are not the most suitable authentication method for an automated process like creating work items from a pipeline. In addition, PATs cannot be scoped to specific projects or specific area paths within a project. They always have access to the projects/area paths the creator of the PAT has access to. Thus, the recommended way of authenticating - if using the pipeline identity does not work -  is workload identity federation (OIDC).
+
+  **YAML: authToken** - (Required) Default is empty. Required if **authType** is set to `pat`.
   
   **Required Scopes:** We strongly encourage you to follow the *least privilege principle* when creating your PAT. For the task to properly work you only need the following security scopes:
 
   - Work Items: Read & Write (`vso.work_write`)
 
+- <a name="oidcServiceConnection">**OIDC Connection:**</a> Select an Azure Resource Manager service connection that uses workload identity federation. The selected service connection is then used to connect to Azure DevOps. This is the recommended way of authenticating to Azure DevOps if your pipeline's identity does not have sufficient privileges to create work items in the target project.
+
+  **Prerequisites**
+  - Create an Azure Resource Manager service connection that uses workload identity federation (see [docs](https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops#create-an-azure-resource-manager-service-connection-using-workload-identity-federation))
+  - Add the service principal (or managed identity) that was created by the service connection to your Azure DevOps organizatoin (see [docs](https://learn.microsoft.com/en-us/azure/devops/integrate/get-started/authentication/service-principal-managed-identity?view=azure-devops#2-add-and-manage-service-principals-in-an-azure-devops-organization))
+  - Set the necessary permissions for the service principal on your target projects (if possible, follow the principle of least privilege)
+
+  **YAML: oidcServiceConnection** - (Required) Default is empty. Required if **authType** is set to `oidc`.
+
 - <a name="allowRedirectDowngrade">**Allow Downgrade Redirects:**</a> Enable this option to allow redirects to downgrade from HTTPS to HTTP. Normally, you should never need to enable this option. However, for some on-premises setups where your Team Foundation or Azure DevOps Server is exposed through a gateway, which terminates the SSL connection, setting this option may be needed. If you are affected by such a setup, you will see the error message `Redirect from HTTPS to HTTP protocol. This downgrade is not allowed for security reasons. If you want to allow this behavior, set the allowRedirectDowngrade option to true.`.
 
   **Attention:** HTTPS to HTTP downgrades pose a security risk! Before enabling this option, please first consider changing your on-premises setup and enable HTTPS on your server instance instead of terminating the SSL connection on the gateway. To make the potential security risk visible, the task creates a warning if this option is enabled.
+
+  **YAML: allowRedirectDowngrade** - (Optional) Default is `false`.
 
 Icons made by [Pavel Kozlov](https://www.flaticon.com/authors/pavel-kozlov) from https://www.flaticon.com is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)

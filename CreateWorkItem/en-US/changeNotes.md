@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 2.1.0
+- Add support for workload identity federation (OIDC) authentication.
+
 #### 2.0.1
 - Fix task editors for classic pipelines.
 
