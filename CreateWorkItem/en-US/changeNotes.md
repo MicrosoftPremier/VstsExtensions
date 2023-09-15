@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 2.2.0
+- Add support for cross-organization creation of work items. (fixes GitHub issue #157)
+
 #### 2.1.0
 - Add support for workload identity federation (OIDC) authentication.
 

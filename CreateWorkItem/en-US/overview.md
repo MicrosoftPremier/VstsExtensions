@@ -57,6 +57,7 @@ YAML snippet:
     #outputVariables: # Required if createOutputs = true
     # ===== Advanced Inputs =====
     #authType: internal # Optional; Valid values: internal, oidc, pat
+    #targetOrg: # Optional; Only used if authType = pat or authType = oidc
     #authToken: # Required if authType = pat
     #serviceConnection: # Required if authType = oidc
     #allowRedirectDowngrade: false # Optional
@@ -296,6 +297,10 @@ Use the parameter in the *Advanced* group to control special task features:
   **Security Note:** Please be aware that allowing API access from pipelines that run for forked repositories can pose a security risk, especially if your pipeline is defined in YAML and you allow public forks! Use PAT and OIDC authentication with caution! In addition to configuring authentication here, you need to provide general access to secrets from pipelines that run for forks. See the official documentation about [repository protection](https://docs.microsoft.com/en-us/azure/devops/pipelines/security/repos?view=azure-devops) for more information.
 
   **YAML: authType** - (Required) Default is `internal`. Set to `pat` to use PAT authentication, set to `oidc` to use workload identity federation.
+
+- <a name="targetOrg">**Target Organization:**</a> By default, the task always creates work items in the same organization in which the task is executed. When using PAT or OIDC authentication, though, it is also possible to create tasks in other organizations, as long as the PAT or OIDC identity has sufficient access to the organiztion. Leave this field empty to create work items in the current organization or provide the name of the another target organization. The value is only used if **Auth Type** is set to either **PAT** or **OIDC**.
+
+  **YAML: targetOrg** - (Optional) Default is empty.
 
 - <a name="authToken">**Auth Token:**</a> Provide a Personal Access Token (PAT) to use for authentication to Azure DevOps. Please create a PAT with sufficient privileges (see below), store it in a secret variable (or another safe location from which you can retrieve it into a variable), and provide the variable here.
 
