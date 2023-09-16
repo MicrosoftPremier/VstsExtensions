@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 2.3.0
+- Add support for bulk work item creation. (fixes GitHub issue #156)
+
 #### 2.2.0
 - Add support for cross-organization creation of work items. (fixes GitHub issue #157)
 

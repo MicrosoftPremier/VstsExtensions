@@ -1,4 +1,4 @@
-[Known Issues](#known-issues) | [Support](#support) | [YAML](#adding-the-task-to-a-yaml-definition) | [Task Parameters](#task-parameters) | [Linking](#linking) | [Attachments](#attachments) | [Duplicates](#duplicates) | [Outputs](#outputs) | [Advanced](#advanced)
+[Known Issues](#known-issues) | [Support](#support) | [YAML](#adding-the-task-to-a-yaml-definition) | [Task Parameters](#task-parameters) | [Linking](#linking) | [Attachments](#attachments) | [Duplicates](#duplicates) | [Outputs](#outputs) | [Advanced](#advanced) | [Bulk Mode](#bulk-mode)
 
 # Create Work Item
 The *Create Work Item* task allows you to create a work item from a build or release.
@@ -61,6 +61,9 @@ YAML snippet:
     #authToken: # Required if authType = pat
     #serviceConnection: # Required if authType = oidc
     #allowRedirectDowngrade: false # Optional
+    # ===== Bulk Mode =====
+    #bulkMode: false # Optional
+    #bulkConfigData: # Required if bulkMode = true
 ```
 
 ### Task Parameters
@@ -326,5 +329,56 @@ Use the parameter in the *Advanced* group to control special task features:
   **Attention:** HTTPS to HTTP downgrades pose a security risk! Before enabling this option, please first consider changing your on-premises setup and enable HTTPS on your server instance instead of terminating the SSL connection on the gateway. To make the potential security risk visible, the task creates a warning if this option is enabled.
 
   **YAML: allowRedirectDowngrade** - (Optional) Default is `false`.
+
+#### Bulk Mode
+Bulk mode allows you to create multiple work items in one go. Since the primary use case of this task is to create or update a **single** work item, bulk mode requires JSON configuration and is not supported through the regular task parameters (see below).
+
+**Important:** There is no feasible way to implement something like a transaction for this task. Thus, bulk mode executes each work item creation/update sequentially. If one of these actions fails, the task will fail even though work items may have been created/updated. Be mindful about possible side-effects this might create!
+
+- <a name="bulkMode">**Bulk Mode:**</a> Enable this option to create/update multiple work items in one go. Bulk mode supports all features of the task (i.e., creation, duplicate handling, output variables, etc.) and works as if you added multiple Create Work Item tasks to your pipeline. Configuration must be presented in JSON format in the **Bulk Config Data** parameter (see below).
+
+  **YAML: bulkMode** - (Optional) Default is `false`.
+
+- <a name="bulkConfigData">**Bulk Config Data:**</a> Provide the configuration for each logical Create Work Item task as a JSON array. Each array element is a full Create Work Item task parameter object and supports and can contain all task parameters. The same rules for required parameters apply! Similar to the task itself, the parameter object only supports simple data types: string, boolean, numbers, and arrays for multi-line strings. The task does **not** run extensive validation on the object.
+
+  **Important:** Even though the task supports OIDC authentication when creating/updating a single work item, bulk mode does not support OIDC! This is caused by a technical limitation of how Azure DevOps provides access to service connections to tasks. Therefore, bulk mode only support PAT authentication when accessing projects that cannot be accessed by the default pipeline identity.
+
+  **Example bulk config data:**
+
+  ```json
+  [
+    {
+      "workItemType": "Issue",
+      "title": "Issue from CWI task",
+      "fieldMappings": [
+        "Description=This has been bulk created by CWI task",
+        "Priority=1"
+      ]
+      "associate": true
+    },
+    {
+      "targetOrg": "SomeOrg",
+      "teamProject": "SomeProject",
+      "workItemType": "Product Backlog Item",
+      "title": "PBI from CWI task",
+      "fieldMappings": [
+        "Description=This has been bulk created by CWI task",
+        "Effort=13"
+      ],
+      "preventDuplicates": true,
+      "keyFields": [
+        "Description",
+        "State!==Done"
+      ],
+      "updateRules": [
+        "Effort+=1"
+      ],
+      "authType": "pat",
+      "authToken": "pat goes here"
+    }
+  ]
+  ```
+
+  **YAML: bulkConfigData** - (Required) Default is empty. Required if **bulkMode** is set to `true`.
 
 Icons made by [Pavel Kozlov](https://www.flaticon.com/authors/pavel-kozlov) from https://www.flaticon.com is licensed by [CC 3.0 BY](http://creativecommons.org/licenses/by/3.0/)
