@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 9.1.0
+- Add parameter `addAttachment` to disable publishing the Markdown summary file. (fixes GitHub issue #222)
+
 #### 9.0.1
 - Fix error `Cannot find module 'node:timers'` when task tries to retry API calls.
 

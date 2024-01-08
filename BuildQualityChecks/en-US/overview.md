@@ -76,6 +76,7 @@ YAML snippet:
     # ===== Advanced Inputs =====
     #disableCertCheck: false # Optional
     #createBuildIssues: true # Optional
+    #addAttachment: true # Optional
 ```
 
 ### Policies
@@ -96,6 +97,8 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
   **YAML: includePartiallySucceeded** - (Optional) Default value is *true*.
 
 - <a name="fallbackOnPRTargetBranch">**Fall Back on PR Target Branch**</a> Disable this option to prevent the task from automatically looking for a baseline build for the pull request target branch if a baseline for the current branch cannot be found. Naturally, the first build that runs for a pull request won't find a baseline build for the current branch, since pull requests run builds on a special branch named refs/pull/&lt;PR-ID&gt;/merge, which is dynamically created by the pull request. To prevent that the first pipeline run for each PR automatically succeeds due to the lack of a baseline, the task automatically looks for a baseline build associated with the pull request's target branch, which usually provides a good quality baseline. If you still want the first PR build to always succeed, disabled this option to prevent the fallback.
+
+  **YAML: fallbackOnPRTargetBranch** - (Optional) Default value is *true*.
 
 - <a name="baseDefinitionSelector">**Definition Selector**</a> If you have lots of build definitions, it can get hard to find the right one in the *Build Definition* drop-down list. You can use the *Definition Selector* to limit the number of definitions shown in the list. Either enter a specific definition name or use the asterisk (\*) wildcard to search for definitions starting with (e.g., Def\*), ending with (e.g., \*def), or containing (e.g., \*def\*) a specific value. If you want to list all build definitions in your project, use the default value "\*".
 
@@ -146,6 +149,10 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 - <a name="createBuildIssues">**Log task results as build issues:**</a> When enabled, warnings and errors emitted by the task are also logged as regular build warnings/errors. This makes them visible on the build summary page. If this option is disabled, warnings and errors are only displayed in the task summary section. **Note:** The option does **not** impact the task result. Even if it is disabled, the task will still fail when one of the policies is violated. This option is enabled by default.
 
   **YAML: createBuildIssues** - (Optional) Default is *true*.
+
+- <a name="addAttachment">**Add policy results attachment:**</a> When enabled, policy results are published as build attachment, so they can be displayed in the build summary. If this option is disabled, the *Extensions* tab in the build summary UI is not displayed. In addition, warning statistics will be disabled, since they are only visible through the build summary UI. In most cases, you should **not** disable this option. **Note:** The option does **not** impact the task result. Even if it is disabled, the task will still fail when one of the policies is violated. This option is enabled by default.
+
+  **YAML: addAttachment** - (Optional) Default is *true*.
 
 ### Task Variables
 In addition to parameters visible in the task UI there are a few variables you can set to affect the tasks behavior:
