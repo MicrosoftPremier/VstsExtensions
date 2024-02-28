@@ -21,7 +21,7 @@ YAML snippet:
 
 ``` yaml
 # Create or update a work item
-- task: CreateWorkItem@2
+- task: CreateWorkItem@1
   displayName: 'Create work item'
   inputs:
     #teamProject: # Optional

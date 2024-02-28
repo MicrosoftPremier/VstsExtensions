@@ -2,6 +2,10 @@
 
 # Create Work Item - Change Notes
 
+#### 2.3.1
+- Fix OIDC authentication on classic release.
+- Fix minimum agent version.
+
 #### 2.3.0
 - Add support for bulk work item creation. (fixes GitHub issue #156)
 
