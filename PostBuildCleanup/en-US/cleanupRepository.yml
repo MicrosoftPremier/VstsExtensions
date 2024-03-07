@@ -1,0 +1,127 @@
+# This steps template is meant to replace the Post Build Cleanup task in YAML pipelines.
+
+parameters:
+  # This parameter takes the path to your cloned repository (e.g., '$(Build.SourcesDirectory)' or '$(Build.SourcesDirectory)/{repository name}').
+  # If you have only one repository, leave the default (i.e., don't specify the parameter). If you have multiple repositories, use the value
+  # '$(Build.SourcesDirectory)/{repository name}' (replace the placeholder in curly brackets). If you specified the path parameter in your
+  # checkout steps, use the same value for repositoryPath.
+  - name: repositoryPath
+    displayName: 'The path into which the repository was cloned'
+    type: string
+    default: '$(Build.SourcesDirectory)'
+
+  # This parameter takes the clean option similar to the old classic UI. Valid values are:
+  #   - sources: cleans only the repository path
+  #   - sourcesAndOutput: cleans the repository path and the $(Build.BinariesDirectory)
+  #   - sourcesDirectory: deletes all contents from the repository path
+  #   - all: empties all standard directories in the pipelin workspace
+  - name: cleanOption
+    displayName: 'The clean option to use, similar to the old classic UI.'
+    type: string
+    default: sources
+    values:
+      - sources
+      - sourcesAndOutput
+      - sourcesDirectory
+      - all
+  
+  # This parameter must be set to true if checkout.submodules for your repository is set to true or recursive. Otherwise it should be false.
+  - name: checkoutSubmodules
+    displayName: 'True if submodules have been checked out, otherwise false'
+    type: boolean
+    default: false
+
+steps:
+  - pwsh: |
+      function Cleanup-GitFolder($path) {
+        Write-Host "Cleaning up git folder $path"
+        if (Test-Path -Path $path -PathType Container) {
+          $fsEntries = Get-ChildItem -Path $path -Directory
+
+          foreach ($fsEntry in $fsEntries) {
+              Remove-Item -Path "$($fsEntry.FullName)\*" -Recurse -Force
+          }
+        }
+      }
+
+      function Delete-AllContent($path, $keepDirs, $exclusions) {
+        Write-Host "Deleting all content from $path"
+        $fsEntries = Get-ChildItem -Path $path | Where-Object { $exclusions -notcontains $_.Name }
+
+        foreach ($fsEntry in $fsEntries) {
+          if ($fsEntry.PSIsContainer) {
+            if ($fsEntry.Name -eq '.git') {
+              Cleanup-GitFolder $fsEntry.FullName
+            } else {
+              $gitFolder = Join-Path -Path $fsEntry.FullName -ChildPath '.git'
+              if (Test-Path -Path $gitFolder -PathType Container) {
+                Cleanup-GitFolder $gitFolder
+                Delete-AllContent -path $fsEntry.FullName -keepDirs $false -exclusions '.git'
+              } else {
+                if ($keepDirs) {
+                  Remove-Item -Path "$($fsEntry.FullName)\*" -Recurse -Force
+                } else {
+                  Remove-Item -Path $fsEntry.FullName -Recurse -Force
+                }
+              }
+            }
+          } else {
+            Remove-Item -Path $fsEntry.FullName -Force
+          }
+        }
+      }
+
+      function Cleanup-GitRepo() {
+        $repoPath = "${{ parameters.repositoryPath }}"
+        Write-Host "Cleaning up git repository $repoPath"
+        $checkoutSubmodules = ("${{ parameters.checkoutSubmodules }}".ToLower() -eq "true")
+        $origDir = Get-Location
+
+        Set-Location $repoPath
+        & git clean -fdx
+        if ($LASTEXITCODE -eq 0) {
+          & git reset --hard HEAD
+        }
+        if ($checkoutSubmodules) {
+          if ($LASTEXITCODE -eq 0) {
+            & git submodule foreach git clean -fdx
+          }
+          if ($LASTEXITCODE -eq 0) {
+            & git submodule foreach git reset --hard HEAD
+          }
+        }
+        Set-Location $origDir
+
+        if ($LASTEXITCODE -ne 0) {
+          Delete-AllContent -path $repoPath
+        }
+      }
+
+      switch ("${{ parameters.cleanOption }}") {
+        "sources" {
+          Cleanup-GitRepo
+          Break
+        }
+        "sourcesAndOutput" {
+          Cleanup-GitRepo
+          Delete-AllContent -path "$(Build.BinariesDirectory)"
+          Break
+        }
+        "sourcesDirectory" {
+          Delete-AllContent -path "${{ parameters.repositoryPath }}"
+          Break
+        }
+        "all" {
+          $exclusions = @(
+            (Get-Item "$(Build.BinariesDirectory)").BaseName,
+            (Get-Item "$(Build.SourcesDirectory)").BaseName,
+            (Get-Item "$(Build.StagingDirectory)").BaseName,
+            (Get-Item "$(Common.TestResultsDirectory)").BaseName
+          )
+          Delete-AllContent -path "$(Pipeline.Workspace)" -keepDirs $false -exclusions $exclusions
+          Delete-AllContent -path "$(Pipeline.Workspace)" -keepDirs $true
+          Break
+        }
+      }
+    displayName: 'Clean path ${{ parameters.repositoryPath }} with option ${{ parameters.cleanOption }}'
+    workingDirectory: $(Pipeline.Workspace)

@@ -2,8 +2,12 @@
 
 # Post Build Cleanup - Change Notes
 
+#### 4.0.0
+- Update task to Node 16 (the task now supports Node 10, Node 16, and Node 20).
+- Small fix to make the task work better with YAML pipelines (see [YAML Guidance](./yamlGuidance.md) for guidance on cleanup and YAML pipelines).
+
 #### 3.1.1
-- Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`
+- Bump version of the azure-pipelines-task-lib to get rid of NodeJS warning `Warning: Use Cipheriv for counter mode of aes-256-ctr`.
 
 #### 3.1.0
 - Fix issue with disabling NodeJS certificate check.

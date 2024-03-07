@@ -11,6 +11,7 @@ The *Post Build Cleanup* task deletes unwanted files from your build agent, **af
 You can find the changes notes for this task [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/PostBuildCleanup/en-US/changeNotes.md).
 
 ### Known Issues
+- Task is not properly working with YAML pipelines and we will not provide a version that is fully compatible with YAML. Please see [YAML Guidance](./yamlGuidance.md) for more information.
 - We are phasing out Team Foundation Server 2015. If you're still using Team Foundation Server 2015, please stay on version 2.x of the extension which can be downloaded [here](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/PostBuildCleanup/archive/MSPremier.PostBuildCleanup-2.1.2.vsix). For newer versions of Team Foundation Server or Azure DevOps Services please use version 3.x and higher.
 
 ### Support
