@@ -301,7 +301,9 @@ Use the parameter in the *Advanced* group to control special task features:
 
   **YAML: authType** - (Required) Default is `internal`. Set to `pat` to use PAT authentication, set to `oidc` to use workload identity federation.
 
-- <a name="targetOrg">**Target Organization:**</a> By default, the task always creates work items in the same organization in which the task is executed. When using PAT or OIDC authentication, though, it is also possible to create tasks in other organizations, as long as the PAT or OIDC identity has sufficient access to the organiztion. Leave this field empty to create work items in the current organization or provide the name of the another target organization. The value is only used if **Auth Type** is set to either **PAT** or **OIDC**.
+- <a name="targetOrg">**Target Organization:**</a> By default, the task always creates work items in the same organization in which the task is executed. When using PAT or OIDC authentication, though, it is also possible to create tasks in other organizations, as long as the PAT or OIDC identity has sufficient access to the organiztion. Leave this field empty to create work items in the current organization or provide the name or full URI of the another target organization. The value is only used if **Auth Type** is set to either **PAT** or **OIDC**.
+
+**Note:** Organizations might still be using the old URI format `https://yourOrg.visualstudio.com` instead of the new format `https://dev.azure.com/yourOrg`. While cross-organization work item creation *should* work, regardless of the URI format used by source and target organization, we cannot guarantee that it does and will always work. If you encounter problems when trying to create work items in organizations with a different URI format, please provide the full target organization URI instead of just the name.
 
   **YAML: targetOrg** - (Optional) Default is empty.
 

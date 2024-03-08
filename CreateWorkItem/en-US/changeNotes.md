@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 2.3.2
+- Add proper support for the old URL format of Azure DevOps Services (i.e., `https://yourOrg.visualstudio.com`)
+
 #### 2.3.1
 - Fix OIDC authentication on classic release.
 - Fix minimum agent version.
