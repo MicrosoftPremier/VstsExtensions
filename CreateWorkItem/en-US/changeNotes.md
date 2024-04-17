@@ -2,6 +2,9 @@
 
 # Create Work Item - Change Notes
 
+#### 2.3.3
+- Improve handling of secret variables.
+
 #### 2.3.2
 - Add proper support for the old URL format of Azure DevOps Services (i.e., `https://yourOrg.visualstudio.com`)
 
