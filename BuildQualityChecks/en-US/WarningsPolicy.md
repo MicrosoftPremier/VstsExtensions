@@ -108,6 +108,14 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **YAML: inclusiveSelection (alias: inclusiveFiltering)** - (Optional) Default is *false*.
 
+- <a name="warningExclusions">**Warning Exclusions (Tasks):**</a> By default, the *Warnings Policy* counts all warnings that match the *Warning Selectors (Tasks)* and/or all other warnings in your pipeline. If you want to exclude specific warnings from the analysis, you can use *Warning Exclusions (Tasks)*. Specify a list of regular expressions (one per line) that match the warnings you want to exclude from the analysis. This setting is only visible if *Evaluate Task Warnings* is checked.
+
+  **Note:** Before using this setting, please first consider suppressing unwanted warnings by using (pre)compiler options or other language-specific mechanisms. Having a larger number of warnings in your pipeline but only considering some of them as important can lead to confusion and misinterpretation of the results. Only if you cannot suppress specific warnings by other means, use this setting.
+
+  **YAML: warningExclusions** - (Optional) Default is empty. Set to one or more exclusion values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
+
+  **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
+
 ### File Warnings Parameters
 
 ![File Warnings Parameters](../assets/WarningsPolicyFiles.png "File Warnings Parameters of the Warnings Policy")
@@ -129,6 +137,12 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 - <a name="fileWarningSelectors">**Warning Selectors (Files):**</a> (Required) Specify a list of regular expressions (one per line) that match the warnings in your log files. Make sure that your regular expressions match each warning only once, otherwise they will be counted multiple times. If you need separate regular expressions for specific log files, please use multiple instances of the *Build Quality Checks* task. You can use the same special selectors as described under [Warning Selectors (Tasks)](https://github.com/MicrosoftPremier/VstsExtensions/blob/master/BuildQualityChecks/en-US/WarningsPolicy.md#warningSelectors) This setting is only visible if *Evaluate File Warnings* is checked.
 
   **YAML: fileWarningSelectors (alias warningFileFilters)** - (Required) Default is empty. Set to one or more selector values. Start multiple entries with a pipe sign and keep each entry on a separate indented line. Required if **evaluateFileWarnings** is set to *true*.
+
+  **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
+
+- <a name="fileWarningExclusions">**Warning Exclusions (Files):**</a> (Optional) Specify a list of regular expressions (one per line) that match the warnings you want to exclude from the analysis. This setting is only visible if *Evaluate File Warnings* is checked.
+
+  **YAML: fileWarningExclusions** - (Optional) Default is empty. Set to one or more exclusion values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 

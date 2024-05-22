@@ -40,10 +40,12 @@ YAML snippet:
     #warningTaskSelectors: '/^((vs|ms)build|ant(\s+.+)?|gradle(w)?(\s+.+)?|grunt|gulp|maven(\s+.+)?|xamarin(android|ios)|xcode(\s+.+)?|cmake|build\s+.+)$/i' # Optional (alias: warningTaskFilters)
     #warningSelectors: # Optional (alias: warningFilters)
     #inclusiveSelection: false # Optional (alias: inclusiveFiltering)
+    #warningExclusions: # Optional
     #evaluateFileWarnings: false # Optional
     #warningFilesFolder: # Optional
     #warningFiles: # Required if evaluateFileWarnings = true
     #fileWarningSelectors: # Required if evaluateFileWarnings = true (alias: warningFileFilters)
+    #fileWarningExclusions: # Optional
     #warningFilesArtifact: # Required if evaluateFileWarnings = true and (warningFailOption = build or showStatistics = true)
     # ===== Code Coverage Policy Inputs =====
     #checkCoverage: false # Optional
