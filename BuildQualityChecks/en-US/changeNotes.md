@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 9.2.1
+- Fix issue with non-optional file warning exclusions.
+
 #### 9.2.0
 - Fix minimum agent version.
 - Add suport for warning exclustions. (fixes GitHub issue #238)
