@@ -7,7 +7,7 @@
 
 #### 9.2.0
 - Fix minimum agent version.
-- Add suport for warning exclustions. (fixes GitHub issue #238)
+- Add support for warning exclusions. (fixes GitHub issue #238)
 
 #### 9.1.0
 - Add parameter `addAttachment` to disable publishing the Markdown summary file. (fixes GitHub issue #222)
