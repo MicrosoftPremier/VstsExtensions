@@ -2,6 +2,9 @@
 
 # Build Quality Checks - Change Notes
 
+#### 9.2.2
+- Fix issue with warning exclusions.
+
 #### 9.2.1
 - Fix issue with non-optional file warning exclusions.
 
