@@ -7,4 +7,4 @@ we will only fix issues and add features to the latest major version of our exte
 
 ## Reporting a Vulnerability
 
-If you believe you have found a security issue with one of our extensions, feel free to report it via email to mailto:PSGerExtSupport@Microsoft.com or report it [here](https://github.com/MicrosoftPremier/VstsExtensions/security/advisories/new).
+If you believe you have found a security issue with one of our extensions, feel free to report it via email to mailto:PSGerExtSupport@Microsoft.com.
