@@ -74,6 +74,8 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
+  **Answer file support:** This parameter supports the use of answer files. To include the content of an answer file, use the syntax `fromFile: /full/path/to/answerFile`. You must specify the full path to the answer file on the build agent (e.g., `$(Build.SourcesDirectory)/warningTaskSelectors.txt`). The answer file must be in the same format as the parameter itself (i.e., one entry per line) and may contain comment lines starting with #. You can mix regular expressions and answer file references in the same parameter. Nested answer files are not supported.
+
 - <a name="warningSelectors">**Warning Selectors (Tasks):**</a> In some cases, you may want to analyze only specific types of warnings (e.g., unreachable code warnings, static code analysis warnings). *Warning Selectors (Tasks)* allow you to do just that. Specify a list of regular expressions (one per line) that only match the types of warnings you are looking for and the policy will evaluate only those warnings. The policy result will show the total number of warnings as well as the number of warnings that match the selectors (i.e., specific warnings). Keep in mind that *Warning Selectors (Tasks)* analyze the log file of build tasks and does a simple text match. Thus, you need to make sure that your regular expressions match each warning only once. This setting is only visible if *Evaluate Task Warnings* is checked.
 
   **YAML: warningSelectors (alias: warningFilters)** - (Optional) Default is empty. Set to one or more selector values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
@@ -104,6 +106,8 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
+  **Answer file support:** This parameter supports the use of answer files. To include the content of an answer file, use the syntax `fromFile: /full/path/to/answerFile`. You must specify the full path to the answer file on the build agent (e.g., `$(Build.SourcesDirectory)/warningSelectors.txt`). The answer file must be in the same format as the parameter itself (i.e., one entry per line) and may contain comment lines starting with #. You can mix regular expressions and answer file references in the same parameter. Nested answer files are not supported.
+
 - <a name="inclusiveSelection">**Make Warning Selectors Inclusive:**</a> Checking this option changes the behavior of *Warning Selectors (Tasks)*. When unchecked (default), the policy only counts warnings matching the regular expressions listed in the *Warning Selectors (Tasks)* parameter, which is called *exclusive selection*. In some cases, though, you might want to count aggregated warnings in addition to the regular warnings (called *inclusive selection*). This can be achieved by activating the *Make Warning Selectors Inclusive* option. This setting is only visible if *Evaluate Task Warnings* is checked. You need to enable this option if you want to use the special syntaxes (i.e., named or unnamed capturing groups) of the *Warning Selectors (Tasks)*.
 
   **YAML: inclusiveSelection (alias: inclusiveFiltering)** - (Optional) Default is *false*.
@@ -115,6 +119,8 @@ When running in a pull request validation build, the *Warnings Policy* publishes
   **YAML: warningExclusions** - (Optional) Default is empty. Set to one or more exclusion values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
+
+  **Answer file support:** This parameter supports the use of answer files. To include the content of an answer file, use the syntax `fromFile: /full/path/to/answerFile`. You must specify the full path to the answer file on the build agent (e.g., `$(Build.SourcesDirectory)/warningExclusions.txt`). The answer file must be in the same format as the parameter itself (i.e., one entry per line) and may contain comment lines starting with #. You can mix regular expressions and answer file references in the same parameter. Nested answer files are not supported.
 
 ### File Warnings Parameters
 
@@ -140,11 +146,15 @@ When running in a pull request validation build, the *Warnings Policy* publishes
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
 
+  **Answer file support:** This parameter supports the use of answer files. To include the content of an answer file, use the syntax `fromFile: /full/path/to/answerFile`. You must specify the full path to the answer file on the build agent (e.g., `$(Build.SourcesDirectory)/fileWarningSelectors.txt`). The answer file must be in the same format as the parameter itself (i.e., one entry per line) and may contain comment lines starting with #. You can mix regular expressions and answer file references in the same parameter. Nested answer files are not supported.
+
 - <a name="fileWarningExclusions">**Warning Exclusions (Files):**</a> (Optional) Specify a list of regular expressions (one per line) that match the warnings you want to exclude from the analysis. This setting is only visible if *Evaluate File Warnings* is checked.
 
   **YAML: fileWarningExclusions** - (Optional) Default is empty. Set to one or more exclusion values. Start multiple entries with a pipe sign and keep each entry on a separate indented line.
 
   **Note:** Regular expressions must use the [JavaScript RegExp](http://www.regular-expressions.info/javascript.html) syntax.
+
+  **Answer file support:** This parameter supports the use of answer files. To include the content of an answer file, use the syntax `fromFile: /full/path/to/answerFile`. You must specify the full path to the answer file on the build agent (e.g., `$(Build.SourcesDirectory)/fileWarningExclusions.txt`). The answer file must be in the same format as the parameter itself (i.e., one entry per line) and may contain comment lines starting with #. You can mix regular expressions and answer file references in the same parameter. Nested answer files are not supported.
 
 - <a name="warningFilesArtifact">**Build Artifact:**</a> (Required) Provide the name of the build artifact containing log files from the previous build that can be used to run file warnings analysis.
   

@@ -25,7 +25,7 @@ To add the *Build Quality Checks* task to a YAML build definition, use the  task
 YAML snippet:
 
 ``` yaml
-- task: BuildQualityChecks@9
+- task: BuildQualityChecks@10
   displayName: 'Check build quality'
   inputs:
     # ===== Warnings Policy Inputs =====
@@ -79,6 +79,7 @@ YAML snippet:
     #disableCertCheck: false # Optional
     #createBuildIssues: true # Optional
     #addAttachment: true # Optional
+    #enablePRIntegration: true # Optional
 ```
 
 ### Policies
@@ -156,6 +157,10 @@ If you choose `Previous Value` for the *Fail Build On* option for one of the pol
 
   **YAML: addAttachment** - (Optional) Default is *true*.
 
+- <a name="enablePRIntegration">**Enable pull request integration:**</a> When enabled, the task pushes updates to the pull request if it is running inside a pull request validation build. This includes pull request status updates (see [Pull Request Statuses](#pull-request-statuses) below). If this option is disabled, the task will not push any updates to the pull request. Turn this option off if you cannot or do not want to give the required permissions to the build identity. This option is enabled by default.
+
+  **YAML: enablePRIntegration** - (Optional) Default is *true*.
+
 ### Task Variables
 In addition to parameters visible in the task UI there are a few variables you can set to affect the tasks behavior:
 
@@ -188,7 +193,7 @@ The *Build Quality Checks* task creates its own summary section in the build sum
 In addition, each policy you run creates an output variable that you can use to conditionally run other tasks in your pipeline (e.g., create a technical debt work item if quality metrics get worse). See policy documentation for more information.
 
 #### Pull Request Statuses
-If you run the task as part of a pull request validation build, each policy also publishes its result as a pull request status:
+If you run the task as part of a pull request validation build and have the option *Enable pull request integration* (see above) enabled, each policy also publishes its result as a pull request status:
 
 ![Branch Policy Results](../assets/BranchPolicyResult.png "Policy results on the pull request summary page")
 

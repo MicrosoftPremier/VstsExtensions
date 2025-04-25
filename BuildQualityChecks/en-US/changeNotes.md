@@ -2,6 +2,13 @@
 
 # Build Quality Checks - Change Notes
 
+#### 10.0.0
+- BREAKING CHANGE: Log warning when pipeline identity does not have sufficient permissions to contribute to pull requests.
+- BREAKING CHANGE: Drop support for Node 10.
+- Allow disabling pull request integration.
+- Upgrade task to Node 20.
+- Add support for answer files for regular expression parameters. (fixes GitHub issue #242)
+
 #### 9.2.2
 - Fix issue with warning exclusions.
 
