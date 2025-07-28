@@ -42,7 +42,7 @@ YAML snippet:
     #limitWorkItemLinksToSameProject: false # Optional
     #linkPR: false # Optional
     #linkCode: false # Optional
-    #commitsAndChangesets: # Required if linkCode = true
+    #codeReferences: # Required if linkCode = true (alias: commitsAndChangesets)
     # ===== Attachments Inputs =====
     #addAttachments: false # Optional
     #attachmentsFolder: # Optional
@@ -89,7 +89,13 @@ The task supports the default parameters listed below. All parameters support va
   
   **YAML: title** - (Required) Default is empty.
 
-- <a name="assignedTo">**Assigned To:**</a> Enter an optional identity to assign the new work item to. Since there currently is no way to use the regular identity picker control in build tasks or extensions, you have to manually enter the value in the correct format. Please make sure to use the format **Display Name &lt;Login Email Address&gt;** (e.g., *John Doe &lt;johnd@contoso.com&gt;*) or **Display Name &lt;Domain Account&gt;** (e.g., *John Doe &lt;contoso\\johnd&gt;*) for on-premises servers. If you want to dynamically assign the work item to the person requesting the build or release, you should use one of the RequestedForId variables (e.g., *$(Build.RequestedForId)* or *$(Release.Deployment.RequestedForId)*). Any incorrect format will creates an error and work item creation or update fails.
+- <a name="assignedTo">**Assigned To:**</a> Enter an optional identity to assign the new work item to. Since there currently is no way to use the regular identity picker control in build tasks or extensions, you have to manually enter the value in the correct format.
+
+The best way to specify an identity value is by using the VSID (i.e., the internal user ID of the identity). Most of the time, though, you don't know this ID without using an Azure DevOps REST API call. However, if you want to assign the work item to the person who requested the build or release, you can use the `$(Build.RequestedForId)` or `$(Release.Deployment.RequestedForId)` variables. These variables contain the VSID of the user who requested the build or release.
+
+The second-best option for specifying an identity is to use the UPN (User Principal Name; e.g., `user@domain.com`) or the SamAccountName (for on-premises Azure DevOps Servers; e.g., `domain\user`) of the identity. When using the UPN, please ensure that this is the actual login email address and not a preferred notification email address or alternate email address from Microsoft Entra.
+
+Finally, you can also use the display name of the identity, but this is not recommended since it might not be unique and may lead to unexpected results. If you use the display name, please ensure that it is unique in your Azure DevOps organization or Azure DevOps Server instance.
   
   **YAML: assignedTo** - (Optional) Default is empty.
 
@@ -179,18 +185,22 @@ Use the parameters in the *Linking* group to control links from the newly create
   
   **YAML: linkCode** - (Optional) Default is *false*.
 
-- <a name="commitsAndChangesets">**Commits and Changesets:**</a> List the commits and/or changesets to link to (one per line). Use the format *&lt;project name or ID&gt;:&lt;repository name or ID&gt;:&lt;commit hash&gt;* for commits or *CS&lt;changeset ID&gt;* for changesets. You must enter at least one commit or changeset if you enabled the option to link to code.
+- <a name="codeReferences">**Code References:**</a> List the commits, changesets, branches, or tags to link to (one per line). Use the format *&lt;project name or ID&gt;:&lt;repository name or ID&gt;:&lt;commit hash|branch ref|tag ref&gt;* for commits/branches/tags or *CS&lt;changeset ID&gt;* for changesets. You must enter at least one commit, branch, tag, or changeset if you enabled the option to link to code.
   
-  **YAML: commitsAndChangesets** - (Required) Default is empty. Set to one or more commit and/or changeset IDs using the format described above. Start multiple entries with a pipe sign and keep each entry on a separate indented line. The use of variables is supported. Required if **linkCode** is set to *true*.
+  **YAML: codeReferences (alias: commitsAndChangesets)** - (Required) Default is empty. Set to one or more commits, branches, tags, or changesets using the format described above. Start multiple entries with a pipe sign and keep each entry on a separate indented line. The use of variables is supported. Required if **linkCode** is set to *true*.
 
   **Example:**  
   ```yaml
   linkCode: true
-  commitsAndChangesets: |
+  codeReferences: |
     $(System.TeamProjectId):$(Build.Repository.ID):$(Build.SourceVersion)
     myOtherProject:anotherRepo:ac2add7fae80bd4fe85f670243a40d79961b7ffb
+    myProject:myRepo:refs/heads/main
+    myProject:myRepo:refs/tags/v1.0.0
     CS4711
   ```
+
+  **Note:** Branch and tag references are case-sensitive!
 
 #### Attachments
 Use the parameters in the *Attachments* group to attach files to the new or updated work item.

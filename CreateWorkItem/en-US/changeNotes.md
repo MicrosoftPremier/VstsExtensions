@@ -2,6 +2,11 @@
 
 # Create Work Item - Change Notes
 
+#### 2.4.0
+- Upgrade task to Node 20.
+- Clarify the use of identity values in the docs.
+- Add support for linking to branches and tags.
+
 #### 2.3.3
 - Improve handling of secret variables.
 
